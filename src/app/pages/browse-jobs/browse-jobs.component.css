@@ -1,0 +1,19 @@
+.job-container {
+    padding: 15px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0px 0px 2px 0px #bdbdbd;
+    -moz-box-shadow: 0px 0px 2px 0px #bdbdbd;
+    box-shadow: 0px 0px 2px 0px #bdbdbd;
+}
+
+.work-type {
+    background-color: #ef6c00;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 32px 32px 32px 32px;
+    -moz-border-radius: 32px 32px 32px 32px;
+    -webkit-border-radius: 32px 32px 32px 32px;
+}

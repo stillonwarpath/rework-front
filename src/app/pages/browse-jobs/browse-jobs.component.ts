@@ -12,4 +12,8 @@ export class BrowseJobsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  apply() {
+    console.log('Postular');
+  }
+
 }
