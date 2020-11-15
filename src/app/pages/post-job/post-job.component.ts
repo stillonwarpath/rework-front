@@ -10,6 +10,7 @@ export class PostJobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Ejecutado');
   }
 
 }

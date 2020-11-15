@@ -10,6 +10,7 @@ export class BrowseJobsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('Ejecutado');
   }
 
   apply() {
