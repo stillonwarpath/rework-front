@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { JobService } from '../../services/job.service';
+import { Job } from '../../classes/job.class';
 
 @Component({
   selector: 'app-post-job',
@@ -7,10 +10,82 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostJobComponent implements OnInit {
 
-  constructor() { }
+  newJobForm: FormGroup;
+
+  constructor( private jobService: JobService ) { }
 
   ngOnInit(): void {
-    console.log('Ejecutado');
+
+    this.newJobForm = new FormGroup({
+       company: new FormControl(null, Validators.required),
+       jobTitle: new FormControl(null, Validators.required),
+       category: new FormControl('-99', [Validators.required ]),
+       type: new FormControl('-99', Validators.required),
+       location: new FormControl(null, Validators.required),
+       url: new FormControl(null, Validators.required),
+       email: new FormControl(null, [Validators.required, Validators.email ]),
+    });
+  }
+
+  get company() {
+
+    return this.newJobForm.get('company');
+
+  }
+
+  get jobTitle() {
+
+    return this.newJobForm.get('jobTitle');
+
+  }
+
+  get category() {
+
+    return this.newJobForm.get('category');
+
+  }
+
+  get type() {
+
+    return this.newJobForm.get('type');
+
+  }
+
+
+  get location() {
+
+    return this.newJobForm.get('location');
+
+  }
+  get url() {
+
+    return this.newJobForm.get('url');
+
+  }
+
+  get email() {
+
+    return this.newJobForm.get('email');
+
+  }
+
+  pay() {
+
+    if ( this.newJobForm.invalid ) {
+      return;
+    }
+
+    const job = new Job( this.company.value,
+                         this.jobTitle.value,
+                         this.category.value,
+                         this.type.value,
+                         this.location.value,
+                         this.url.value,
+                         this.email.value);
+    
+    this.jobService.postJob( job );
+
+
   }
 
 }
