@@ -45,7 +45,14 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-3">
-            <button mdbBtn type="button" gradient="peach" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid" (click)="pay()">Pay $69.99</button>
+            <button mdbBtn type="button" gradient="peach" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid || loading" (click)="pay()">
+                <div class="spinner-border" role="status" *ngIf="loading">
+                    <span class="sr-only">Redirecting to checkout...</span>
+                </div>
+                <span *ngIf="!loading">
+                    Pay $69.99
+                </span>
+            </button>
         </div>
     </div>
 </form>

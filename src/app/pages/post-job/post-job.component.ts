@@ -20,6 +20,7 @@ export class PostJobComponent implements OnInit {
 
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
+  loading = false;
   errorMessage: string = undefined;
 
   constructor( private jobService: JobService,
@@ -89,6 +90,8 @@ export class PostJobComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
     const job = new Job( this.company.value,
                          this.jobTitle.value,
                          this.category.value,
@@ -104,6 +107,7 @@ export class PostJobComponent implements OnInit {
 
     } catch ( err ) {
 
+      this.loading = false;
       this.errorMessage = err;
       return;
 
@@ -123,6 +127,7 @@ export class PostJobComponent implements OnInit {
 
     } catch ( err ) {
 
+      this.loading = false;
       this.errorMessage = err;
       return;
 
@@ -132,7 +137,8 @@ export class PostJobComponent implements OnInit {
 
     if( result.error ) {
 
-      this.errorMessage = `The checkout process failed`;
+      this.loading = false;
+      this.errorMessage = `There's a problem redirecting to checkout`;
 
     }
 
