@@ -27,8 +27,8 @@
                 {{ category.name }}
             </option>
         </select>
-        <mdb-error *ngIf="category.invalid && (category.dirty || category.touched)">
-            <span *ngIf="category.errors.required">Category is required</span>
+        <mdb-error *ngIf="category.invalid">
+            <span *ngIf="category.errors?.required">Category is required</span>
         </mdb-error>
     </div>
 
@@ -37,7 +37,7 @@
             <option value="-99">Type of this position</option>
             <option *ngFor="let type of types" [value]="type._id">{{ type.name }}</option>
         </select>
-        <mdb-error *ngIf="type.invalid && (type.dirty || type.touched)">
+        <mdb-error *ngIf="type.invalid">
             <span *ngIf="type.errors.required">Type is required</span>
         </mdb-error>
     </div>
@@ -63,6 +63,7 @@
         <label for="contact-email" class="">Contact email</label>
         <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">
             <span *ngIf="email.errors.required">Contact email is required</span>
+            <span *ngIf="email.errors.email">The email format isn't valid</span>
         </mdb-error>
     </div>
 

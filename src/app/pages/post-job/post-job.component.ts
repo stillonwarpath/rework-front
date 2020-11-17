@@ -106,10 +106,35 @@ export class PostJobComponent implements OnInit {
   async pay() {
 
     let createdJob:IJobCreated;
-    let checkoutId: string;
 
     if ( this.newJobForm.invalid ) {
+      console.log('acá');
       return;
+    }
+
+    if ( this.category.value === '-99' ) {
+
+      console.log('categoría inválida');
+
+      this.category.setErrors({
+        required: true
+      });
+
+      return;
+
+    }
+
+    if ( this.type.value === '-99' ) {
+
+      console.log('tipo inválido');
+
+
+      this.type.setErrors({
+        required: true
+      });
+
+      return;
+
     }
 
     this.loading = true;
@@ -156,6 +181,8 @@ export class PostJobComponent implements OnInit {
     }
 
     const result = this.stripe.redirectToCheckout({ sessionId: checkoutId });
+
+    this.newJobForm.reset();
 
     if( result.error ) {
 
