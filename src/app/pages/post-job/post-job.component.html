@@ -1,4 +1,7 @@
 <h1 class="h1-responsive font-weight-bold">Create your job listing</h1>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{ errorMessage }}
+</div>
 <form [formGroup]="newJobForm">
     <div class="md-form">
         <input mdbInput type="text" id="company" class="form-control" formControlName="company">

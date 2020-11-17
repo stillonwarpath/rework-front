@@ -11,6 +11,7 @@ import { Job } from '../../classes/job.class';
 export class PostJobComponent implements OnInit {
 
   newJobForm: FormGroup;
+  errorMessage: string = undefined;
 
   constructor( private jobService: JobService ) { }
 
@@ -69,7 +70,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  pay() {
+  async pay() {
 
     if ( this.newJobForm.invalid ) {
       return;
@@ -83,7 +84,19 @@ export class PostJobComponent implements OnInit {
                          this.url.value,
                          this.email.value);
     
-    this.jobService.postJob( job );
+    try {
+
+      const createdJob = await this.jobService.postJob( job );
+      console.log(createdJob);
+      
+    } catch ( err ) {
+
+      console.log(  err );
+      this.errorMessage = err;
+
+    } 
+
+    //TODO: Crear sesión de checkout Stripe
 
 
   }
