@@ -5,11 +5,12 @@ import { Job } from '../../classes/job.class';
 import { StripeService } from '../../services/stripe.service';
 import { IJobCreated } from 'src/app/interfaces/posted-job.interface';
 import { environment } from 'src/environments/environment';
+import { CategoryService } from '../../services/category.service';
+import { ICategory } from 'src/app/interfaces/categories-request.interface';
 
 declare const Stripe;
 
 const STRIPE_PK = environment.stripe_pk;
-
 
 @Component({
   selector: 'app-post-job',
@@ -20,13 +21,15 @@ export class PostJobComponent implements OnInit {
 
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
+  categories: ICategory[] = [];
   loading = false;
   errorMessage: string = undefined;
 
   constructor( private jobService: JobService,
-               private stripeService: StripeService ) { }
+               private stripeService: StripeService,
+               private categoryService: CategoryService ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
@@ -37,6 +40,9 @@ export class PostJobComponent implements OnInit {
        url: new FormControl(null, Validators.required),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });
+
+    this.categories = await this.categoryService.getCategories();
+
   }
 
   get company() {
