@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
+import { StripeService } from '../../services/stripe.service';
 
 @Component({
   selector: 'app-post-job',
@@ -13,7 +14,8 @@ export class PostJobComponent implements OnInit {
   newJobForm: FormGroup;
   errorMessage: string = undefined;
 
-  constructor( private jobService: JobService ) { }
+  constructor( private jobService: JobService,
+               private stripeService: StripeService ) { }
 
   ngOnInit(): void {
 
@@ -83,20 +85,21 @@ export class PostJobComponent implements OnInit {
                          this.location.value,
                          this.url.value,
                          this.email.value);
-    
+
     try {
 
       const createdJob = await this.jobService.postJob( job );
       console.log(createdJob);
-      
+
     } catch ( err ) {
 
       console.log(  err );
       this.errorMessage = err;
+      return;
 
-    } 
+    }
 
-    //TODO: Crear sesión de checkout Stripe
+    this.stripeService.getCheckoutSession();
 
 
   }
