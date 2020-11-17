@@ -7,6 +7,8 @@ import { IJobCreated } from 'src/app/interfaces/posted-job.interface';
 import { environment } from 'src/environments/environment';
 import { CategoryService } from '../../services/category.service';
 import { ICategory } from 'src/app/interfaces/categories-request.interface';
+import { TypeService } from '../../services/type.service';
+import { IType } from 'src/app/interfaces/types-request.interface';
 
 declare const Stripe;
 
@@ -22,12 +24,14 @@ export class PostJobComponent implements OnInit {
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
   categories: ICategory[] = [];
+  types: IType[] = [];
   loading = false;
   errorMessage: string = undefined;
 
   constructor( private jobService: JobService,
                private stripeService: StripeService,
-               private categoryService: CategoryService ) { }
+               private categoryService: CategoryService,
+               private typeService: TypeService ) { }
 
   async ngOnInit() {
 
@@ -42,6 +46,8 @@ export class PostJobComponent implements OnInit {
     });
 
     this.categories = await this.categoryService.getCategories();
+
+    this.types = await this.typeService.getTypes();
 
   }
 
