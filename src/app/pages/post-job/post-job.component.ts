@@ -108,33 +108,15 @@ export class PostJobComponent implements OnInit {
     let createdJob:IJobCreated;
 
     if ( this.newJobForm.invalid ) {
-      console.log('acá');
       return;
     }
 
-    if ( this.category.value === '-99' ) {
-
-      console.log('categoría inválida');
-
-      this.category.setErrors({
-        required: true
-      });
-
+    if ( this.invalidCategory() ) {
       return;
-
     }
 
-    if ( this.type.value === '-99' ) {
-
-      console.log('tipo inválido');
-
-
-      this.type.setErrors({
-        required: true
-      });
-
+    if ( this.invalidType() ) {
       return;
-
     }
 
     this.loading = true;
@@ -190,6 +172,43 @@ export class PostJobComponent implements OnInit {
       this.errorMessage = `There's a problem redirecting to checkout`;
 
     }
+
+  }
+
+  // Validación de categoría
+  private invalidCategory() {
+
+    if ( this.category.value === '-99' ) {
+
+      this.category.setErrors({
+        required: true
+      });
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  // Validación de tipo
+  private invalidType() {
+
+    if ( this.type.value === '-99' ) {
+
+      console.log('tipo inválido');
+
+
+      this.type.setErrors({
+        required: true
+      });
+
+      return true;
+
+    }
+
+    return false;
 
   }
 
