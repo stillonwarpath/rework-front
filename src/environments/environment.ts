@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  rework_backend_url: 'http://localhost:3000/api'
+  rework_backend_url: 'http://localhost:3000/api',
+  stripe_pk: 'pk_test_51Hj9kwAR2u98Fmdnw9Otm2lRXOGOoyLhmV9h5suYIUtH68Ae3jZ7fZVyBNDjU0gQ2dPyg1VY6eK14LogD1qrkFiL00b22ggBW2',
 };
 
 /*

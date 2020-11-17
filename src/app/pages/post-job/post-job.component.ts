@@ -3,6 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
 import { StripeService } from '../../services/stripe.service';
+import { IJobCreated } from 'src/app/interfaces/posted-job.interface';
+import { environment } from 'src/environments/environment';
+
+declare const Stripe;
+
+const STRIPE_PK = environment.stripe_pk;
+
 
 @Component({
   selector: 'app-post-job',
@@ -11,6 +18,7 @@ import { StripeService } from '../../services/stripe.service';
 })
 export class PostJobComponent implements OnInit {
 
+  stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
   errorMessage: string = undefined;
 
@@ -74,6 +82,9 @@ export class PostJobComponent implements OnInit {
 
   async pay() {
 
+    let createdJob:IJobCreated;
+    let checkoutId: string;
+
     if ( this.newJobForm.invalid ) {
       return;
     }
@@ -88,19 +99,42 @@ export class PostJobComponent implements OnInit {
 
     try {
 
-      const createdJob = await this.jobService.postJob( job );
+      createdJob = await this.jobService.postJob( job );
       console.log(createdJob);
 
     } catch ( err ) {
 
-      console.log(  err );
       this.errorMessage = err;
       return;
 
     }
 
-    this.stripeService.getCheckoutSession();
+    await this.stripeCheckout( createdJob._id );
 
+  }
+
+  private async stripeCheckout( jobId: string ) {
+
+    let checkoutId: string;
+
+    try {
+
+      checkoutId = await this.stripeService.getCheckoutSession( jobId );
+
+    } catch ( err ) {
+
+      this.errorMessage = err;
+      return;
+
+    }
+
+    const result = this.stripe.redirectToCheckout({ sessionId: checkoutId });
+
+    if( result.error ) {
+
+      this.errorMessage = `The checkout process failed`;
+
+    }
 
   }
 
