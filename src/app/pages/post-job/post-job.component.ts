@@ -38,16 +38,26 @@ export class PostJobComponent implements OnInit {
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
        jobTitle: new FormControl(null, Validators.required),
-       category: new FormControl('-99', [Validators.required ]),
+       category: new FormControl('-99', Validators.required),
        type: new FormControl('-99', Validators.required),
        location: new FormControl(null, Validators.required),
        url: new FormControl(null, Validators.required),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });
 
-    this.categories = await this.categoryService.getCategories();
+    this.categoryService.getCategories()
+      .then( categories => {
 
-    this.types = await this.typeService.getTypes();
+        this.categories = categories;
+
+      });
+
+    this.typeService.getTypes()
+       .then( types => {
+
+         this.types = types;
+
+       });
 
   }
 
