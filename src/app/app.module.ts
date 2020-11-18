@@ -11,13 +11,15 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NabvarComponent } from './components/nabvar/nabvar.component';
 import { BrowseJobsComponent } from './pages/browse-jobs/browse-jobs.component';
 import { PostJobComponent } from './pages/post-job/post-job.component';
+import { LocationsSplitPipe } from './pipes/locations-split.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NabvarComponent,
     BrowseJobsComponent,
-    PostJobComponent
+    PostJobComponent,
+    LocationsSplitPipe
   ],
   imports: [
     BrowserModule,

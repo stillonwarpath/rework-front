@@ -7,13 +7,17 @@
             <h2 class="h2-responsive font-weight-bold">
                 {{ job.position }}
             </h2>
-            <div style="display: flex;align-items: center;">
-                <span class="work-type font-weight-bold">
-                    {{ job.type.name }}
-                </span>
-                <span class="grey-text ml-1">
-                    {{ job.location }}
-                </span>
+            <div class="d-flex flex-column flex-md-row">
+                <div>
+                    <span class="work-type font-weight-bold">
+                        {{ job.type.name }}
+                    </span>
+                </div>
+                <div>
+                    <span class="grey-text mt-1 mt-md-0 ml-md-1" *ngFor="let location of job.location | locationsSplit">
+                        &bull;{{ location  }}
+                    </span>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-3 pt-3 pt-sm-0">
