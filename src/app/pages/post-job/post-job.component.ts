@@ -40,7 +40,7 @@ export class PostJobComponent implements OnInit {
        jobTitle: new FormControl(null, Validators.required),
        category: new FormControl('-99', Validators.required),
        type: new FormControl('-99', Validators.required),
-       location: new FormControl(null, Validators.required),
+       location: new FormControl(null),
        url: new FormControl(null, Validators.required),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });

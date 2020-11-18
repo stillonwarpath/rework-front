@@ -43,11 +43,16 @@
     </div>
 
     <div class="md-form md-outline margin-top-input">
-        <input mdbInput mdbValidate type="text" id="location" class="form-control" formControlName="location">
+        <input mdbInput type="text" id="location" class="form-control" formControlName="location">
         <label for="location" class="">Location</label>
+        <!--
         <mdb-error *ngIf="location.invalid && (location.dirty || location.touched)">
             <span *ngIf="location.errors.required">Location is required</span>
         </mdb-error>
+        -->
+        <p class="input-explanation">
+            Specify from which places you're looking for applicants. Separate locations with commas. If you're looking around the world leave it blank.
+        </p>
     </div>
 
     <div class="md-form md-outline margin-top-input">
@@ -56,6 +61,9 @@
         <mdb-error *ngIf="url.invalid && (url.dirty || url.touched)">
             <span *ngIf="url.errors.required">Link is required</span>
         </mdb-error>
+        <p class="input-explanation">
+            Include the url where applicants can find your job description. Don't include the http or https protocol, example www.yourjoburl.com.
+        </p>
     </div>
 
     <div class="md-form md-outline margin-top-input">
@@ -65,6 +73,9 @@
             <span *ngIf="email.errors.required">Contact email is required</span>
             <span *ngIf="email.errors.email">The email format isn't valid</span>
         </mdb-error>
+        <p class="input-explanation">
+            Email where you'll receive your job edit link, won't be displayed in your job.
+        </p>
     </div>
 
     <div class="row justify-content-center mt-5">
