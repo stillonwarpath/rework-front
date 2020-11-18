@@ -3,6 +3,7 @@ import { IJobRequest } from 'src/app/interfaces/jobs-request.interface';
 import { JobService } from '../../services/job.service';
 import { CategoryService } from '../../services/category.service';
 import { ICategory } from 'src/app/interfaces/categories-request.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var Splide;
 
@@ -17,30 +18,31 @@ export class BrowseJobsComponent implements OnInit {
   jobs: IJobRequest[] = [];
 
   constructor( private jobService: JobService,
-               private categoryService: CategoryService  ) { }
+               private categoryService: CategoryService,
+               private router: Router,
+               private route: ActivatedRoute  ) { }
 
   ngOnInit() {
 
-    this.jobService.getJobs().
-       then( jobs => {
-         this.jobs = jobs;
-       });
+    // Acceso a los query params
+    this.route.queryParams.subscribe( params => {
+        console.log(params);
 
-    
+        this.jobService.getJobs( params.category ).
+        then( jobs => {
+          this.jobs = jobs;
+        });
+
+    });
+
+
     this.categoryService.getCategories()
       .then( categories => {
-        
+
         this.categories = categories;
         console.log( this.categories );
 
       });
-
-  }
-
-  // Filtrar trabajos por categoría
-  async filterJobsByCategory( categoryId: string ) {
-
-    this.jobs = await this.jobService.getJobs( categoryId );
 
   }
 

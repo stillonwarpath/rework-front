@@ -1,7 +1,9 @@
-<div class="text-center">
-    <mdb-badge class="ml-1 mt-1" pill="true" default="true" *ngFor="let category of categories" style="padding: 10px;" (click)="filterJobsByCategory( category._id )">
-        {{ category.name }}
-    </mdb-badge>
+<div class="text-center my-4">
+    <a [routerLink]="['/browse-jobs']" [queryParams]="{category: category._id}" *ngFor="let category of categories">
+        <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;">
+            {{ category.name }}
+        </mdb-badge>
+    </a>
 </div>
 
 <h3 class="h3-responsive font-weight-bold">
