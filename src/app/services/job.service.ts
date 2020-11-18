@@ -43,11 +43,19 @@ export class JobService {
   }
 
   // Obtener trabajos
-  getJobs(): Promise<IJobRequest[]> {
+  getJobs( categoryId?: string ): Promise<IJobRequest[]> {
+
+    let query = '/job';
+
+    if ( categoryId ) {
+
+      query += `?category=${categoryId}`;
+
+    }
 
     return new Promise<IJobRequest[]>( (resolve, reject) => {
 
-      this.http.get(`${ REWORK_BACKEND_URL }/job`)
+      this.http.get(`${ REWORK_BACKEND_URL }${query}`)
       .subscribe( (res: IJobsRequest ) => {
 
         resolve( res.jobs );
