@@ -15,6 +15,7 @@ declare var Splide;
 export class BrowseJobsComponent implements OnInit {
 
   categories: ICategory[] = [];
+  categorySelected: string;
   jobs: IJobRequest[] = [];
 
   constructor( private jobService: JobService,
