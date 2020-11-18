@@ -1,23 +1,23 @@
-<div class="job-container mt-3" *ngFor="let item of [1,1,1,1]">
+<div class="job-container mt-3" *ngFor="let job of jobs">
     <div class="row">
         <div class="col-12 col-md-9">
             <h5 class="h5-responsive grey-text">
-                Amazon Photos
+                {{ job.company }}
             </h5>
             <h2 class="h2-responsive font-weight-bold">
-                Sr Product Manager, Photos on Alexa
+                {{ job.position }}
             </h2>
             <div style="display: flex;align-items: center;">
                 <span class="work-type font-weight-bold">
-                    Full Time
+                    {{ job.type.name }}
                 </span>
                 <span class="grey-text ml-1">
-                    Seattle, WA
+                    {{ job.location }}
                 </span>
             </div>
         </div>
         <div class="col-12 col-md-3 pt-3 pt-sm-0">
-            <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply()" mdbWavesEffect>Apply</button>
+            <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply( job.url )" mdbWavesEffect>Apply</button>
         </div>
     </div>
 </div>

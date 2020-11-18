@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IJob } from '../classes/job.class';
 import { IJobCreated, IPostedJob } from '../interfaces/posted-job.interface';
+import { IJobsRequest, IJobRequest } from '../interfaces/jobs-request.interface';
+
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
 
@@ -39,5 +41,23 @@ export class JobService {
 
 
   }
+
+  // Obtener trabajos
+  getJobs(): Promise<IJobRequest[]> {
+
+    return new Promise<IJobRequest[]>( (resolve, reject) => {
+
+      this.http.get(`${ REWORK_BACKEND_URL }/job`)
+      .subscribe( (res: IJobsRequest ) => {
+
+        resolve( res.jobs );
+
+      });
+
+    });
+
+
+  }
+
 
 }

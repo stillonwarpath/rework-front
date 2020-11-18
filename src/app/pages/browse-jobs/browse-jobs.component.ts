@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IJobRequest } from 'src/app/interfaces/jobs-request.interface';
+import { JobService } from '../../services/job.service';
 
 @Component({
   selector: 'app-browse-jobs',
@@ -7,14 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowseJobsComponent implements OnInit {
 
-  constructor() { }
+  jobs: IJobRequest[] = [];
 
-  ngOnInit(): void {
-    console.log('Ejecutado');
+  constructor( private jobService: JobService  ) { }
+
+  async ngOnInit() {
+
+   this.jobs = await this.jobService.getJobs();
+   console.log( this.jobs );
+
   }
 
-  apply() {
-    console.log('Postular');
+  apply( url: string ) {
+    
+    //TODO: Navegar a url
+    console.log( url );
+
   }
 
 }
