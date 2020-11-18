@@ -30,8 +30,7 @@ export class BrowseJobsComponent implements OnInit {
     // Acceso a los query params
     this.route.queryParams.subscribe( params => {
     
-        
-        console.log(params);
+        this.categorySelected = params.category;
     
         this.jobService.getJobs( params.page, params.category ).
         then( jobs => {
