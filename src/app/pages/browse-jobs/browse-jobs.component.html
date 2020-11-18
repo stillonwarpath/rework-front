@@ -1,5 +1,5 @@
 <div class="text-center my-4">
-    <a [routerLink]="['/browse-jobs']" [queryParams]="{category: category._id}" *ngFor="let category of categories" (click)="categorySelected = category._id">
+    <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
         <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
             {{ category.name }}
         </mdb-badge>
@@ -39,3 +39,6 @@
         </div>
     </div>
 </div>
+<p (click)="loadMoreJobs()" *ngIf="moreJobs">
+    Ver más
+</p>

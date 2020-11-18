@@ -17,6 +17,8 @@ export class BrowseJobsComponent implements OnInit {
   categories: ICategory[] = [];
   categorySelected: string;
   jobs: IJobRequest[] = [];
+  page = 1;
+  moreJobs = true;
 
   constructor( private jobService: JobService,
                private categoryService: CategoryService,
@@ -27,11 +29,26 @@ export class BrowseJobsComponent implements OnInit {
 
     // Acceso a los query params
     this.route.queryParams.subscribe( params => {
+    
+        
         console.log(params);
-
-        this.jobService.getJobs( params.category ).
+    
+        this.jobService.getJobs( params.page, params.category ).
         then( jobs => {
-          this.jobs = jobs;
+
+          console.log( jobs );
+
+          if ( jobs.length === 0 ) {
+
+            this.moreJobs = false;
+
+          } else {
+
+            this.jobs.push(...jobs);
+            this.moreJobs = true;
+
+          }
+
         });
 
     });
@@ -47,11 +64,31 @@ export class BrowseJobsComponent implements OnInit {
 
   }
 
+  // Se filtran trabajos por categoría
+  filterJobsByCategory( categoryId: string ) {
 
+    this.page = 1;
+    this.categorySelected = categoryId;
+    this.jobs = [];
+
+    this.router.navigate(['/browse-jobs'], { queryParams: { category: categoryId }});
+
+  }
+
+
+  // Click en aplicar para abrir url de trabajo
   apply( url: string ) {
     
     //TODO: Navegar a url
     console.log( url );
+
+  }
+
+  // Cargar más trabajos
+  loadMoreJobs() {
+
+    this.page++;
+    this.router.navigate(['/browse-jobs'], { queryParams: { page: this.page }, queryParamsHandling:'merge' });
 
   }
 

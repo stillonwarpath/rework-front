@@ -43,13 +43,13 @@ export class JobService {
   }
 
   // Obtener trabajos
-  getJobs( categoryId?: string ): Promise<IJobRequest[]> {
+  getJobs( page: number = 1, categoryId: string ): Promise<IJobRequest[]> {
 
-    let query = '/job';
+    let query = `/job?page=${page}`;
 
     if ( categoryId ) {
 
-      query += `?category=${categoryId}`;
+      query += `&category=${categoryId}`;
 
     }
 
