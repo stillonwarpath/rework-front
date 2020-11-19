@@ -4,8 +4,10 @@ import { JobService } from '../../services/job.service';
 import { CategoryService } from '../../services/category.service';
 import { ICategory } from 'src/app/interfaces/categories-request.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Subject, EMPTY } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-declare var Splide;
 
 @Component({
   selector: 'app-browse-jobs',
@@ -14,10 +16,13 @@ declare var Splide;
 })
 export class BrowseJobsComponent implements OnInit {
 
+  searchForm: FormGroup;
+  $searchTerm = new Subject<string>();
   categories: ICategory[] = [];
-  categorySelected: string;
+  categorySelected: string = undefined;
   jobs: IJobRequest[] = [];
   page = 1;
+  searchTerm: string = undefined;
   moreJobs = true;
 
   constructor( private jobService: JobService,
@@ -27,12 +32,29 @@ export class BrowseJobsComponent implements OnInit {
 
   ngOnInit() {
 
+    this.searchForm = new FormGroup({
+      search: new FormControl(null)
+    });
+
+    this.$searchTerm.pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        switchMap( term => {
+
+          this.searchJobs( term.trim() );
+          return EMPTY;
+
+        })
+        ).subscribe();
+
     // Acceso a los query params
     this.route.queryParams.subscribe( params => {
-    
-        this.categorySelected = params.category;
-    
-        this.jobService.getJobs( params.page, params.category ).
+
+      this.page = params.page;
+      this.categorySelected = params.category;
+      this.searchTerm = params.search;
+
+      this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
         then( jobs => {
 
           console.log( jobs );
@@ -67,17 +89,41 @@ export class BrowseJobsComponent implements OnInit {
   filterJobsByCategory( categoryId: string ) {
 
     this.page = 1;
+    this.jobs = [];
     this.categorySelected = categoryId;
+
+    // tslint:disable-next-line: max-line-length
+    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
+
+  }
+
+  // Búsqueda de trabajos por término de búsqueda
+  searchJobs( term: string){
+
+    this.page = 1;
     this.jobs = [];
 
-    this.router.navigate(['/browse-jobs'], { queryParams: { category: categoryId }});
+    if ( term.length === 0 ) {
+
+      this.searchTerm = undefined;
+
+    } else {
+
+      this.searchTerm = term;
+
+    }
+
+    // tslint:disable-next-line: max-line-length
+    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
+
+
 
   }
 
 
   // Click en aplicar para abrir url de trabajo
   apply( url: string ) {
-    
+
     //TODO: Navegar a url
     console.log( url );
 
@@ -87,7 +133,8 @@ export class BrowseJobsComponent implements OnInit {
   loadMoreJobs() {
 
     this.page++;
-    this.router.navigate(['/browse-jobs'], { queryParams: { page: this.page }, queryParamsHandling:'merge' });
+    // tslint:disable-next-line: max-line-length
+    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
 
   }
 

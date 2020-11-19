@@ -1,3 +1,10 @@
+<!--Búsqueda-->
+<form [formGroup]="searchForm" class="form-inline md-form form-sm">
+    <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+    <input formControlName="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by job position" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
+</form>
+
+<!--Filtro de categorías-->
 <div class="text-center my-4">
     <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
         <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
