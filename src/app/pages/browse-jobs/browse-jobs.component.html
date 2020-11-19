@@ -1,51 +1,63 @@
-<!--Búsqueda-->
-<form [formGroup]="searchForm" class="form-inline md-form form-sm">
-    <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
-    <input formControlName="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by job position" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
-</form>
-
-<!--Filtro de categorías-->
-<div class="text-center my-4">
-    <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
-        <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
-            {{ category.name }}
-        </mdb-badge>
-        <mdb-badge class="ml-1 mt-1" pill="true" warning="true" style="padding: 10px;" *ngIf="categorySelected === category._id">
-            {{ category.name }}
-        </mdb-badge>
-    </a>
-</div>
-
-<h3 class="h3-responsive font-weight-bold">
-    Remote works
-</h3>
-<div class="job-container mt-3" *ngFor="let job of jobs">
-    <div class="row">
-        <div class="col-12 col-md-9">
-            <h5 class="h5-responsive grey-text">
-                {{ job.company }}
-            </h5>
-            <h2 class="h2-responsive font-weight-bold">
-                {{ job.position }}
-            </h2>
-            <div class="d-flex flex-column flex-md-row">
-                <div>
-                    <span class="work-type font-weight-bold">
-                        {{ job.type.name }}
-                    </span>
-                </div>
-                <div class="mt-1 mt-md-0">
-                    <span class="grey-text ml-md-1" *ngFor="let location of job.location | locationsSplit">
-                        &bull; {{ location  }}
-                    </span>
-                </div>
+<div class="bg">
+    <div class="container" style="height: 100%;">
+        <div class="row justify-content-center align-items-center" style="height: 100%;">
+            <div class="col-12 col-md-6">
+                <form [formGroup]="searchForm" class="form-inline md-form form-sm">
+                    <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+                    <input formControlName="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by job position" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
+                </form>
             </div>
-        </div>
-        <div class="col-12 col-md-3 pt-3 pt-sm-0">
-            <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply( job.url )" mdbWavesEffect>Apply</button>
         </div>
     </div>
 </div>
-<div class="text-center container-see-more">
-    <img src="/assets/icons/see-more.png" class="see-more" (click)="loadMoreJobs()" *ngIf="moreJobs">
+
+<!--Búsqueda-->
+<div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
+
+    <!--Filtro de categorías-->
+    <div class="text-center my-4">
+        <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
+            <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
+                {{ category.name }}
+            </mdb-badge>
+            <mdb-badge class="ml-1 mt-1" pill="true" warning="true" style="padding: 10px;" *ngIf="categorySelected === category._id">
+                {{ category.name }}
+            </mdb-badge>
+        </a>
+    </div>
+
+    <h3 class="h3-responsive font-weight-bold">
+        Remote works
+    </h3>
+    <div class="job-container mt-3" *ngFor="let job of jobs">
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <h5 class="h5-responsive grey-text">
+                    {{ job.company }}
+                </h5>
+                <h2 class="h2-responsive font-weight-bold">
+                    {{ job.position }}
+                </h2>
+                <div class="d-flex flex-column flex-md-row">
+                    <div>
+                        <span class="work-type font-weight-bold">
+                        {{ job.type.name }}
+                    </span>
+                    </div>
+                    <div class="mt-1 mt-md-0">
+                        <span class="grey-text ml-md-1" *ngFor="let location of job.location | locationsSplit">
+                        &bull; {{ location  }}
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 pt-3 pt-sm-0">
+                <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply( job.url )" mdbWavesEffect>Apply</button>
+            </div>
+        </div>
+    </div>
+    <div class="text-center container-see-more">
+        <img src="/assets/icons/see-more.png" class="see-more" (click)="loadMoreJobs()" *ngIf="moreJobs">
+    </div>
+
 </div>

@@ -1,3 +1,11 @@
+.bg {
+    background-image: url("/assets/imagen-principal.jpg");
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .job-container {
     padding: 15px;
     border-radius: 10px 10px 10px 10px;
