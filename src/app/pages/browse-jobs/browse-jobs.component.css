@@ -23,5 +23,6 @@
 }
 
 .see-more {
+    cursor: pointer;
     width: 45px;
 }
