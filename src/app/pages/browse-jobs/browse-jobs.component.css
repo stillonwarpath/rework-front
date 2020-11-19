@@ -17,3 +17,11 @@
     -moz-border-radius: 32px 32px 32px 32px;
     -webkit-border-radius: 32px 32px 32px 32px;
 }
+
+.container-see-more {
+    padding-top: 60px;
+}
+
+.see-more {
+    width: 45px;
+}
