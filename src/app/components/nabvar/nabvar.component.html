@@ -7,8 +7,6 @@
         </a>
     </mdb-navbar-brand>
 
-    <mdb-icon fas icon="angle-left" size="lg" class="text-white mr-auto d-flex d-md-none align-self-center"></mdb-icon>
-
     <!-- Collapsible content -->
     <links>
 
@@ -17,9 +15,11 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link waves-light" routerLink="/browse-jobs" mdbWavesEffect>Browse Jobs<span class="sr-only">(current)</span></a>
             </li>
+            <!--
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link waves-light" routerLink="/post-job" mdbWavesEffect>Post Job</a>
             </li>
+            -->
 
             <!-- Dropdown -->
             <!--
@@ -37,16 +37,19 @@
             -->
 
         </ul>
-        <!-- Links -->
 
-        <!-- Search form -->
-        <!--
-        <form class="form-inline waves-light" mdbWavesEffect>
-            <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search job title">
-            </div>
+        <form [formGroup]="" class="form-inline">
+            <button mdbBtn color="danger" size="sm" class="align-middle waves-light" mdbWavesEffect type="button" routerLink="/post-job">Post job</button>
         </form>
+
+        <!--
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>Post job</a>
+            </li>
+        </ul>
         -->
+
     </links>
     <!-- Collapsible content -->
 

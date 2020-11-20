@@ -1,9 +1,17 @@
 .bg {
-    background-image: url("/assets/imagen-principal.jpg");
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url("/assets/imagen-principal.jpg");
     height: 50%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#search {
+    color: white;
+}
+
+#search::placeholder {
+    color: white;
 }
 
 .job-container {

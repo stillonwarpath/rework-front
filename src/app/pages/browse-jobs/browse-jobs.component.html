@@ -3,8 +3,8 @@
         <div class="row justify-content-center align-items-center" style="height: 100%;">
             <div class="col-12 col-md-6">
                 <form [formGroup]="searchForm" class="form-inline md-form form-sm">
-                    <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
-                    <input formControlName="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by job position" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
+                    <mdb-icon fas icon="search" aria-hidden="true" style="color: white;"></mdb-icon>
+                    <input id="search" formControlName="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by job position" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
                 </form>
             </div>
         </div>
