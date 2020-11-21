@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ICategoriesRequest, ICategory } from '../interfaces/categories-request.interface';
+import { ICategoriesRequest } from '../interfaces/categories-request.interface';
+import { ICategory } from '../interfaces/category.interface';
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
 

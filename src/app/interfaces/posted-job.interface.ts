@@ -1,8 +1,11 @@
+import { IJob } from './job.interface';
+
 interface IPostedJob {
   ok: boolean;
-  job: IJobCreated;
+  job: IJob;
 }
 
+/*
 interface IJobCreated {
   _id: string;
   company: string;
@@ -17,5 +20,6 @@ interface IJobCreated {
   created: string;
   updated: string;
 }
+*/
 
-export { IPostedJob, IJobCreated };
+export { IPostedJob };

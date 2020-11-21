@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IJob } from '../classes/job.class';
-import { IJobCreated, IPostedJob } from '../interfaces/posted-job.interface';
-import { IJobsRequest, IJobRequest } from '../interfaces/jobs-request.interface';
+import { IJob } from '../interfaces/job.interface';
+import { IPostedJob } from '../interfaces/posted-job.interface';
+import { IJobsRequest } from '../interfaces/jobs-request.interface';
+import { IJob as IJobObj } from '../classes/job.class';
 
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
@@ -16,7 +17,7 @@ export class JobService {
   constructor( private http: HttpClient ) { }
 
   // Crear nuevo post
-  postJob( job: IJob ): Promise<IJobCreated> {
+  postJob( job: IJobObj ): Promise<IJob> {
 
     return new Promise( ( resolve, reject ) => {
 
@@ -42,8 +43,20 @@ export class JobService {
 
   }
 
+  // Obtener trabajo por id
+  getJob( jobId: string ) {
+
+    this.http.get(`${ REWORK_BACKEND_URL }/job/${ jobId }`)
+      .subscribe( res => {
+
+        console.log( res );
+
+      });
+
+  }
+
   // Obtener trabajos
-  getJobs( page: number = 1, categoryId?: string, search?: string ): Promise<IJobRequest[]> {
+  getJobs( page: number = 1, categoryId?: string, search?: string ): Promise<IJob[]> {
 
     let query = `/job?page=${page}`;
 
@@ -59,7 +72,7 @@ export class JobService {
 
     }
 
-    return new Promise<IJobRequest[]>( (resolve, reject) => {
+    return new Promise<IJob[]>( (resolve, reject) => {
 
       this.http.get(`${ REWORK_BACKEND_URL }${query}`)
       .subscribe( (res: IJobsRequest ) => {

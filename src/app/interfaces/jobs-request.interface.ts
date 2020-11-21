@@ -1,8 +1,11 @@
+import { IJob } from './job.interface';
+
 interface IJobsRequest {
   ok: boolean;
-  jobs: IJobRequest[];
+  jobs: IJob[];
 }
 
+/*
 interface IJobRequest {
   _id: string;
   company: string;
@@ -18,15 +21,6 @@ interface IJobRequest {
   updated: string;
   __v: number;
 }
+*/
 
-interface ICategory {
-  _id: string;
-  name: string;
-}
-
-interface IType {
-    _id: string;
-    name: string;
-}
-
-export { IJobsRequest, IJobRequest };
+export { IJobsRequest };

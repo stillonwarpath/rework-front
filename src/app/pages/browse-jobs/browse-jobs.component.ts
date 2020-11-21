@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IJobRequest } from 'src/app/interfaces/jobs-request.interface';
 import { JobService } from '../../services/job.service';
 import { CategoryService } from '../../services/category.service';
-import { ICategory } from 'src/app/interfaces/categories-request.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ICategory } from '../../interfaces/category.interface';
+import { IJob } from 'src/app/interfaces/job.interface';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class BrowseJobsComponent implements OnInit {
   $searchTerm = new Subject<string>();
   categories: ICategory[] = [];
   categorySelected: string = undefined;
-  jobs: IJobRequest[] = [];
+  jobs: IJob[] = [];
   page = 1;
   searchTerm: string = undefined;
   moreJobs = true;

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { IType, ITypesRequest } from '../interfaces/types-request.interface';
+import { ITypesRequest } from '../interfaces/types-request.interface';
+import { IType } from '../interfaces/type.interface';
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
 

@@ -3,12 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
 import { StripeService } from '../../services/stripe.service';
-import { IJobCreated } from 'src/app/interfaces/posted-job.interface';
 import { environment } from 'src/environments/environment';
 import { CategoryService } from '../../services/category.service';
-import { ICategory } from 'src/app/interfaces/categories-request.interface';
 import { TypeService } from '../../services/type.service';
-import { IType } from 'src/app/interfaces/types-request.interface';
+import { ICategory } from '../../interfaces/category.interface';
+import { IType } from '../../interfaces/type.interface';
+import { IJob } from '../../interfaces/job.interface';
 
 declare const Stripe;
 
@@ -105,7 +105,7 @@ export class PostJobComponent implements OnInit {
 
   async pay() {
 
-    let createdJob:IJobCreated;
+    let createdJob:IJob;
 
     if ( this.newJobForm.invalid ) {
       return;

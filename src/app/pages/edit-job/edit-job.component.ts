@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory } from '../../interfaces/categories-request.interface';
-import { IType } from '../../interfaces/types-request.interface';
+import { ICategory } from '../../interfaces/category.interface';
+import { IType } from '../../interfaces/type.interface';
 import { CategoryService } from '../../services/category.service';
 import { TypeService } from '../../services/type.service';
+import { JobService } from '../../services/job.service';
 
 @Component({
   selector: 'app-edit-job',
@@ -20,7 +21,8 @@ export class EditJobComponent implements OnInit {
 
   constructor( private route: ActivatedRoute,
                private categoryService: CategoryService,
-               private typeService: TypeService ) { }
+               private typeService: TypeService,
+               private jobService: JobService ) { }
 
   ngOnInit(): void {
 
@@ -33,14 +35,14 @@ export class EditJobComponent implements OnInit {
       url: new FormControl(null, Validators.required),
    });
 
-   this.categoryService.getCategories()
+    this.categoryService.getCategories()
    .then( categories => {
 
      this.categories = categories;
 
    });
 
- this.typeService.getTypes()
+    this.typeService.getTypes()
     .then( types => {
 
       this.types = types;
@@ -48,14 +50,16 @@ export class EditJobComponent implements OnInit {
     });
 
 
-    this.route.paramMap.subscribe( (paramsMap:any) => {
-      console.log( paramsMap.params.id );
+    this.route.paramMap.subscribe( (paramsMap: any) => {
+
+      this.jobService.getJob( paramsMap.params.id );
+
     })
 
   }
 
   edit() {
-    
+
   }
 
 }
