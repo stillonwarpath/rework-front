@@ -15,6 +15,7 @@ import { IJob } from '../../interfaces/job.interface';
 })
 export class EditJobComponent implements OnInit {
 
+  showForm = true;
   jobId: string = undefined;
   editJobForm: FormGroup;
   categories: ICategory[] = [];
@@ -73,7 +74,9 @@ export class EditJobComponent implements OnInit {
 
           }).catch( err => {
               //TODO: desplegar mensaje
-              console.log( err );
+              this.showForm = false;
+              this.result.ok = false;
+              this.result.message = err;
           });
 
     })
