@@ -153,6 +153,14 @@ export class EditJobComponent implements OnInit {
       return;
     }
 
+    if ( this.invalidCategory() ) {
+      return;
+    }
+
+    if ( this.invalidType() ) {
+      return;
+    }
+
     this.loading = true;
 
     const updatedJob: IJob = {
@@ -178,6 +186,43 @@ export class EditJobComponent implements OnInit {
     }
 
     this.loading = false;
+
+  }
+
+   // Validación de categoría
+   private invalidCategory() {
+
+    if ( this.category.value === '-99' ) {
+
+      this.category.setErrors({
+        required: true
+      });
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  // Validación de tipo
+  private invalidType() {
+
+    if ( this.type.value === '-99' ) {
+
+      console.log('tipo inválido');
+
+
+      this.type.setErrors({
+        required: true
+      });
+
+      return true;
+
+    }
+
+    return false;
 
   }
 
