@@ -11,21 +11,17 @@
         <div class="md-form md-outline">
             <input mdbInput mdbValidate type="text" id="company" class="form-control" formControlName="company">
             <label for="company" class="">Company name</label>
-            <!--
             <mdb-error *ngIf="company.invalid && (company.dirty || company.touched)">
                 <span *ngIf="company.errors.required">Company is required</span>
             </mdb-error>
-            -->
         </div>
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-title" class="form-control" formControlName="jobTitle">
             <label for="job-title" class="">Job title</label>
-            <!--
             <mdb-error *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)">
                 <span *ngIf="jobTitle.errors.required">Job title is required</span>
             </mdb-error>
-            -->
         </div>
 
         <div class="md-form margin-top-input">
@@ -35,11 +31,9 @@
                 {{ category.name }}
             </option>
         </select>
-            <!--
             <mdb-error *ngIf="category.invalid">
                 <span *ngIf="category.errors?.required">Category is required</span>
             </mdb-error>
-            -->
         </div>
 
         <div class="md-form margin-top-input">
@@ -47,21 +41,14 @@
             <option value="-99">Type of this position</option>
             <option *ngFor="let type of types" [value]="type._id">{{ type.name }}</option>
         </select>
-            <!--
             <mdb-error *ngIf="type.invalid">
                 <span *ngIf="type.errors.required">Type is required</span>
             </mdb-error>
-            -->
         </div>
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput type="text" id="location" class="form-control" formControlName="location">
             <label for="location" class="">Location</label>
-            <!--
-            <mdb-error *ngIf="location.invalid && (location.dirty || location.touched)">
-                <span *ngIf="location.errors.required">Location is required</span>
-            </mdb-error>
-            -->
             <p class="input-explanation">
                 Specify from which places you're looking for applicants. Separate locations with commas. If you're looking around the world leave it blank.
             </p>
@@ -70,11 +57,9 @@
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
             <label for="job-url" class="">Link to the job description</label>
-            <!--
             <mdb-error *ngIf="url.invalid && (url.dirty || url.touched)">
                 <span *ngIf="url.errors.required">Link is required</span>
             </mdb-error>
-            -->
             <p class="input-explanation">
                 Include the url where applicants can find your job description. Don't include the http or https protocol, example www.yourjoburl.com.
             </p>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ICategory } from '../../interfaces/category.interface';
 import { IType } from '../../interfaces/type.interface';
@@ -56,12 +56,12 @@ export class EditJobComponent implements OnInit {
           .then( job => {
               console.log( job );
 
-              this.company = job.company;
-              this.jobTitle = job.position;
-              this.category = job.category._id;
-              this.type = job.type._id;
-              this.location = job.location;
-              this.url = job.url;
+              this.setCompany = job.company;
+              this.setJobTitle = job.position;
+              this.setCategory = job.category._id;
+              this.setType = job.type._id;
+              this.setLocation = job.location;
+              this.setUrl = job.url;
 
           }).catch( err => {
               //TODO: desplegar mensaje
@@ -71,34 +71,76 @@ export class EditJobComponent implements OnInit {
     })
 
   }
-  
-  set company( company: string ) {
+
+  get company() {
+
+    return this.editJobForm.get('company');
+
+  }
+
+  get jobTitle() {
+    return this.editJobForm.get('jobTitle');
+  }
+
+  get category() {
+    return this.editJobForm.get('category');
+  }
+
+  get type() {
+    return this.editJobForm.get('type');
+  }
+
+  get location() {
+    return this.editJobForm.get('location');
+  }
+
+  get url() {
+    return this.editJobForm.get('url');
+  }
+
+  set setCompany( company: string ) {
+
     this.editJobForm.get('company').setValue( company );
+
   }
 
     
-  set jobTitle( jobTitle: string ) {
+  set setJobTitle( jobTitle: string ) {
+
     this.editJobForm.get('jobTitle').setValue( jobTitle );
+
   }
 
-  set category( category: string ) {
+  set setCategory( category: string ) {
+
     this.editJobForm.get('category').setValue( category );
+
   }
 
-  set type( type: string ) {
+  set setType( type: string ) {
+
     this.editJobForm.get('type').setValue( type );
+
   }
 
-  set location( location: string ) {
+  set setLocation( location: string ) {
+
     this.editJobForm.get('location').setValue( location );
+
   }
 
-  set url( url: string ) {
+  set setUrl( url: string ) {
+
     this.editJobForm.get('url').setValue( url );
+    
   }
 
 
   edit() {
+
+    if ( this.editJobForm.invalid ) {
+      return;
+    }
 
   }
 
