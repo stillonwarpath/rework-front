@@ -136,11 +136,12 @@ export class PostJobComponent implements OnInit {
       result = await this.jobService.postJob( job );
 
       if ( result.free ) {
-
+        // Si publicación es gratis envía a página de pago exitoso
         this.router.navigateByUrl('/successful payment');
-        
+
       } else {
 
+        // Si publicación requiere pago enviar al checkout de Stripe
         await this.stripeCheckout( result.job._id );
 
       }
