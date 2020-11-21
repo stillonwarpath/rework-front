@@ -6,6 +6,7 @@ import { IPostedJob } from '../interfaces/posted-job.interface';
 import { IJobsRequest } from '../interfaces/jobs-request.interface';
 import { IJob as IJobObj } from '../classes/job.class';
 import { IJobRequest } from '../interfaces/job-request.interface';
+import { IJobUpdated } from '../interfaces/job-updated.interface';
 
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
@@ -96,6 +97,30 @@ export class JobService {
 
     });
 
+
+  }
+
+  // Actualizar trabajo
+  updateJob( updatedJob: IJob ) {
+  
+    return new Promise( (resolve, reject) => {
+
+      this.http.put(`${ REWORK_BACKEND_URL }/job/${ updatedJob._id }`, updatedJob)
+      .subscribe( (res: IJobUpdated) => {
+
+        if ( res.ok ) {
+
+          resolve(true);
+
+        } else {
+
+          reject(`The job couldn't be updated`);
+
+        }
+
+      });
+
+    });
 
   }
 

@@ -9,12 +9,12 @@ interface IJob {
     type: IType;
     location: string;
     url: string;
-    email: string;
-    paid: boolean;
-    status: string;
-    created: string;
-    updated: string;
-    __v: number;
+    email?: string;
+    paid?: boolean;
+    status?: string;
+    created?: string;
+    updated?: string;
+    __v?: number;
 }
 
 export { IJob };

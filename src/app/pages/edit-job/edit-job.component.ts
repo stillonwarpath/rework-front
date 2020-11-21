@@ -6,6 +6,7 @@ import { IType } from '../../interfaces/type.interface';
 import { CategoryService } from '../../services/category.service';
 import { TypeService } from '../../services/type.service';
 import { JobService } from '../../services/job.service';
+import { IJob } from '../../interfaces/job.interface';
 
 @Component({
   selector: 'app-edit-job',
@@ -14,10 +15,15 @@ import { JobService } from '../../services/job.service';
 })
 export class EditJobComponent implements OnInit {
 
+  jobId: string = undefined;
   editJobForm: FormGroup;
   categories: ICategory[] = [];
   types: IType[] = [];
   loading = false;
+  result: any = {
+    ok: undefined,
+    message: undefined
+  };
 
   constructor( private route: ActivatedRoute,
                private categoryService: CategoryService,
@@ -52,7 +58,9 @@ export class EditJobComponent implements OnInit {
 
     this.route.paramMap.subscribe( (paramsMap: any) => {
 
-      this.jobService.getJob( paramsMap.params.id )
+      this.jobId = paramsMap.params.id;
+
+      this.jobService.getJob( this.jobId)
           .then( job => {
               console.log( job );
 
@@ -136,10 +144,32 @@ export class EditJobComponent implements OnInit {
   }
 
 
-  edit() {
+  async edit() {
 
     if ( this.editJobForm.invalid ) {
       return;
+    }
+
+    const updatedJob: IJob = {
+      _id: this.jobId,
+      company: this.company.value,
+      position: this.jobTitle.value,
+      category: this.category.value,
+      type: this.type.value,
+      location: this.location.value,
+      url: this.url.value,
+    };
+
+    try {
+
+      await this.jobService.updateJob( updatedJob );
+      this.result.ok = true;
+      this.result.message = `The job was updated`;
+
+    } catch ( err ) {
+
+      this.result.ok = false;
+      this.result.message = err;
     }
 
   }

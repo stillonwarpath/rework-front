@@ -1,11 +1,9 @@
 <div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
 
     <h1 class="h1-responsive font-weight-bold">Edit your job listing</h1>
-    <!--
-    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-        {{ errorMessage }}
+    <div class="alert" [ngClass]="{'alert-success': result.ok, 'alert-danger': !result.ok}" role="alert" *ngIf="result.message">
+        {{ result.message }}
     </div>
-    -->
     <form [formGroup]="editJobForm">
 
         <div class="md-form md-outline">
