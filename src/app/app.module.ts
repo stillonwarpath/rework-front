@@ -12,6 +12,7 @@ import { NabvarComponent } from './components/nabvar/nabvar.component';
 import { BrowseJobsComponent } from './pages/browse-jobs/browse-jobs.component';
 import { PostJobComponent } from './pages/post-job/post-job.component';
 import { LocationsSplitPipe } from './pipes/locations-split.pipe';
+import { EditJobComponent } from './pages/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LocationsSplitPipe } from './pipes/locations-split.pipe';
     NabvarComponent,
     BrowseJobsComponent,
     PostJobComponent,
-    LocationsSplitPipe
+    LocationsSplitPipe,
+    EditJobComponent
   ],
   imports: [
     BrowserModule,
