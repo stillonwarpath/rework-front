@@ -50,7 +50,7 @@ export class BrowseJobsComponent implements OnInit {
     // Acceso a los query params
     this.route.queryParams.subscribe( params => {
 
-      this.page = params.page;
+      this.page = params.page || this.page;
       this.categorySelected = params.category;
       this.searchTerm = params.search;
 
@@ -133,6 +133,7 @@ export class BrowseJobsComponent implements OnInit {
   loadMoreJobs() {
 
     this.page++;
+    console.log( this.page );
     // tslint:disable-next-line: max-line-length
     this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
 
