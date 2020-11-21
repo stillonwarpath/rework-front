@@ -84,10 +84,10 @@
             <div class="col-12 col-md-3">
                 <button mdbBtn type="button" gradient="peach" rounded="true" block="true" mdbWavesEffect [disabled]="editJobForm.invalid || loading" (click)="edit()">
                 <div class="spinner-border" role="status" *ngIf="loading">
-                    <span class="sr-only">Redirecting to checkout...</span>
+                    <span class="sr-only">Updating job...</span>
                 </div>
                 <span *ngIf="!loading">
-                    Pay $69.99
+                    Edit job
                 </span>
             </button>
             </div>
