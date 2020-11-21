@@ -19,7 +19,7 @@ export class JobService {
   constructor( private http: HttpClient ) { }
 
   // Crear nuevo post
-  postJob( job: IJobObj ): Promise<IJob> {
+  postJob( job: IJobObj ): Promise<IPostedJob> {
 
     return new Promise( ( resolve, reject ) => {
 
@@ -29,7 +29,7 @@ export class JobService {
 
         if ( res.ok ) {
 
-            resolve( res.job );
+            resolve( res );
 
         }
         else {

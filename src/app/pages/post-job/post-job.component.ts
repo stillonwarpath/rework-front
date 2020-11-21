@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
 import { StripeService } from '../../services/stripe.service';
@@ -8,7 +9,7 @@ import { CategoryService } from '../../services/category.service';
 import { TypeService } from '../../services/type.service';
 import { ICategory } from '../../interfaces/category.interface';
 import { IType } from '../../interfaces/type.interface';
-import { IJob } from '../../interfaces/job.interface';
+import { IPostedJob } from '../../interfaces/posted-job.interface';
 
 declare const Stripe;
 
@@ -31,7 +32,8 @@ export class PostJobComponent implements OnInit {
   constructor( private jobService: JobService,
                private stripeService: StripeService,
                private categoryService: CategoryService,
-               private typeService: TypeService ) { }
+               private typeService: TypeService,
+               private router: Router ) { }
 
   async ngOnInit() {
 
@@ -105,7 +107,7 @@ export class PostJobComponent implements OnInit {
 
   async pay() {
 
-    let createdJob:IJob;
+    let result: IPostedJob;
 
     if ( this.newJobForm.invalid ) {
       return;
@@ -131,18 +133,26 @@ export class PostJobComponent implements OnInit {
 
     try {
 
-      createdJob = await this.jobService.postJob( job );
-      console.log(createdJob);
+      result = await this.jobService.postJob( job );
+
+      if ( result.free ) {
+
+        this.router.navigateByUrl('/successful payment');
+        
+      } else {
+
+        await this.stripeCheckout( result.job._id );
+
+      }
+
 
     } catch ( err ) {
 
       this.loading = false;
       this.errorMessage = err;
-      return;
 
     }
 
-    await this.stripeCheckout( createdJob._id );
 
   }
 

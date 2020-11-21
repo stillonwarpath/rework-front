@@ -3,6 +3,7 @@ import { IJob } from './job.interface';
 interface IPostedJob {
   ok: boolean;
   job: IJob;
+  free: boolean;
 }
 
 /*
