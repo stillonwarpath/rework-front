@@ -101,8 +101,9 @@ export class JobService {
   }
 
   // Actualizar trabajo
+  // tslint:disable-next-line: typedef
   updateJob( updatedJob: IJob ) {
-  
+
     return new Promise( (resolve, reject) => {
 
       this.http.put(`${ REWORK_BACKEND_URL }/job/${ updatedJob._id }`, updatedJob)

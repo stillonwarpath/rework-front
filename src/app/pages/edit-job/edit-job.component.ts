@@ -150,6 +150,8 @@ export class EditJobComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
     const updatedJob: IJob = {
       _id: this.jobId,
       company: this.company.value,
@@ -171,6 +173,8 @@ export class EditJobComponent implements OnInit {
       this.result.ok = false;
       this.result.message = err;
     }
+
+    this.loading = false;
 
   }
 
