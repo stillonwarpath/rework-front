@@ -4,3 +4,5 @@ interface IJobRequest {
   ok: boolean;
   job: IJob;
 }
+
+export { IJobRequest };

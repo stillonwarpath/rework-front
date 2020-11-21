@@ -5,6 +5,7 @@ import { IJob } from '../interfaces/job.interface';
 import { IPostedJob } from '../interfaces/posted-job.interface';
 import { IJobsRequest } from '../interfaces/jobs-request.interface';
 import { IJob as IJobObj } from '../classes/job.class';
+import { IJobRequest } from '../interfaces/job-request.interface';
 
 
 const REWORK_BACKEND_URL = environment.rework_backend_url;
@@ -44,14 +45,26 @@ export class JobService {
   }
 
   // Obtener trabajo por id
-  getJob( jobId: string ) {
+  getJob( jobId: string ): Promise<IJob> {
 
-    this.http.get(`${ REWORK_BACKEND_URL }/job/${ jobId }`)
-      .subscribe( res => {
+    return new Promise<IJob>( ( resolve, reject ) => {
 
-        console.log( res );
+      this.http.get(`${ REWORK_BACKEND_URL }/job/${ jobId }`)
+      .subscribe( (res: IJobRequest ) => {
+
+        if ( res.ok ) {
+
+          resolve( res.job );
+
+        } else {
+
+          reject(`Can't edit this job`);
+
+        }
 
       });
+
+    });
 
   }
 

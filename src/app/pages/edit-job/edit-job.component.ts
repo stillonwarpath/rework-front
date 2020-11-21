@@ -52,11 +52,51 @@ export class EditJobComponent implements OnInit {
 
     this.route.paramMap.subscribe( (paramsMap: any) => {
 
-      this.jobService.getJob( paramsMap.params.id );
+      this.jobService.getJob( paramsMap.params.id )
+          .then( job => {
+              console.log( job );
+
+              this.company = job.company;
+              this.jobTitle = job.position;
+              this.category = job.category._id;
+              this.type = job.type._id;
+              this.location = job.location;
+              this.url = job.url;
+
+          }).catch( err => {
+              //TODO: desplegar mensaje
+              console.log( err );
+          });
 
     })
 
   }
+  
+  set company( company: string ) {
+    this.editJobForm.get('company').setValue( company );
+  }
+
+    
+  set jobTitle( jobTitle: string ) {
+    this.editJobForm.get('jobTitle').setValue( jobTitle );
+  }
+
+  set category( category: string ) {
+    this.editJobForm.get('category').setValue( category );
+  }
+
+  set type( type: string ) {
+    this.editJobForm.get('type').setValue( type );
+  }
+
+  set location( location: string ) {
+    this.editJobForm.get('location').setValue( location );
+  }
+
+  set url( url: string ) {
+    this.editJobForm.get('url').setValue( url );
+  }
+
 
   edit() {
 
