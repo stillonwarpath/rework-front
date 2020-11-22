@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../../services/job.service';
 import { CategoryService } from '../../services/category.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -26,9 +25,7 @@ export class BrowseJobsComponent implements OnInit {
   moreJobs = true;
 
   constructor( private jobService: JobService,
-               private categoryService: CategoryService,
-               private router: Router,
-               private route: ActivatedRoute  ) { }
+               private categoryService: CategoryService) { }
 
   ngOnInit() {
 
@@ -47,32 +44,7 @@ export class BrowseJobsComponent implements OnInit {
         })
         ).subscribe();
 
-    // Acceso a los query params
-    this.route.queryParams.subscribe( params => {
-
-      this.page = params.page || this.page;
-      this.categorySelected = params.category;
-      this.searchTerm = params.search;
-
-      this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
-        then( jobs => {
-
-          console.log( jobs );
-
-          if ( jobs.length === 0 ) {
-
-            this.moreJobs = false;
-
-          } else {
-
-            this.jobs.push(...jobs);
-            this.moreJobs = true;
-
-          }
-
-        });
-
-    });
+    this.getJobs();
 
 
     this.categoryService.getCategories()
@@ -85,6 +57,26 @@ export class BrowseJobsComponent implements OnInit {
 
   }
 
+  private getJobs() {
+
+    this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
+    then( jobs => {
+
+      if ( jobs.length === 0 ) {
+
+        this.moreJobs = false;
+
+      } else {
+
+        this.jobs.push(...jobs);
+        this.moreJobs = true;
+
+      }
+
+    });
+
+  }
+
   // Se filtran trabajos por categoría
   filterJobsByCategory( categoryId: string ) {
 
@@ -92,8 +84,7 @@ export class BrowseJobsComponent implements OnInit {
     this.jobs = [];
     this.categorySelected = categoryId;
 
-    // tslint:disable-next-line: max-line-length
-    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
+    this.getJobs();
 
   }
 
@@ -113,11 +104,8 @@ export class BrowseJobsComponent implements OnInit {
 
     }
 
-    // tslint:disable-next-line: max-line-length
-    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
-
-
-
+    this.getJobs();
+  
   }
 
 
@@ -134,10 +122,7 @@ export class BrowseJobsComponent implements OnInit {
   loadMoreJobs() {
 
     this.page++;
-    console.log( this.page );
-    // tslint:disable-next-line: max-line-length
-    this.router.navigate(['/browse-jobs'], { queryParams: { search: this.searchTerm, category: this.categorySelected, page: this.page }, queryParamsHandling: 'merge'});
-
+    this.getJobs();
   }
 
 }
