@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowseJobsComponent } from './pages/browse-jobs/browse-jobs.component';
 import { PostJobComponent } from './pages/post-job/post-job.component';
 import { EditJobComponent } from './pages/edit-job/edit-job.component';
+import { SuccessfulPaymentComponent } from './pages/successful-payment/successful-payment.component';
+import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 
 
 const routes: Routes = [
@@ -15,11 +17,19 @@ const routes: Routes = [
     component: PostJobComponent
   },
   {
-    path:'edit-job/:id',
+    path: 'edit-job/:id',
     component: EditJobComponent
   },
   {
-    path:'**',
+    path: 'successful-payment',
+    component: SuccessfulPaymentComponent
+  },
+  {
+    path:'payment-canceled',
+    component: PaymentCanceledComponent
+  },
+  {
+    path: '**',
     pathMatch: 'full',
     redirectTo: 'browse-jobs'
   }];

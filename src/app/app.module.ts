@@ -14,6 +14,8 @@ import { PostJobComponent } from './pages/post-job/post-job.component';
 import { LocationsSplitPipe } from './pipes/locations-split.pipe';
 import { EditJobComponent } from './pages/edit-job/edit-job.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { SuccessfulPaymentComponent } from './pages/successful-payment/successful-payment.component';
+import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     PostJobComponent,
     LocationsSplitPipe,
     EditJobComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    SuccessfulPaymentComponent,
+    PaymentCanceledComponent
   ],
   imports: [
     BrowserModule,
