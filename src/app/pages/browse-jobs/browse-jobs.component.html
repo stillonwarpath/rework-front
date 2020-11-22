@@ -40,9 +40,14 @@
                 <h5 class="h5-responsive grey-text">
                     {{ job.company }}
                 </h5>
-                <h2 class="h2-responsive font-weight-bold">
-                    {{ job.position }}
-                </h2>
+                <div>
+                    <h2 class="d-inline h2-responsive font-weight-bold">
+                        {{ job.position }}
+                    </h2>
+                    <span>
+                        {{ job.created | timeAgo }}
+                    </span>
+                </div>
                 <div class="d-flex flex-column flex-md-row">
                     <div>
                         <span class="work-type font-weight-bold">

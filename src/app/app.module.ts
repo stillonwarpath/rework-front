@@ -13,6 +13,7 @@ import { BrowseJobsComponent } from './pages/browse-jobs/browse-jobs.component';
 import { PostJobComponent } from './pages/post-job/post-job.component';
 import { LocationsSplitPipe } from './pipes/locations-split.pipe';
 import { EditJobComponent } from './pages/edit-job/edit-job.component';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditJobComponent } from './pages/edit-job/edit-job.component';
     BrowseJobsComponent,
     PostJobComponent,
     LocationsSplitPipe,
-    EditJobComponent
+    EditJobComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
