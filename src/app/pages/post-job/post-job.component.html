@@ -1,4 +1,15 @@
-<div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
+<div style="height: 300px; background-color: #00695c; padding: 0 10px;">
+    <div class="container d-flex flex-column justify-content-center" style="height: 100%;">
+        <h1 class="h1-responsive white-text font-weight-bold">
+            Lorem ipsum bla bla bla bla
+        </h1>
+        <span class="white-text">
+            Starting at $69.99 usd, free until 30 Dec 2020 so hurry up!
+        </span>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 10px; padding-bottom: 10px;">
 
     <h1 class="h1-responsive font-weight-bold">Create your job listing</h1>
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -87,7 +98,7 @@
                     <span class="sr-only">Redirecting to checkout...</span>
                 </div>
                 <span *ngIf="!loading">
-                    Pay $69.99
+                    Post job
                 </span>
             </button>
             </div>
