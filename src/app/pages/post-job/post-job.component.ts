@@ -135,7 +135,7 @@ export class PostJobComponent implements OnInit {
 
       result = await this.jobService.postJob( job );
 
-      if ( result.free ) {
+      if ( result.free === 'true' ) {
         // Si publicación es gratis envía a página de pago exitoso
         this.router.navigateByUrl('/successful-payment');
 
