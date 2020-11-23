@@ -14,6 +14,11 @@
     color: white;
 }
 
+#post-free-message {
+    font-size: 20px;
+    padding: 30px 0;
+}
+
 .job-container {
     padding: 15px;
     border-radius: 10px 10px 10px 10px;
