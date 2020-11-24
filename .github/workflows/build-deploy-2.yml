@@ -33,7 +33,7 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
-    need: build
+    needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v1
