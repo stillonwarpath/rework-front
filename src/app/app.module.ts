@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ToastrModule } from 'ngx-toastr';
+import { FileSelectDirective } from 'ng2-file-upload';
+
 
 import { NabvarComponent } from './components/nabvar/nabvar.component';
 import { BrowseJobsComponent } from './pages/browse-jobs/browse-jobs.component';
@@ -27,14 +30,17 @@ import { PaymentCanceledComponent } from './pages/payment-canceled/payment-cance
     EditJobComponent,
     TimeAgoPipe,
     SuccessfulPaymentComponent,
-    PaymentCanceledComponent
+    PaymentCanceledComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
   ],
   providers: [],
