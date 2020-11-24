@@ -17,6 +17,20 @@
 
 <body>
     <app-root></app-root>
+    <!--Hack para GitHub pages para permitir refrescar sin recibir 404.-->
+    <script>
+        (function() {
+            // Obtiene la URL que el usuario intentaba acceder cuando recibió el 404.
+            var redirect = sessionStorage.redirect;
+            // Remueve la URL de sessionStorage
+            delete sessionStorage.redirect;
+            // Chequeo si se requiere redireccionar
+            if (redirect && redirect != location.href) {
+                // Redireccionamos a la URL que el usuario intentaba acceder
+                history.replaceState(null, null, redirect);
+            }
+        });
+    </script>
 <script src="runtime.e227d1a0e31cbccbf8ec.js" defer></script><script src="polyfills.a4021de53358bb0fec14.js" defer></script><script src="scripts.2fd360e0f1643d959e0d.js" defer></script><script src="main.7a1878c3ed802ea03022.js" defer></script></body>
 
 </html>
