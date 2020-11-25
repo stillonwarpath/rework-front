@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { FileUploader } from 'ng2-file-upload';
+
+
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
 import { StripeService } from '../../services/stripe.service';
-import { environment } from 'src/environments/environment';
 import { CategoryService } from '../../services/category.service';
 import { TypeService } from '../../services/type.service';
 import { ICategory } from '../../interfaces/category.interface';
 import { IType } from '../../interfaces/type.interface';
 import { IPostedJob } from '../../interfaces/posted-job.interface';
+import { FileService } from '../../services/file.service';
 
 declare const Stripe;
 
+const URL = environment.rework_backend_url;
 const STRIPE_PK = environment.stripe_pk;
 
 @Component({
@@ -26,6 +31,15 @@ export class PostJobComponent implements OnInit {
   newJobForm: FormGroup;
   categories: ICategory[] = [];
   types: IType[] = [];
+
+  /*
+  uploader: FileUploader = new FileUploader({
+    url: `${URL}/file`,
+    itemAlias: 'image'
+  });
+  */
+ selectedFile = undefined;
+
   loading = false;
   errorMessage: string = undefined;
 
@@ -33,7 +47,8 @@ export class PostJobComponent implements OnInit {
                private stripeService: StripeService,
                private categoryService: CategoryService,
                private typeService: TypeService,
-               private router: Router ) { }
+               private router: Router,
+               private fileService: FileService ) { }
 
   async ngOnInit() {
 
@@ -61,6 +76,7 @@ export class PostJobComponent implements OnInit {
 
        });
 
+ 
   }
 
   get company() {
@@ -102,6 +118,15 @@ export class PostJobComponent implements OnInit {
   get email() {
 
     return this.newJobForm.get('email');
+
+  }
+
+  onFileSelected( event ) {
+
+    console.log( event );
+    this.selectedFile = event.target.files[0];
+
+    this.fileService.uploadFile( this.selectedFile );
 
   }
 

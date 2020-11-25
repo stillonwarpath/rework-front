@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ToastrModule } from 'ngx-toastr';
-import { FileSelectDirective } from 'ng2-file-upload';
 
 
 import { NabvarComponent } from './components/nabvar/nabvar.component';
@@ -30,8 +29,7 @@ import { PaymentCanceledComponent } from './pages/payment-canceled/payment-cance
     EditJobComponent,
     TimeAgoPipe,
     SuccessfulPaymentComponent,
-    PaymentCanceledComponent,
-    FileSelectDirective
+    PaymentCanceledComponent
   ],
   imports: [
     BrowserModule,
