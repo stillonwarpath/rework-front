@@ -19,6 +19,7 @@ declare const Stripe;
 
 const URL = environment.rework_backend_url;
 const STRIPE_PK = environment.stripe_pk;
+const MAX_FILE_SIZE = environment.max_file_size;
 
 @Component({
   selector: 'app-post-job',
@@ -125,6 +126,28 @@ export class PostJobComponent implements OnInit {
 
     this.selectedFile = event.target.files[0];
 
+    if ( !this.selectedFile ) {
+      return;
+    }
+
+    console.log( this.selectedFile );
+
+    if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
+
+      console.log('Extensión no válida');
+      return;
+
+    }
+
+    if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
+
+      console.log('Tamaño de archivo no válido');
+      return;
+
+    }
+
+    //this.selectedFile.size, this.selectedFile.type
+
     //TODO: Validar dimensiones, tamaño archivo y si es cuadrado
 
     this.readURL( this.selectedFile );
@@ -132,6 +155,7 @@ export class PostJobComponent implements OnInit {
     //this.fileService.uploadFile( this.selectedFile );
 
   }
+
 
   // Leer data de imagen cargada y desplegarla en pantalla
   readURL( files: Blob) {
@@ -141,9 +165,27 @@ export class PostJobComponent implements OnInit {
 
       reader.onload = ( e ) => {
 
-        console.log('onload:', e.target.result );
-        document.getElementById('company-image').setAttribute('src', e.target.result.toString() );
+        const img = new Image();
 
+
+        img.onload = () => {
+
+          console.log('Imagen:', img.width );
+
+          if ( !this.fileService.validFileDimensions( img.width, img.height, 150, 150) ) {
+
+            console.log('Dimensiones de archivo no válidos');
+            return;
+
+          }
+
+          document.getElementById('company-image').setAttribute('src', reader.result.toString() );
+
+        }
+
+        img.src = reader.result.toString();
+
+        //console.log('onload:', e.target.result );
       }
 
       reader.readAsDataURL( files ); // Convertir a base64

@@ -37,4 +37,48 @@ export class FileService {
 
   }
 
+  // Validación extensión de archivo
+  validFileExtension( fileType: string, validExtensions: string[] ) {
+
+    const fileExtension = fileType.split('/')[1];
+    let validFile = false;
+
+    validExtensions.forEach( validExtension => {
+
+        if ( validExtension === fileExtension ) {
+
+          validFile = true;
+
+        }
+
+    });
+
+    return validFile;
+
+  }
+
+  // Validación tamaño del archivo
+  validFileSize( fileSize: number, maxFileSize: number ) {
+
+    if ( fileSize <= maxFileSize ) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  // Validación de dimensiones de archivo
+  validFileDimensions( width: number, height: number, validWidth: number, validHeight: number) {
+
+    if ( width >= validWidth && height >= validHeight ) {
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
 }
