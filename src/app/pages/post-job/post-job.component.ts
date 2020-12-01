@@ -122,7 +122,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  onFileSelected( event ) {
+  async onFileSelected( event ) {
 
     this.selectedFile = event.target.files[0];
 
@@ -146,9 +146,16 @@ export class PostJobComponent implements OnInit {
 
     }
 
-    this.fileService.readURL( this.selectedFile, 'company-image' );
+    try {
 
-    //this.fileService.uploadFile( this.selectedFile );
+      const fileName = await this.fileService.readURL( this.selectedFile, 'company-image' );
+      console.log('Nombre imagen cargada:', fileName );
+
+    } catch ( err ) {
+
+      console.log('Hubo un error cargando la imagen');
+
+    }
 
   }
 

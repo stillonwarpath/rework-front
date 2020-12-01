@@ -14,55 +14,85 @@ export class FileService {
   constructor( private http: HttpClient ) { }
 
   // Cargar archivo
-  uploadFile( file: File ) {
+  uploadFile( file: File ): Promise<string> {
 
-    const fd = new FormData();
-    fd.append('image', file, file.name );
+    return new Promise( ( resolve, reject ) => {
 
-    this.http.post(`${URL}/file`, fd, {
-      reportProgress: true,
-      observe: 'events'
-    }).subscribe( event => {
+      const fd = new FormData();
 
-      if ( event.type === HttpEventType.UploadProgress ) {
+      fd.append('image', file, file.name );
+  
+      this.http.post(`${URL}/file`, fd, {
+        reportProgress: true,
+        observe: 'events'
+      }).subscribe( (event: any) => {
+  
+        if ( event.type === HttpEventType.UploadProgress ) {
+  
+          const percentage = Math.round( (event.loaded / event.total ) * 100 ) + '%';
+  
+        } else if ( event.type === HttpEventType.Response ) {
+  
+          console.log( event );
 
-        const percentage = Math.round( (event.loaded / event.total ) * 100 ) + '%';
-        console.log(`Upload progress: ${ percentage }`);
+          if ( event.body.ok ) {
 
-      } else if ( event.type === HttpEventType.Response ) {
+            resolve( event.body.fileName );
 
-        console.log( event );
+          } else {
 
-      }
+            reject(null);
 
-    })
+          }
+  
+        }
+  
+      });
+  
+    });
 
   }
 
-  readURL( files: Blob, elementId: string) {
+  readURL( files: File, elementId: string)  {
 
-    this.fileReader.onload = ( e ) => {
+    return new Promise( (resolve, reject) => {
 
-      const img = new Image();
+      let fileName = '';
 
-      img.onload = () => {
+      this.fileReader.onload = ( e ) => {
 
-        if ( !this.validFileDimensions( img.width, img.height, 150, 150, true) ) {
+        const img = new Image();
+  
+        img.onload = async () => {
+  
+          if ( !this.validFileDimensions( img.width, img.height, 150, 150, true) ) {
+  
+            console.log('Dimensiones de archivo no válidos');
+            return;
+  
+          }
+  
+          try {
 
-          console.log('Dimensiones de archivo no válidos');
-          return;
+            fileName = await this.uploadFile( files );
+            document.getElementById(elementId).setAttribute('src', this.fileReader.result.toString() );
+            resolve( fileName );
 
-        }
+          } catch ( err ) {
 
-        document.getElementById(elementId).setAttribute('src', this.fileReader.result.toString() );
+            reject(null);
 
-      }
+          }
 
-      img.src = this.fileReader.result.toString();
+        };
+  
+        img.src = this.fileReader.result.toString();
+  
+      };
+  
+      this.fileReader.readAsDataURL( files ); // Convertir a base64
 
-    }
-
-    this.fileReader.readAsDataURL( files ); // Convertir a base64
+    });
 
 }
 
