@@ -123,10 +123,30 @@ export class PostJobComponent implements OnInit {
 
   onFileSelected( event ) {
 
-    console.log( event );
     this.selectedFile = event.target.files[0];
 
+    //TODO: Validar dimensiones, tamaño archivo y si es cuadrado
+
+    this.readURL( this.selectedFile );
+
     //this.fileService.uploadFile( this.selectedFile );
+
+  }
+
+  readURL( files: Blob) {
+
+      console.log('Se cargó imagen');
+      const reader = new FileReader();
+
+      reader.onload = ( e ) => {
+
+        console.log('onload:', e.target.result );
+        document.getElementById('company-image').setAttribute('src', e.target.result.toString() );
+
+      }
+
+      reader.readAsDataURL( files ); // Convertir a base64
+
 
   }
 
