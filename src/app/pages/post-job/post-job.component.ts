@@ -32,6 +32,7 @@ export class PostJobComponent implements OnInit {
   newJobForm: FormGroup;
   categories: ICategory[] = [];
   types: IType[] = [];
+  fileName: string;
 
   /*
   uploader: FileUploader = new FileUploader({
@@ -161,8 +162,8 @@ export class PostJobComponent implements OnInit {
 
     try {
 
-      const fileName = await this.fileService.uploadFile( this.selectedFile );
-      console.log('File name:', fileName);
+      this.fileName = await this.fileService.uploadFile( this.selectedFile );
+      console.log('File name:', this.fileName);
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
       this.loadingFile = false;
 
@@ -172,6 +173,12 @@ export class PostJobComponent implements OnInit {
       this.loadingFile = false;
 
     }
+
+  }
+
+  removeFile() {
+
+    console.log('Remover archivo');
 
   }
 
