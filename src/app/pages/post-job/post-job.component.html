@@ -111,11 +111,11 @@
                 <div id="empty-image" class="company-image" [ngClass]="{'d-none': fileName}"></div>
                 <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
                 <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event)">
-                <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
+                <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
                     <span *ngIf="!loadingFile">Select image</span>
                     <span *ngIf="loadingFile">Uploading...</span>
                 </button>
-                <button mdbBtn type="button" color="primary" outline="true" *ngIf="fileName" (click)="removeFile()" mdbWavesEffect>
+                <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile()" mdbWavesEffect>
                     Remove file
                 </button>
 
