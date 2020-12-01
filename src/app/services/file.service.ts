@@ -10,6 +10,7 @@ const URL = environment.rework_backend_url;
 export class FileService {
 
   fileReader: FileReader = new FileReader();
+  imgData: string;
 
   constructor( private http: HttpClient ) { }
 
@@ -21,18 +22,18 @@ export class FileService {
       const fd = new FormData();
 
       fd.append('image', file, file.name );
-  
+
       this.http.post(`${URL}/file`, fd, {
         reportProgress: true,
         observe: 'events'
       }).subscribe( (event: any) => {
-  
+
         if ( event.type === HttpEventType.UploadProgress ) {
-  
+
           const percentage = Math.round( (event.loaded / event.total ) * 100 ) + '%';
-  
+
         } else if ( event.type === HttpEventType.Response ) {
-  
+
           console.log( event );
 
           if ( event.body.ok ) {
@@ -41,60 +42,51 @@ export class FileService {
 
           } else {
 
-            reject(null);
+            reject(`Ocurrió un error subiendo archivo`);
 
           }
-  
+
         }
-  
+
       });
-  
+
     });
 
   }
 
-  readURL( files: File, elementId: string)  {
+  // Obtener imagen
+  getImage( files: File ): Promise<HTMLImageElement>  {
 
     return new Promise( (resolve, reject) => {
-
-      let fileName = '';
 
       this.fileReader.onload = ( e ) => {
 
         const img = new Image();
-  
-        img.onload = async () => {
-  
-          if ( !this.validFileDimensions( img.width, img.height, 150, 150, true) ) {
-  
-            console.log('Dimensiones de archivo no válidos');
-            return;
-  
-          }
-  
-          try {
 
-            fileName = await this.uploadFile( files );
-            document.getElementById(elementId).setAttribute('src', this.fileReader.result.toString() );
-            resolve( fileName );
+        img.onload = () => {
 
-          } catch ( err ) {
-
-            reject(null);
-
-          }
+            resolve( img );
 
         };
-  
+
+        this.imgData = this.fileReader.result.toString();
         img.src = this.fileReader.result.toString();
-  
+
       };
-  
+
       this.fileReader.readAsDataURL( files ); // Convertir a base64
 
     });
 
-}
+  }
+
+
+  // Mostrar preview de imagen
+  displayImagePreview( elementId: string, data: string ) {
+
+    document.getElementById(elementId).setAttribute('src', data );
+
+  }
 
   // Validación extensión de archivo
   validFileExtension( fileType: string, validExtensions: string[] ) {
@@ -133,7 +125,7 @@ export class FileService {
 
     // Validación sólo cuando se espera imagen cuadrada
     if ( isSquare ) {
-  
+
       if ( width >= validWidth && height >= validHeight && width === height ) {
 
         return true;

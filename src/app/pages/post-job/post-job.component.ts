@@ -40,6 +40,7 @@ export class PostJobComponent implements OnInit {
   });
   */
  selectedFile = undefined;
+ loadingFile = false;
 
   loading = false;
   errorMessage: string = undefined;
@@ -124,16 +125,17 @@ export class PostJobComponent implements OnInit {
 
   async onFileSelected( event ) {
 
+    this.loadingFile = true;
     this.selectedFile = event.target.files[0];
 
     if ( !this.selectedFile ) {
+      this.loadingFile = false;
       return;
     }
 
-    console.log( this.selectedFile );
-
     if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
 
+      this.loadingFile = false;
       console.log('Extensión no válida');
       return;
 
@@ -141,19 +143,33 @@ export class PostJobComponent implements OnInit {
 
     if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
 
+      this.loadingFile = false;
       console.log('Tamaño de archivo no válido');
+      return;
+
+    }
+
+    const image = await this.fileService.getImage( this.selectedFile );
+
+    if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {
+
+      this.loadingFile = false;
+      console.log('Dimensiones de archivo no válidos');
       return;
 
     }
 
     try {
 
-      const fileName = await this.fileService.readURL( this.selectedFile, 'company-image' );
-      console.log('Nombre imagen cargada:', fileName );
+      const fileName = await this.fileService.uploadFile( this.selectedFile );
+      console.log('File name:', fileName);
+      this.fileService.displayImagePreview('company-image', this.fileService.imgData );
+      this.loadingFile = false;
 
     } catch ( err ) {
 
-      console.log('Hubo un error cargando la imagen');
+      console.log('Error:', err.message);
+      this.loadingFile = false;
 
     }
 
