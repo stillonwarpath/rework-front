@@ -107,8 +107,10 @@
                 <li>Minimum 150x150px square image.</li>
             </ul>
             <div class="text-center">
-                <img id="company-image" class="hide" /><br>
-                <input type="file" style="display: none;" #fileUpload (change)="onFileSelected($event)">
+
+                <div id="empty-image" class="company-image" [ngClass]="{'d-none': fileName}"></div>
+                <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
+                <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event)">
                 <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
                     <span *ngIf="!loadingFile">Select image</span>
                     <span *ngIf="loadingFile">Uploading...</span>
@@ -116,6 +118,7 @@
                 <button mdbBtn type="button" color="primary" outline="true" *ngIf="fileName" (click)="removeFile()" mdbWavesEffect>
                     Remove file
                 </button>
+
             </div>
 
         </div>
