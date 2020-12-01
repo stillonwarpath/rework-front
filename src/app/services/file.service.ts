@@ -9,6 +9,8 @@ const URL = environment.rework_backend_url;
 })
 export class FileService {
 
+  fileReader: FileReader = new FileReader();
+
   constructor( private http: HttpClient ) { }
 
   // Cargar archivo
@@ -36,6 +38,33 @@ export class FileService {
     })
 
   }
+
+  readURL( files: Blob, elementId: string) {
+
+    this.fileReader.onload = ( e ) => {
+
+      const img = new Image();
+
+      img.onload = () => {
+
+        if ( !this.validFileDimensions( img.width, img.height, 150, 150, true) ) {
+
+          console.log('Dimensiones de archivo no válidos');
+          return;
+
+        }
+
+        document.getElementById(elementId).setAttribute('src', this.fileReader.result.toString() );
+
+      }
+
+      img.src = this.fileReader.result.toString();
+
+    }
+
+    this.fileReader.readAsDataURL( files ); // Convertir a base64
+
+}
 
   // Validación extensión de archivo
   validFileExtension( fileType: string, validExtensions: string[] ) {
@@ -69,8 +98,23 @@ export class FileService {
   }
 
   // Validación de dimensiones de archivo
-  validFileDimensions( width: number, height: number, validWidth: number, validHeight: number) {
+  validFileDimensions( width: number, height: number, validWidth: number, validHeight: number, isSquare = false) {
 
+
+    // Validación sólo cuando se espera imagen cuadrada
+    if ( isSquare ) {
+  
+      if ( width >= validWidth && height >= validHeight && width === height ) {
+
+        return true;
+
+      }
+
+      return false;
+
+    }
+
+    // Validación para resto de imagenes
     if ( width >= validWidth && height >= validHeight ) {
 
       return true;

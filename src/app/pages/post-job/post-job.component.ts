@@ -146,50 +146,9 @@ export class PostJobComponent implements OnInit {
 
     }
 
-    //this.selectedFile.size, this.selectedFile.type
-
-    //TODO: Validar dimensiones, tamaño archivo y si es cuadrado
-
-    this.readURL( this.selectedFile );
+    this.fileService.readURL( this.selectedFile, 'company-image' );
 
     //this.fileService.uploadFile( this.selectedFile );
-
-  }
-
-
-  // Leer data de imagen cargada y desplegarla en pantalla
-  readURL( files: Blob) {
-
-      console.log('Se cargó imagen');
-      const reader = new FileReader();
-
-      reader.onload = ( e ) => {
-
-        const img = new Image();
-
-
-        img.onload = () => {
-
-          console.log('Imagen:', img.width );
-
-          if ( !this.fileService.validFileDimensions( img.width, img.height, 150, 150) ) {
-
-            console.log('Dimensiones de archivo no válidos');
-            return;
-
-          }
-
-          document.getElementById('company-image').setAttribute('src', reader.result.toString() );
-
-        }
-
-        img.src = reader.result.toString();
-
-        //console.log('onload:', e.target.result );
-      }
-
-      reader.readAsDataURL( files ); // Convertir a base64
-
 
   }
 
