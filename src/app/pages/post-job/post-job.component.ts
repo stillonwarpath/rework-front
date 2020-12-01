@@ -126,12 +126,17 @@ export class PostJobComponent implements OnInit {
 
   async onFileSelected( event ) {
 
+    console.log('Cambio en imagen');
+
     this.loadingFile = true;
     this.selectedFile = event.target.files[0];
 
     if ( !this.selectedFile ) {
+
+      console.log('No se seleccionó archivo');
       this.loadingFile = false;
       return;
+      
     }
 
     if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
@@ -178,6 +183,8 @@ export class PostJobComponent implements OnInit {
 
   removeFile() {
 
+    this.fileName = '';
+    this.fileService.displayImagePreview('company-image', null);
     console.log('Remover archivo');
 
   }

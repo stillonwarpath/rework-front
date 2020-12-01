@@ -107,7 +107,7 @@
                 <li>Minimum 150x150px square image.</li>
             </ul>
             <div class="text-center">
-                <img id="company-image" /><br>
+                <img id="company-image" class="hide" /><br>
                 <input type="file" style="display: none;" #fileUpload (change)="onFileSelected($event)">
                 <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
                     <span *ngIf="!loadingFile">Select image</span>
