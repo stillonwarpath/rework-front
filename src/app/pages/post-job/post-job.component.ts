@@ -133,6 +133,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  // Leer data de imagen cargada y desplegarla en pantalla
   readURL( files: Blob) {
 
       console.log('Se cargó imagen');
