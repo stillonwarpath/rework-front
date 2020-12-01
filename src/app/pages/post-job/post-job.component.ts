@@ -126,7 +126,7 @@ export class PostJobComponent implements OnInit {
     console.log( event );
     this.selectedFile = event.target.files[0];
 
-    this.fileService.uploadFile( this.selectedFile );
+    //this.fileService.uploadFile( this.selectedFile );
 
   }
 

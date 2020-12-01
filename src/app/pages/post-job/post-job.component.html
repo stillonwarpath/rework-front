@@ -91,8 +91,26 @@
             </p>
         </div>
 
-        <input type="file" (change)="onFileSelected( $event )" style="display: none;" #fileInput>
-        <button class="btn btn-primary" (click)="fileInput.click()">Upload Company Image</button>
+        <!--Boosters-->
+        <div style="margin-top:70px;">
+
+            <h1 class="h1-responsive font-weight-bold">Highlight your post</h1>
+            <p>
+                Add your company logo for $99 ( PNG or JPG ).
+            </p>
+            <p>
+                Remember to consider these indications:
+            </p>
+            <ul>
+                <li>Maximum file size 2 MB.</li>
+                <li>Minimum 150x150px square.</li>
+            </ul>
+            <div class="text-center">
+                <input type="file" style="display: none;" #fileUpload (change)="onFileSelected($event)">
+                <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect (click)="fileUpload.click()">Select File</button>
+            </div>
+
+        </div>
 
         <div class="row justify-content-center mt-5">
             <div class="col-12 col-md-3">
