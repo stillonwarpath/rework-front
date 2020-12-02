@@ -35,16 +35,9 @@ export class PostJobComponent implements OnInit {
   boosters: any[] = [];
   types: IType[] = [];
   fileName = '';
-
-  /*
-  uploader: FileUploader = new FileUploader({
-    url: `${URL}/file`,
-    itemAlias: 'image'
-  });
-  */
- selectedFile = undefined;
- loadingFile = false;
-
+  boostersSelected: string[] = [];
+  selectedFile = undefined;
+  loadingFile = false;
   loading = false;
   errorMessage: string = undefined;
 
@@ -135,10 +128,11 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  async onFileSelected( event ) {
+  async onFileSelected( event, boosterCode: string ) {
 
-    console.log('Cambio en imagen');
-
+  
+    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
+    this.boostersSelected.push( boosterImage._id );
     this.loadingFile = true;
     this.selectedFile = event.target.files[0];
 
@@ -192,11 +186,13 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  removeFile() {
+  removeFile( boosterCode: string ) {
 
     this.fileName = '';
     this.fileService.displayImagePreview('company-image', null);
-    console.log('Remover archivo');
+    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
+    this.boostersSelected = this.boostersSelected.filter( boosterId => boosterId !== boosterImage._id );
+    console.log(this.boostersSelected);
 
   }
 
