@@ -102,9 +102,9 @@
                 Remember to consider these indications:
             </p>
             <ul>
-                <li>JPG or PNG file.</li>
-                <li>Maximum file size 2 MB.</li>
-                <li>Minimum 150x150px square image.</li>
+                <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.extension === true}">JPG or PNG file. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.extension === false" /></li>
+                <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Maximum file size 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
+                <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Minimum 150x150px square image. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
             </ul>
             <div class="text-center">
 

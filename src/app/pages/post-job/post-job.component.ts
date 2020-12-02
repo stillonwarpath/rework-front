@@ -40,6 +40,11 @@ export class PostJobComponent implements OnInit {
   loadingFile = false;
   loading = false;
   errorMessage: string = undefined;
+  fileValidations = {
+    extension: undefined,
+    fileSize: undefined,
+    dimensions: undefined
+  };
 
   constructor( private jobService: JobService,
                private stripeService: StripeService,
@@ -147,28 +152,38 @@ export class PostJobComponent implements OnInit {
     if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
 
       this.loadingFile = false;
+      this.fileValidations.extension = false;
       console.log('Extensión no válida');
       return;
 
     }
 
+    this.fileValidations.extension = true;
+
     if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
 
       this.loadingFile = false;
+      this.fileValidations.fileSize = false;
       console.log('Tamaño de archivo no válido');
       return;
 
     }
+
+    this.fileValidations.fileSize = true;
+
 
     const image = await this.fileService.getImage( this.selectedFile );
 
     if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {
 
       this.loadingFile = false;
+      this.fileValidations.dimensions = false;
       console.log('Dimensiones de archivo no válidos');
       return;
 
     }
+
+    this.fileValidations.dimensions = true;
 
     try {
 
@@ -192,6 +207,9 @@ export class PostJobComponent implements OnInit {
     this.fileService.displayImagePreview('company-image', null);
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
     this.boostersSelected = this.boostersSelected.filter( boosterId => boosterId !== boosterImage._id );
+    this.fileValidations.extension = undefined;
+    this.fileValidations.fileSize = undefined;
+    this.fileValidations.dimensions = undefined;
 
   }
 
