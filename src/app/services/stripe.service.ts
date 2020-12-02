@@ -14,9 +14,9 @@ export class StripeService {
   constructor( private http: HttpClient ) { }
 
   // Obtener sesión de checkout
-  getCheckoutSession( jobId: string ): Promise<string> {
+  getCheckoutSession( jobId: string, boosters: string[] ): Promise<string> {
 
-    const data = { job_id: jobId };
+    const data = { job_id: jobId, boosters };
 
     return new Promise( (resolve, reject) => {
 

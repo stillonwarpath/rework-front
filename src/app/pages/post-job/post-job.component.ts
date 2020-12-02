@@ -192,7 +192,6 @@ export class PostJobComponent implements OnInit {
     this.fileService.displayImagePreview('company-image', null);
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
     this.boostersSelected = this.boostersSelected.filter( boosterId => boosterId !== boosterImage._id );
-    console.log(this.boostersSelected);
 
   }
 
@@ -214,7 +213,6 @@ export class PostJobComponent implements OnInit {
 
     this.loading = true;
 
-    //TODO: Enviar los boosters seleccionados
     const job = new Job( this.company.value,
                          this.jobTitle.value,
                          this.category.value,
@@ -222,7 +220,8 @@ export class PostJobComponent implements OnInit {
                          this.location.value,
                          this.url.value,
                          this.email.value,
-                         this.fileName);
+                         this.fileName,
+                         this.boostersSelected );
 
     try {
 
@@ -256,7 +255,7 @@ export class PostJobComponent implements OnInit {
 
     try {
 
-      checkoutId = await this.stripeService.getCheckoutSession( jobId );
+      checkoutId = await this.stripeService.getCheckoutSession( jobId, this.boostersSelected );
 
     } catch ( err ) {
 
