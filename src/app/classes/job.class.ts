@@ -6,6 +6,8 @@ interface IJob {
     location: string;
     url: string;
     email: string;
+    companyImage: string;
+    boosters: string[];
     paid?: boolean;
     status?: string;
     created?: Date;
@@ -20,7 +22,9 @@ class Job implements IJob {
                  public type: string,
                  public location: string,
                  public url: string,
-                 public email: string ) {}
+                 public email: string,
+                 public companyImage: string = '',
+                 public boosters: string[] = []) {}
 
 }
 

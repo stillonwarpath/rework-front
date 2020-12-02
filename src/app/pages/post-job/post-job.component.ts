@@ -14,6 +14,7 @@ import { ICategory } from '../../interfaces/category.interface';
 import { IType } from '../../interfaces/type.interface';
 import { IPostedJob } from '../../interfaces/posted-job.interface';
 import { FileService } from '../../services/file.service';
+import { BoostersService } from '../../services/boosters.service';
 
 declare const Stripe;
 
@@ -31,8 +32,9 @@ export class PostJobComponent implements OnInit {
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
   categories: ICategory[] = [];
+  boosters: any[] = [];
   types: IType[] = [];
-  fileName: string;
+  fileName = '';
 
   /*
   uploader: FileUploader = new FileUploader({
@@ -51,7 +53,8 @@ export class PostJobComponent implements OnInit {
                private categoryService: CategoryService,
                private typeService: TypeService,
                private router: Router,
-               private fileService: FileService ) { }
+               private fileService: FileService,
+               public boosterService: BoostersService ) { }
 
   async ngOnInit() {
 
@@ -64,6 +67,14 @@ export class PostJobComponent implements OnInit {
        url: new FormControl(null, Validators.required),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });
+
+    this.boosterService.getBoosters()
+        .then( boosters => {
+
+          this.boosters = boosters;
+          console.log( this.boosters );
+
+        });
 
     this.categoryService.getCategories()
       .then( categories => {
@@ -207,13 +218,15 @@ export class PostJobComponent implements OnInit {
 
     this.loading = true;
 
+    //TODO: Enviar los boosters seleccionados
     const job = new Job( this.company.value,
                          this.jobTitle.value,
                          this.category.value,
                          this.type.value,
                          this.location.value,
                          this.url.value,
-                         this.email.value);
+                         this.email.value,
+                         this.fileName);
 
     try {
 
