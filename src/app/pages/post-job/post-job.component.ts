@@ -29,6 +29,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class PostJobComponent implements OnInit {
 
+  post_free = environment.post_free;
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
   categories: ICategory[] = [];

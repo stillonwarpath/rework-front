@@ -1,9 +1,9 @@
-<div style="height: 300px; background-color: #00695c; padding: 0 10px;">
+<div style="height: 300px; background-color: #d1efed; padding: 0 10px;">
     <div class="container d-flex flex-column justify-content-center" style="height: 100%;">
-        <h1 class="h1-responsive white-text font-weight-bold">
+        <h1 class="h1-responsive font-weight-bold" style="color:#33383c;">
             Allows professionals around the world <br> looking for remote jobs work with you.
         </h1>
-        <span class="white-text">
+        <span class="font-weight-bold" style="color:#33383c;">
             Free for a very limited time, then starting at $149.99 usd for 30 days
         </span>
     </div>
@@ -95,9 +95,9 @@
         <div style="margin-top:70px;" *ngIf="boosterService.find( boosters, 'booster_1' )">
 
             <h1 class="h1-responsive font-weight-bold">Highlight your post</h1>
-            <p>
-                Add your company logo for $99.
-            </p>
+            <h4 class="h3-responsive">
+                Add your company logo for <span class="price-image-booster">$99</span> free.
+            </h4>
             <p>
                 Remember to consider these indications:
             </p>
@@ -106,7 +106,7 @@
                 <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Maximum file size 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
                 <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Minimum 150x150px square image. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
             </ul>
-            <div class="text-center">
+            <div class="d-flex flex-column align-items-center">
 
                 <div id="empty-image" class="company-image" [ngClass]="{'d-none': fileName}"></div>
                 <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
@@ -124,15 +124,15 @@
         </div>
 
         <div class="row justify-content-center mt-5">
-            <div class="col-12 col-md-3">
-                <button mdbBtn type="button" gradient="peach" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid || loading" (click)="pay()">
-                <div class="spinner-border" role="status" *ngIf="loading">
-                    <span class="sr-only">Redirecting to checkout...</span>
-                </div>
-                <span *ngIf="!loading">
-                    Post job
-                </span>
-            </button>
+            <div class="col-12 col-md-3 d-flex justify-content-center">
+                <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid || loading || loadingFile" (click)="pay()">
+                    <div class="spinner-border" role="status" *ngIf="loading">
+                        <span class="sr-only">Redirecting to checkout...</span>
+                    </div>
+                    <span *ngIf="!loading">
+                        Post job
+                    </span>
+                </button>
             </div>
         </div>
 
