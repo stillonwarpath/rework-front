@@ -11,7 +11,7 @@ import { IJob } from 'src/app/interfaces/job.interface';
 @Component({
   selector: 'app-browse-jobs',
   templateUrl: './browse-jobs.component.html',
-  styleUrls: ['./browse-jobs.component.css']
+  styleUrls: ['./browse-jobs.component.scss']
 })
 export class BrowseJobsComponent implements OnInit {
 

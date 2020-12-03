@@ -25,7 +25,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 @Component({
   selector: 'app-post-job',
   templateUrl: './post-job.component.html',
-  styleUrls: ['./post-job.component.css']
+  styleUrls: ['./post-job.component.scss']
 })
 export class PostJobComponent implements OnInit {
 

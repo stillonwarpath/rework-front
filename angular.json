@@ -32,7 +32,7 @@
                             "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
                             "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
                             "node_modules/animate.css/animate.css",
-                            "src/styles.css",
+                            "src/styles.scss",
                             "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": [
@@ -97,7 +97,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.css"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     }
@@ -130,5 +130,10 @@
             }
         }
     },
-    "defaultProject": "rework-front"
+    "defaultProject": "rework-front",
+    "schematics": {
+        "@schematics/angular:component": {
+            "styleext": "scss"
+        }
+    }
 }

@@ -40,13 +40,13 @@
     <div class="job-container mt-3" *ngFor="let job of jobs">
         <div class="row">
             <div class="col-12 col-md-9">
-                <h5 class="h5-responsive grey-text">
+                <p id="job-company">
                     {{ job.company }}
-                </h5>
+                </p>
                 <div>
-                    <h2 class="d-inline h2-responsive font-weight-bold">
+                    <p id="job-position">
                         {{ job.position }}
-                    </h2>
+                    </p>
                     <span>
                         {{ job.created | timeAgo }}
                     </span>
