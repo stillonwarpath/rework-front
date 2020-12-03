@@ -58,7 +58,7 @@
                 <div class="col-3 col-md-2">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
                     <div class="d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">
-                        <span *ngIf="!job.companyImage">
+                        <span *ngIf="!job.companyImage" class="company-abbreviation">
                             {{ job.company | companyAbbreviation }}
                         </span>
                     </div>
