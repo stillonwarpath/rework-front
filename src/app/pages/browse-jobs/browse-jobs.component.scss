@@ -18,11 +18,12 @@
 }
 
 #post-free-message {
-    font-size: 1rem;
+    font-size: 5vmin;
     padding: 0 5vw;
 }
 
 #remote-works-title {
+    font-size: 5vmin;
     padding: 0 5vw;
 }
 
@@ -40,33 +41,24 @@
     width: 100%;
 }
 
-.img-company-empty {
-    width: 100%;
-    height: 100%;
-    max-height: 120px;
-    max-width: 120px;
-    border-radius: 50%;
-    background-color: red;
-}
-
 .company-abbreviation {
-    font-size: 1.5rem;
+    font-size: 8vmin;
     font-weight: 500;
 }
 
 #job-company {
-    font-size: 0.8rem;
+    font-size: 4vmin;
     font-weight: bold;
 }
 
 #job-position {
-    font-size: 1rem;
+    font-size: 5vmin;
     font-weight: bold;
 }
 
 .work-type {
     color: #33383c;
-    font-size: 0.75rem;
+    font-size: 4vmin;
     font-weight: 500;
     padding: 3px 14px 2px;
     border-radius: 32px 32px 32px 32px;
@@ -76,11 +68,11 @@
 }
 
 .job-location {
-    font-size: 0.8rem;
+    font-size: 4vmin;
 }
 
 .post-time {
-    font-size: 0.8rem;
+    font-size: 4vmin;
     color: #272727;
 }
 
@@ -95,10 +87,11 @@
 
 @include media-breakpoint-up(sm) {
     #post-free-message {
-        font-size: 1.3rem;
+        font-size: 3vmin;
         padding: 0;
     }
     #remote-works-title {
+        font-size: 3vmin;
         padding: 0;
     }
     .job-container {
@@ -107,20 +100,20 @@
         box-shadow: 0px 0px 2px 0px #bdbdbd;
     }
     .company-abbreviation {
-        font-size: 2rem;
+        font-size: 6vmin;
         font-weight: 500;
     }
     #job-company {
-        font-size: 1.1rem;
+        font-size: 3vmin;
         font-weight: bold;
     }
     #job-position {
-        font-size: 1.5rem;
+        font-size: 4vmin;
         font-weight: bold;
     }
     .work-type {
         color: #33383c;
-        font-size: 1rem;
+        font-size: 2.5vmin;
         font-weight: 500;
         padding: 0.3rem 1rem;
         border-radius: 32px 32px 32px 32px;
@@ -129,10 +122,55 @@
         border: solid 1px #33383c;
     }
     .job-location {
-        font-size: 1rem;
+        font-size: 2.5vmin;
     }
     .post-time {
-        font-size: 1rem;
+        font-size: 2.5vmin;
+        color: #272727;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    #post-free-message {
+        font-size: 3vmin;
+        padding: 0;
+    }
+    #remote-works-title {
+        font-size: 4vmin;
+        padding: 0;
+    }
+    .job-container {
+        padding: 2vw 1vw;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 0px #bdbdbd;
+    }
+    .company-abbreviation {
+        font-size: 6vmin;
+        font-weight: 500;
+    }
+    #job-company {
+        font-size: 2.5vmin;
+        font-weight: bold;
+    }
+    #job-position {
+        font-size: 3vmin;
+        font-weight: bold;
+    }
+    .work-type {
+        color: #33383c;
+        font-size: 2vmin;
+        font-weight: 500;
+        padding: 0.3rem 1rem;
+        border-radius: 32px 32px 32px 32px;
+        -moz-border-radius: 32px 32px 32px 32px;
+        -webkit-border-radius: 32px 32px 32px 32px;
+        border: solid 1px #33383c;
+    }
+    .job-location {
+        font-size: 2vmin;
+    }
+    .post-time {
+        font-size: 2vmin;
         color: #272727;
     }
 }

@@ -46,24 +46,24 @@
 
     <div class="row mt-5">
         <div class="col">
-            <h3 id="remote-works-title" class="h3-responsive font-weight-bold">
+            <p id="remote-works-title" class="font-weight-bold">
                 Today's telecommuting jobs, good luck!
-            </h3>
+            </p>
         </div>
     </div>
 
     <div class="row mt-3 job-container" *ngFor="let job of jobs" (click)="apply( job.url )" style="cursor: pointer;">
         <div class="col-12">
             <div class="row">
-                <div class="col-3 col-md-2">
+                <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
-                    <div class="d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">
-                        <span *ngIf="!job.companyImage" class="company-abbreviation">
+                    <div *ngIf="!job.companyImage" class="company-abbreviation d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">
+                        <span class="company-abbreviation">
                             {{ job.company | companyAbbreviation }}
                         </span>
                     </div>
                 </div>
-                <div class="col-6 col-md-8">
+                <div class="col-7 col-md-8">
                     <p id="job-company" style="margin-bottom: 0;">
                         {{ job.company }}
                     </p>
@@ -76,10 +76,10 @@
                         </span>
                         <span class="job-location ml-1 font-weight-bold" *ngFor="let location of job.location | locationsSplit">
                                 {{ location  }}
-                            </span>
+                        </span>
                     </div>
                 </div>
-                <div class="col-3 col-md-2 d-flex align-items-center">
+                <div class="col-2 col-md-2 d-flex align-items-center">
                     <span class="post-time">
                         {{ job.created | timeAgo }}
                     </span>
