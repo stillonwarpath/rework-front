@@ -35,9 +35,17 @@
 
 /*Imagen empresa*/
 
-#img-company {
+.img-company {
     max-width: 120px;
     width: 100%;
+}
+
+.img-company-empty {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    background-color: red;
 }
 
 #job-company {
