@@ -16,82 +16,100 @@
     </div>
 </div>
 
-<div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+<div class="container-fluid container-md" style="padding-top: 5vw;padding-bottom: 5vw;">
 
-    <p id="post-free-message">
-        For the contingency that we're living Rework has released job posting for free ( for a very limited time ).<br> We hope it'll be of great help to you.
-    </p>
-
-    <!--Filtro de categorías-->
-    <div class="text-center my-4">
-        <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
-            <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
-                {{ category.name }}
-            </mdb-badge>
-            <mdb-badge class="ml-1 mt-1" pill="true" warning="true" style="padding: 10px;" *ngIf="categorySelected === category._id">
-                {{ category.name }}
-            </mdb-badge>
-        </a>
-    </div>
-
-    <h3 class="h3-responsive font-weight-bold">
-        Remote works
-    </h3>
-    <div class="job-container mt-3" *ngFor="let job of jobs">
-        <div class="row">
-            <div class="col-3">
-                <img id="img-company" src="https://picsum.photos/id/237/150/150" class="rounded-circle" />
-            </div>
-            <div class="col-7">
-                <p id="job-company">
-                    {{ job.company }}
-                </p>
-                <p id="job-position">
-                    {{ job.position }}
-                </p>
-                <div>
-                    <span class="work-type font-weight-bold">
-                        {{ job.type.name }}
-                    </span>
-                    <span class="grey-text ml-md-1" *ngFor="let location of job.location | locationsSplit">
-                        &bull; {{ location  }}
-                    </span>
-                </div>
-            </div>
-            <!--
-            <div class="col-12 col-md-9">
-                <p id="job-company">
-                    {{ job.company }}
-                </p>
-                <div>
-                    <p id="job-position">
-                        {{ job.position }}
-                    </p>
-                    <span>
-                        {{ job.created | timeAgo }}
-                    </span>
-                </div>
-                <div class="d-flex flex-column flex-md-row">
-                    <div>
-                        <span class="work-type font-weight-bold">
-                        {{ job.type.name }}
-                    </span>
-                    </div>
-                    <div class="mt-1 mt-md-0">
-                        <span class="grey-text ml-md-1" *ngFor="let location of job.location | locationsSplit">
-                        &bull; {{ location  }}
-                    </span>
-                    </div>
-                </div>
-            </div>
-            -->
-            <!--
-            <div class="col-12 col-md-3 pt-3 pt-sm-0">
-                <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply( job.url )" mdbWavesEffect>Apply</button>
-            </div>
-            -->
+    <div class="row">
+        <div class="col">
+            <p id="post-free-message">
+                For the contingency that we're living Rework has released job posting for free ( for a very limited time ).<br> We hope it'll be of great help to you.
+            </p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col">
+            <!--Filtro de categorías-->
+            <div class="text-center my-4">
+                <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
+
+                    <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
+                        {{ category.name }}
+                    </mdb-badge>
+                    <mdb-badge class="ml-1 mt-1" pill="true" warning="true" style="padding: 10px;" *ngIf="categorySelected === category._id">
+                        {{ category.name }}
+                    </mdb-badge>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3 id="remote-works-title" class="h3-responsive font-weight-bold">
+                Remote works
+            </h3>
+        </div>
+    </div>
+
+    <div class="row mt-3 job-container" *ngFor="let job of jobs">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3 col-md-2">
+                    <img id="img-company" src="https://picsum.photos/id/237/150/150" class="rounded-circle" />
+                </div>
+                <div class="col-7 col-md-8">
+                    <p id="job-company" style="margin-bottom: 0;">
+                        {{ job.company }}
+                    </p>
+                    <p id="job-position" style="margin-bottom: 0;">
+                        {{ job.position }}
+                    </p>
+                    <div class="mt-1 mt-lg-2">
+                        <span class="work-type">
+                                {{ job.type.name }}
+                        </span>
+                        <span class="job-location ml-1 font-weight-bold" *ngFor="let location of job.location | locationsSplit">
+                                {{ location  }}
+                            </span>
+                    </div>
+                </div>
+                <!--
+                    <div class="col-12 col-md-9">
+                        <p id="job-company">
+                            {{ job.company }}
+                        </p>
+                        <div>
+                            <p id="job-position">
+                                {{ job.position }}
+                            </p>
+                            <span>
+                                {{ job.created | timeAgo }}
+                            </span>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row">
+                            <div>
+                                <span class="work-type font-weight-bold">
+                                {{ job.type.name }}
+                            </span>
+                            </div>
+                            <div class="mt-1 mt-md-0">
+                                <span class="grey-text ml-md-1" *ngFor="let location of job.location | locationsSplit">
+                                &bull; {{ location  }}
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                <!--
+                    <div class="col-12 col-md-3 pt-3 pt-sm-0">
+                        <button mdbBtn type="button" gradient="peach" rounded="true" block="true" (click)="apply( job.url )" mdbWavesEffect>Apply</button>
+                    </div>
+                    -->
+            </div>
+        </div>
+    </div>
+
     <div class="text-center container-see-more">
         <img src="/assets/icons/see-more.png" class="see-more" (click)="loadMoreJobs()" *ngIf="moreJobs">
     </div>

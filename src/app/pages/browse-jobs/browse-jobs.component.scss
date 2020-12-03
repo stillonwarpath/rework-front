@@ -18,18 +18,26 @@
 }
 
 #post-free-message {
-    font-size: 20px;
-    padding: 30px 0;
+    font-size: 1rem;
+    padding: 0 5vw;
+}
+
+#remote-works-title {
+    padding: 0 5vw;
 }
 
 .job-container {
-    padding: 15px;
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    -webkit-box-shadow: 0px 0px 2px 0px #bdbdbd;
-    -moz-box-shadow: 0px 0px 2px 0px #bdbdbd;
+    padding: 5vw 1vw;
+    border-radius: 5px;
     box-shadow: 0px 0px 2px 0px #bdbdbd;
+}
+
+
+/*Imagen empresa*/
+
+#img-company {
+    max-width: 120px;
+    width: 100%;
 }
 
 #job-company {
@@ -42,30 +50,19 @@
     font-weight: bold;
 }
 
-#img-company {
-    max-width: 90px;
-    width: 20vw;
-}
-
-@include media-breakpoint-up(sm) {
-    #job-company {
-        font-size: 1rem;
-        font-weight: bold;
-    }
-    #job-position {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-}
-
 .work-type {
-    background-color: #ef6c00;
-    color: #ffffff;
-    font-size: 13px;
-    padding: 3px 10px;
+    color: #33383c;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 14px 2px;
     border-radius: 32px 32px 32px 32px;
     -moz-border-radius: 32px 32px 32px 32px;
     -webkit-border-radius: 32px 32px 32px 32px;
+    border: solid 1px #33383c;
+}
+
+.job-location {
+    font-size: 0.8rem;
 }
 
 .container-see-more {
@@ -75,4 +72,40 @@
 .see-more {
     cursor: pointer;
     width: 45px;
+}
+
+@include media-breakpoint-up(sm) {
+    #post-free-message {
+        font-size: 1.3rem;
+        padding: 0;
+    }
+    #remote-works-title {
+        padding: 0;
+    }
+    .job-container {
+        padding: 3vw 1vw;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 0px #bdbdbd;
+    }
+    #job-company {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    #job-position {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .work-type {
+        color: #33383c;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.3rem 1rem;
+        border-radius: 32px 32px 32px 32px;
+        -moz-border-radius: 32px 32px 32px 32px;
+        -webkit-border-radius: 32px 32px 32px 32px;
+        border: solid 1px #33383c;
+    }
+    .job-location {
+        font-size: 1rem;
+    }
 }
