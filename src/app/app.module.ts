@@ -19,6 +19,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { SuccessfulPaymentComponent } from './pages/successful-payment/successful-payment.component';
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
+import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
     TimeAgoPipe,
     SuccessfulPaymentComponent,
     PaymentCanceledComponent,
-    ImageUrlPipe
+    ImageUrlPipe,
+    CompanyAbbreviationPipe
   ],
   imports: [
     BrowserModule,
