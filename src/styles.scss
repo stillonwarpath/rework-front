@@ -8,14 +8,3 @@ html {
     font-family: 'Rubik', sans-serif;
     height: 100%;
 }
-
-@include media-breakpoint-up(sm) {
-    #job-company {
-        font-size: 2rem;
-        font-weight: bold;
-    }
-    #job-position {
-        font-size: 4rem;
-        font-weight: bold;
-    }
-}

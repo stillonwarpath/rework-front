@@ -1,3 +1,6 @@
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/functions";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/variables";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/mixins";
 .bg {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url("/assets/imagen-principal.jpg");
     height: 50%;
@@ -29,8 +32,6 @@
     box-shadow: 0px 0px 2px 0px #bdbdbd;
 }
 
-
-/*
 #job-company {
     font-size: 0.8rem;
     font-weight: bold;
@@ -40,7 +41,17 @@
     font-size: 1rem;
     font-weight: bold;
 }
-*/
+
+@include media-breakpoint-up(sm) {
+    #job-company {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    #job-position {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
 
 .work-type {
     background-color: #ef6c00;

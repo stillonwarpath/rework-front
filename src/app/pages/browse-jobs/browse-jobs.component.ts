@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { JobService } from '../../services/job.service';
 import { CategoryService } from '../../services/category.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -11,7 +11,8 @@ import { IJob } from 'src/app/interfaces/job.interface';
 @Component({
   selector: 'app-browse-jobs',
   templateUrl: './browse-jobs.component.html',
-  styleUrls: ['./browse-jobs.component.scss']
+  styleUrls: ['./browse-jobs.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BrowseJobsComponent implements OnInit {
 
