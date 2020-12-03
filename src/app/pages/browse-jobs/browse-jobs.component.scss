@@ -42,6 +42,11 @@
     font-weight: bold;
 }
 
+#img-company {
+    max-width: 90px;
+    width: 20vw;
+}
+
 @include media-breakpoint-up(sm) {
     #job-company {
         font-size: 1rem;
