@@ -65,6 +65,11 @@
     font-size: 0.8rem;
 }
 
+.post-time {
+    font-size: 0.8rem;
+    color: #272727;
+}
+
 .container-see-more {
     padding-top: 60px;
 }
@@ -83,7 +88,7 @@
         padding: 0;
     }
     .job-container {
-        padding: 3vw 1vw;
+        padding: 2vw 1vw;
         border-radius: 5px;
         box-shadow: 0px 0px 2px 0px #bdbdbd;
     }
@@ -107,5 +112,9 @@
     }
     .job-location {
         font-size: 1rem;
+    }
+    .post-time {
+        font-size: 1rem;
+        color: #272727;
     }
 }

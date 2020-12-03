@@ -9,6 +9,7 @@ interface IJob {
     type: IType;
     location: string;
     url: string;
+    companyImage?: string;
     email?: string;
     paid?: boolean;
     status?: string;

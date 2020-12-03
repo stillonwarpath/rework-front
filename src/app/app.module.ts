@@ -18,6 +18,7 @@ import { EditJobComponent } from './pages/edit-job/edit-job.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { SuccessfulPaymentComponent } from './pages/successful-payment/successful-payment.component';
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
+import { ImageUrlPipe } from './pipes/image-url.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PaymentCanceledComponent } from './pages/payment-canceled/payment-cance
     EditJobComponent,
     TimeAgoPipe,
     SuccessfulPaymentComponent,
-    PaymentCanceledComponent
+    PaymentCanceledComponent,
+    ImageUrlPipe
   ],
   imports: [
     BrowserModule,

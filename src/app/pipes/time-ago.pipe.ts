@@ -11,7 +11,7 @@ export class TimeAgoPipe implements PipeTransform {
     const currentDate = moment();
     const createdDate = moment(date);
 
-    return createdDate.from(currentDate);
+    return createdDate.from(currentDate, true);
 
   }
 

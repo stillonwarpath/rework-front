@@ -6,6 +6,7 @@ import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ICategory } from '../../interfaces/category.interface';
 import { IJob } from 'src/app/interfaces/job.interface';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { IJob } from 'src/app/interfaces/job.interface';
 })
 export class BrowseJobsComponent implements OnInit {
 
+  digitalOceanSpacesUrl: string = environment.digital_ocean_spaces;
   searchForm: FormGroup;
   $searchTerm = new Subject<string>();
   categories: ICategory[] = [];
@@ -62,6 +64,8 @@ export class BrowseJobsComponent implements OnInit {
 
     this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
     then( jobs => {
+
+      console.log( jobs );
 
       if ( jobs.length === 0 ) {
 
