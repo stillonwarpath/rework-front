@@ -9,7 +9,7 @@ export class CompanyAbbreviationPipe implements PipeTransform {
 
     let counter = 0;
     let abbreviation = '';
-    const words = name.split(' ');
+    const words = name.toUpperCase().split(' ');
 
     words.forEach( word => {
 
