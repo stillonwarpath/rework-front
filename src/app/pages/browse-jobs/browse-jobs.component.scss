@@ -174,3 +174,27 @@
         color: #272727;
     }
 }
+
+@include media-breakpoint-up(lg) {
+    #remote-works-title {
+        font-size: 2.8vmin;
+        padding: 0;
+    }
+    #job-company {
+        font-size: 2vmin;
+        font-weight: bold;
+    }
+    .work-type {
+        color: #33383c;
+        font-size: 1.6vmin;
+        font-weight: 500;
+        padding: 0.3rem 1rem;
+        border-radius: 32px 32px 32px 32px;
+        -moz-border-radius: 32px 32px 32px 32px;
+        -webkit-border-radius: 32px 32px 32px 32px;
+        border: solid 1px #33383c;
+    }
+    .job-location {
+        font-size: 1.6vmin;
+    }
+}
