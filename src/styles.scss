@@ -10,6 +10,11 @@ html {
     height: 100%;
 }
 
+.container-padding {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
 
 /*Company image*/
 
@@ -39,14 +44,14 @@ html {
 
 #button-select-image,
 #button-remove-image {
-    width: 170px;
+    width: 11rem;
     border: 1px solid #707070;
     color: #33383c;
     box-shadow: 0 0 0 0;
 }
 
 .btn-post {
-    width: 177px;
+    width: 12rem;
     color: #ffffff !important;
     background-color: #f63704 !important;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
