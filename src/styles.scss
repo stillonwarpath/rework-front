@@ -16,7 +16,16 @@ html {
 }
 
 
-/*Company image*/
+/*Editar y Postear trabajo*/
+
+.margin-top-input {
+    margin-top: 5rem !important;
+}
+
+.input-explanation {
+    font-size: 0.85rem;
+    margin-top: 1.56rem;
+}
 
 .company-image {
     width: 150px;
@@ -38,9 +47,6 @@ html {
     font-weight: 500;
     color: #33383c;
 }
-
-
-/*Botón selección imagen*/
 
 #button-select-image,
 #button-remove-image {

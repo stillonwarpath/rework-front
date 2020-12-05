@@ -20,7 +20,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 @Component({
   selector: 'app-edit-job',
   templateUrl: './edit-job.component.html',
-  styleUrls: ['./edit-job.component.css']
+  styleUrls: ['./edit-job.component.scss']
 })
 export class EditJobComponent implements OnInit {
 
