@@ -108,7 +108,7 @@
             </ul>
             <div class="d-flex flex-column align-items-center">
 
-                <div id="empty-image" class="company-image" [ngClass]="{'d-none': fileName}"></div>
+                <div class="empty-image company-image" [ngClass]="{'d-none': fileName}"></div>
                 <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
                 <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
                 <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">

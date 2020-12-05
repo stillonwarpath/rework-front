@@ -173,6 +173,7 @@ export class PostJobComponent implements OnInit {
     this.fileValidations.fileSize = true;
 
 
+    // Obtención de data imagen
     const image = await this.fileService.getImage( this.selectedFile );
 
     if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {

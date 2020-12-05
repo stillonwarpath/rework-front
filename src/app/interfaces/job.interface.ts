@@ -1,3 +1,4 @@
+import { IBooster } from './boosters-request.interface';
 import { ICategory } from './category.interface';
 import { IType } from './type.interface';
 
@@ -13,6 +14,7 @@ interface IJob {
     email?: string;
     paid?: boolean;
     status?: string;
+    boosters?: IBooster[];
     created?: string;
     updated?: string;
     __v?: number;
