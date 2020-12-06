@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { FileUploader } from 'ng2-file-upload';
-
 
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
