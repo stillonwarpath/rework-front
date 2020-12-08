@@ -34,8 +34,6 @@ export class FileService {
 
         } else if ( event.type === HttpEventType.Response ) {
 
-          console.log( event );
-
           if ( event.body.ok ) {
 
             resolve( event.body.fileName );

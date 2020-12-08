@@ -69,7 +69,6 @@ export class PostJobComponent implements OnInit {
         .then( boosters => {
 
           this.boosters = boosters;
-          console.log( this.boosters );
 
         });
 
@@ -142,7 +141,6 @@ export class PostJobComponent implements OnInit {
 
     if ( !this.selectedFile ) {
 
-      console.log('No se seleccionó archivo');
       this.loadingFile = false;
       return;
       
@@ -152,7 +150,6 @@ export class PostJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.extension = false;
-      console.log('Extensión no válida');
       return;
 
     }
@@ -163,7 +160,6 @@ export class PostJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.fileSize = false;
-      console.log('Tamaño de archivo no válido');
       return;
 
     }
@@ -178,7 +174,6 @@ export class PostJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.dimensions = false;
-      console.log('Dimensiones de archivo no válidos');
       return;
 
     }
@@ -188,13 +183,11 @@ export class PostJobComponent implements OnInit {
     try {
 
       this.fileName = await this.fileService.uploadFile( this.selectedFile );
-      console.log('File name:', this.fileName);
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
       this.loadingFile = false;
 
     } catch ( err ) {
 
-      console.log('Error:', err.message);
       this.loadingFile = false;
 
     }
@@ -317,8 +310,6 @@ export class PostJobComponent implements OnInit {
   private invalidType() {
 
     if ( this.type.value === '-99' ) {
-
-      console.log('tipo inválido');
 
 
       this.type.setErrors({

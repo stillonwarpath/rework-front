@@ -25,7 +25,6 @@ export class JobService {
 
       this.http.post(`${ REWORK_BACKEND_URL }/job`, job)
       .subscribe( (res: IPostedJob) => {
-        console.log( res );
 
         if ( res.ok ) {
 

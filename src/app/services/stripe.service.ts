@@ -23,8 +23,6 @@ export class StripeService {
       this.http.post(`${ REWORK_BACKEND_URL }/stripe/checkout-session`, data )
       .subscribe( ( res:ICheckoutSessionCreated ) => {
 
-        console.log( res );
-
         if ( res.ok ) {
 
           resolve( res.id );

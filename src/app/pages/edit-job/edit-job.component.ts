@@ -88,7 +88,6 @@ export class EditJobComponent implements OnInit {
       this.jobService.getJob( this.jobId)
           .then( job => {
 
-              console.log( job );
 
               this.setCompany = job.company;
               this.setJobTitle = job.position;
@@ -185,7 +184,6 @@ export class EditJobComponent implements OnInit {
 
     if ( !this.selectedFile ) {
 
-      console.log('No se seleccionó archivo');
       this.loadingFile = false;
       return;
       
@@ -195,7 +193,6 @@ export class EditJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.extension = false;
-      console.log('Extensión no válida');
       return;
 
     }
@@ -206,7 +203,6 @@ export class EditJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.fileSize = false;
-      console.log('Tamaño de archivo no válido');
       return;
 
     }
@@ -220,7 +216,6 @@ export class EditJobComponent implements OnInit {
 
       this.loadingFile = false;
       this.fileValidations.dimensions = false;
-      console.log('Dimensiones de archivo no válidos');
       return;
 
     }
@@ -230,14 +225,11 @@ export class EditJobComponent implements OnInit {
     try {
 
       this.fileName = await this.fileService.uploadFile( this.selectedFile );
-      console.log('File name:', this.fileName);
-      console.log('Image data:', this.fileService.imgData);
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
       this.loadingFile = false;
 
     } catch ( err ) {
 
-      console.log('Error:', err.message);
       this.loadingFile = false;
 
     }
@@ -322,8 +314,6 @@ export class EditJobComponent implements OnInit {
   private invalidType() {
 
     if ( this.type.value === '-99' ) {
-
-      console.log('tipo inválido');
 
 
       this.type.setErrors({

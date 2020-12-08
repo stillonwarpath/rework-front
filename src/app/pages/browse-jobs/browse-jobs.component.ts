@@ -54,7 +54,6 @@ export class BrowseJobsComponent implements OnInit {
       .then( categories => {
 
         this.categories = categories;
-        console.log( this.categories );
 
       });
 
@@ -65,7 +64,6 @@ export class BrowseJobsComponent implements OnInit {
     this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
     then( jobs => {
 
-      console.log( jobs );
 
       if ( jobs.length === 0 ) {
 
