@@ -17,7 +17,7 @@
     </div>
     <form [formGroup]="newJobForm">
 
-        <ckeditor [editor]="editor" [config]="editorConfig"></ckeditor>
+        <ckeditor [editor]="editor" [config]="editorConfig" (change)="newText($event)"></ckeditor>
 
         <div class="md-form md-outline">
             <input mdbInput mdbValidate type="text" id="company" class="form-control" formControlName="company">

@@ -33,6 +33,7 @@ export class PostJobComponent implements OnInit {
     placeholder:'Describe this job position, include clear and concise information to make the process more fluid for the applicant.',
     plugins:['Bold','Italic','Heading','Link','List','Paragraph','Essentials']
   };
+  texto = '';
   post_free = environment.post_free;
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
@@ -61,7 +62,7 @@ export class PostJobComponent implements OnInit {
 
   async ngOnInit() {
 
-    classicEditor.builtinPlugins.map( plugin => console.log( plugin.pluginName ));
+    //classicEditor.builtinPlugins.map( plugin => console.log( plugin.pluginName ));
 
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
@@ -136,6 +137,13 @@ export class PostJobComponent implements OnInit {
   get email() {
 
     return this.newJobForm.get('email');
+
+  }
+
+  newText( { editor } ) {
+  
+    const data = editor.getData();
+    console.log( data );
 
   }
 
