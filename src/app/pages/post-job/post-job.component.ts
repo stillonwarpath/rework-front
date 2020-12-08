@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
@@ -27,6 +28,11 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class PostJobComponent implements OnInit {
 
+  editor = classicEditor;
+  editorConfig: any = {
+    placeholder:'Describe this job position, include clear and concise information to make the process more fluid for the applicant.',
+    plugins:['Bold','Italic','Heading','Link','List','Paragraph','Essentials']
+  };
   post_free = environment.post_free;
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
@@ -54,6 +60,8 @@ export class PostJobComponent implements OnInit {
                public boosterService: BoostersService ) { }
 
   async ngOnInit() {
+
+    classicEditor.builtinPlugins.map( plugin => console.log( plugin.pluginName ));
 
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),

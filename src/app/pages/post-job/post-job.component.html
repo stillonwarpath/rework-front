@@ -17,6 +17,8 @@
     </div>
     <form [formGroup]="newJobForm">
 
+        <ckeditor [editor]="editor" [config]="editorConfig"></ckeditor>
+
         <div class="md-form md-outline">
             <input mdbInput mdbValidate type="text" id="company" class="form-control" formControlName="company">
             <label for="company" class="">Company name</label>
