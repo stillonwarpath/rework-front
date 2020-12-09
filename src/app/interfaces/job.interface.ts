@@ -15,6 +15,7 @@ interface IJob {
     paid?: boolean;
     status?: string;
     boosters?: IBooster[];
+    description?: string;
     created?: string;
     updated?: string;
     __v?: number;
