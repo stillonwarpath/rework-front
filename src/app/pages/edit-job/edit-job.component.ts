@@ -105,10 +105,12 @@ export class EditJobComponent implements OnInit {
               this.fileName = job.companyImage;
               this.companyImg = job.companyImage;
               this.boosters = job.boosters;
-              this.setDescription = job.description;
+              this.setDescription = job.description || '';
           
 
           }).catch( err => {
+
+              console.log( err.message );
               //TODO: desplegar mensaje
               this.showForm = false;
               this.result.ok = false;
