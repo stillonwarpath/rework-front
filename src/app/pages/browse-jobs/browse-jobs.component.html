@@ -9,15 +9,6 @@
 </div>
 
 <div class="container-fluid container-md" style="padding-top: 5vw;padding-bottom: 5vw;">
-    <!--
-    <div class="row">
-        <div class="col">
-            <p id="post-free-message">
-                For the contingency that we're living Rework has released job posting for free ( for a very limited time ).<br> We hope it'll be of great help to you.
-            </p>
-        </div>
-    </div>
-    -->
 
     <div class="row">
         <div class="col-12">
@@ -52,7 +43,7 @@
     </div>
 
     <div class="row mt-3" *ngFor="let job of jobs; let i = index;">
-        <div class="col-12" (click)="clickJob( i )" style="cursor: pointer;">
+        <div class="col-12" (click)="clickJob( i, job )" style="cursor: pointer;">
             <div class="row job-container">
                 <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
@@ -91,6 +82,11 @@
             <div class="job-details-container">
                 <!--Description-->
                 <div class="job-description" [innerHTML]="job.description"></div>
+                <div class="text-center">
+                    <button mdbBtn type="button" class="btn-apply" outline="true" *ngIf="job.url" (click)="apply( job.url )" mdbWavesEffect>
+                        Apply
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -130,7 +130,12 @@ export class BrowseJobsComponent implements OnInit {
   }
 
   // Click para mostrar o cerrar trabajo
-  clickJob( index: number) {
+  clickJob( index: number, job: IJob) {
+
+    if (!job.description) {
+      this.apply( job.url );
+      return;
+    }
 
     if ( this.indexJobClicked === index ) {
       this.indexJobClicked = undefined;

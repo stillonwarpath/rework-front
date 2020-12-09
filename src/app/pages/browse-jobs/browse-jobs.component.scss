@@ -38,7 +38,7 @@
 }
 
 .job-details-container {
-    margin-top: 3rem;
+    margin: 3rem 0 8rem 0;
 }
 
 
@@ -112,6 +112,13 @@
 .post-time {
     font-size: 0.75rem;
     color: #272727;
+}
+
+.btn-apply {
+    width: 12rem;
+    color: #ffffff !important;
+    background-color: #f63704 !important;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 
 .container-see-more {
