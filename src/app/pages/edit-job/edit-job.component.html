@@ -53,6 +53,11 @@
                     </p>
                 </div>
 
+                <!--Description-->
+                <div class="margin-top-input">
+                    <ckeditor [editor]="editor" [config]="editorConfig" formControlName="description"></ckeditor>
+                </div>
+
                 <div class="md-form md-outline margin-top-input">
                     <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
                     <label for="job-url" class="">Link to the job description</label>
@@ -60,7 +65,7 @@
                         <span *ngIf="url.errors.required">Link is required</span>
                     </mdb-error>
                     <p class="input-explanation">
-                        Include the url where applicants can find your job description. Don't include the http or https protocol, example www.yourjoburl.com.
+                        Include the url where applicants can apply to this job. Don't include the http or https protocol, example www.yourjoburl.com.
                     </p>
                 </div>
 

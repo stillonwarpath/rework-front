@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 import { ICategory } from '../../interfaces/category.interface';
@@ -24,6 +25,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class EditJobComponent implements OnInit {
 
+  editor = classicEditor;
   showForm = true;
   jobId: string = undefined;
   editJobForm: FormGroup;
@@ -41,6 +43,10 @@ export class EditJobComponent implements OnInit {
     dimensions: undefined
   };
   loadingFile = false;
+  editorConfig: any = {
+    placeholder:'Specify more information about the job, responsibilities, qualifications and how to apply.',
+    plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']
+  };
 
 
   result: any = {
@@ -62,6 +68,7 @@ export class EditJobComponent implements OnInit {
       jobTitle: new FormControl(null, Validators.required),
       category: new FormControl('-99', Validators.required),
       type: new FormControl('-99', Validators.required),
+      description: new FormControl(null),
       location: new FormControl(null),
       url: new FormControl(null, Validators.required),
    });
@@ -88,6 +95,8 @@ export class EditJobComponent implements OnInit {
       this.jobService.getJob( this.jobId)
           .then( job => {
 
+              console.log('Descripción:', job.description);
+
 
               this.setCompany = job.company;
               this.setJobTitle = job.position;
@@ -98,12 +107,14 @@ export class EditJobComponent implements OnInit {
               this.fileName = job.companyImage;
               this.companyImg = job.companyImage;
               this.boosters = job.boosters;
+              this.setDescription = job.description;
+          
 
           }).catch( err => {
               //TODO: desplegar mensaje
               this.showForm = false;
               this.result.ok = false;
-              this.result.message = err;
+              this.result.message = 'The job cannot be updated at this moment.';
           });
 
     })
@@ -134,6 +145,10 @@ export class EditJobComponent implements OnInit {
 
   get url() {
     return this.editJobForm.get('url');
+  }
+
+  get description() {
+    return this.editJobForm.get('description');
   }
 
   set setCompany( company: string ) {
@@ -171,6 +186,10 @@ export class EditJobComponent implements OnInit {
 
     this.editJobForm.get('url').setValue( url );
     
+  }
+
+  set setDescription( description: string ) {
+    this.editJobForm.get('description').setValue( description );
   }
 
   // Cargar archivo
