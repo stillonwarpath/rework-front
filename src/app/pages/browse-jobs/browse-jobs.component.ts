@@ -26,6 +26,7 @@ export class BrowseJobsComponent implements OnInit {
   page = 1;
   searchTerm: string = undefined;
   moreJobs = true;
+  indexJobClicked = undefined;
 
   constructor( private jobService: JobService,
                private categoryService: CategoryService) { }
@@ -126,6 +127,23 @@ export class BrowseJobsComponent implements OnInit {
 
     this.page++;
     this.getJobs();
+  }
+
+  // Click para mostrar o cerrar trabajo
+  clickJob( index: number, job: IJob) {
+
+    if (!job.description) {
+      this.apply( job.url );
+      return;
+    }
+
+    if ( this.indexJobClicked === index ) {
+      this.indexJobClicked = undefined;
+      return;
+    }
+
+    this.indexJobClicked = index;
+
   }
 
 }

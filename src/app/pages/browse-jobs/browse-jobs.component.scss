@@ -37,6 +37,37 @@
     box-shadow: 0px 0px 2px 0px #bdbdbd;
 }
 
+.job-details-container {
+    margin: 3rem 0 8rem 0;
+}
+
+
+/*CKEditor descripción*/
+
+.job-description h2 {
+    font-size: 1.2rem;
+}
+
+.job-description h3 {
+    font-size: 1.1rem;
+}
+
+.job-description h4 {
+    font-size: 1rem;
+}
+
+.job-description p {
+    font-size: .8rem;
+}
+
+.job-description ul li {
+    font-size: .8rem;
+}
+
+.job-description ol li {
+    font-size: .8rem;
+}
+
 
 /*Imagen empresa*/
 
@@ -83,6 +114,13 @@
     color: #272727;
 }
 
+.btn-apply {
+    width: 12rem;
+    color: #ffffff !important;
+    background-color: #f63704 !important;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
 .container-see-more {
     padding-top: 2rem;
 }
@@ -123,6 +161,25 @@
     .post-time {
         font-size: 0.9rem;
     }
+    /*CKEditor descripción*/
+    .job-description h2 {
+        font-size: 1.5rem;
+    }
+    .job-description h3 {
+        font-size: 1.4rem;
+    }
+    .job-description h4 {
+        font-size: 1.3rem;
+    }
+    .job-description p {
+        font-size: 1rem;
+    }
+    .job-description ul li {
+        font-size: 1rem;
+    }
+    .job-description ol li {
+        font-size: 1rem;
+    }
 }
 
 @include media-breakpoint-up(md) {
@@ -159,6 +216,16 @@
     .post-time {
         font-size: 1rem;
     }
+    /*CKEditor descripción*/
+    .job-description h2 {
+        font-size: 1.4rem;
+    }
+    .job-description h3 {
+        font-size: 1.3rem;
+    }
+    .job-description h4 {
+        font-size: 1.2rem;
+    }
 }
 
 @include media-breakpoint-up(lg) {
@@ -175,11 +242,24 @@
     .job-container {
         padding: 2rem 0;
     }
+    .company-abbreviation {
+        font-size: 2.5rem;
+    }
     .work-type {
         font-size: 0.9rem;
         padding: 0.2rem 0.9rem;
     }
     .job-location {
         font-size: 0.9rem;
+    }
+    /*CKEditor descripción*/
+    .job-description h2 {
+        font-size: 1.7rem;
+    }
+    .job-description h3 {
+        font-size: 1.6rem;
+    }
+    .job-description h4 {
+        font-size: 1.5rem;
     }
 }

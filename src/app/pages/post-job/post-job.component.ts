@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
@@ -27,6 +28,12 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class PostJobComponent implements OnInit {
 
+  editor = classicEditor;
+  editorConfig: any = {
+    placeholder:'Specify more information about the job, responsibilities, qualifications and how to apply.',
+    plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']
+  };
+  texto = '';
   post_free = environment.post_free;
   stripe = Stripe(STRIPE_PK);
   newJobForm: FormGroup;
@@ -55,13 +62,16 @@ export class PostJobComponent implements OnInit {
 
   async ngOnInit() {
 
+    //classicEditor.builtinPlugins.map( plugin => console.log( plugin.pluginName ));
+
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
        jobTitle: new FormControl(null, Validators.required),
        category: new FormControl('-99', Validators.required),
        type: new FormControl('-99', Validators.required),
        location: new FormControl(null),
-       url: new FormControl(null, Validators.required),
+       description: new FormControl(null),
+       url: new FormControl(null),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });
 
@@ -131,6 +141,19 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  get description() {
+
+    return this.newJobForm.get('description');
+
+  }
+
+  newText( { editor } ) {
+  
+    const data = editor.getData();
+    console.log( data );
+
+  }
+
   async onFileSelected( event, boosterCode: string ) {
 
   
@@ -194,6 +217,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  // Remover imagen seleccionada
   removeFile( boosterCode: string ) {
 
     this.fileName = '';
@@ -206,6 +230,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  // Pagar
   async pay() {
 
     let result: IPostedJob;
@@ -232,7 +257,8 @@ export class PostJobComponent implements OnInit {
                          this.url.value,
                          this.email.value,
                          this.fileName,
-                         this.boostersSelected );
+                         this.boostersSelected,
+                         this.description.value);
 
     try {
 

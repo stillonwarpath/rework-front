@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ToastrModule } from 'ngx-toastr';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 import { NabvarComponent } from './components/nabvar/nabvar.component';
@@ -42,7 +43,8 @@ import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CKEditorModule
     
   ],
   providers: [],
