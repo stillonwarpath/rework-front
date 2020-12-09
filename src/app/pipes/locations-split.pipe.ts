@@ -7,7 +7,7 @@ export class LocationsSplitPipe implements PipeTransform {
 
   transform(location: string): string[] {
 
-    let locations = location.split(',');
+    let locations = location.split(';');
 
     locations = locations.map( location => {
       
