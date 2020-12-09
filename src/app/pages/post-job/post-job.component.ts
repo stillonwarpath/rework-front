@@ -30,8 +30,8 @@ export class PostJobComponent implements OnInit {
 
   editor = classicEditor;
   editorConfig: any = {
-    placeholder:'Describe this job position, include clear and concise information to make the process more fluid for the applicant.',
-    plugins:['Bold','Italic','Heading','Link','List','Paragraph','Essentials']
+    placeholder:'Specify more information about the job, responsibilities, qualifications and how to apply.',
+    plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']
   };
   texto = '';
   post_free = environment.post_free;
@@ -70,7 +70,8 @@ export class PostJobComponent implements OnInit {
        category: new FormControl('-99', Validators.required),
        type: new FormControl('-99', Validators.required),
        location: new FormControl(null),
-       url: new FormControl(null, Validators.required),
+       description: new FormControl(null),
+       url: new FormControl(null),
        email: new FormControl(null, [Validators.required, Validators.email ]),
     });
 
@@ -137,6 +138,12 @@ export class PostJobComponent implements OnInit {
   get email() {
 
     return this.newJobForm.get('email');
+
+  }
+
+  get description() {
+
+    return this.newJobForm.get('description');
 
   }
 
@@ -210,6 +217,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  // Remover imagen seleccionada
   removeFile( boosterCode: string ) {
 
     this.fileName = '';
@@ -222,6 +230,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  // Pagar
   async pay() {
 
     let result: IPostedJob;
@@ -248,7 +257,8 @@ export class PostJobComponent implements OnInit {
                          this.url.value,
                          this.email.value,
                          this.fileName,
-                         this.boostersSelected );
+                         this.boostersSelected,
+                         this.description.value);
 
     try {
 

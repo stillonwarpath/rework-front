@@ -17,11 +17,9 @@
     </div>
     <form [formGroup]="newJobForm">
 
-        <ckeditor [editor]="editor" [config]="editorConfig" (change)="newText($event)"></ckeditor>
-
         <div class="md-form md-outline">
             <input mdbInput mdbValidate type="text" id="company" class="form-control" formControlName="company">
-            <label for="company" class="">Company name</label>
+            <label for="company" class="">Company name *</label>
             <mdb-error *ngIf="company.invalid && (company.dirty || company.touched)">
                 <span *ngIf="company.errors.required">Company is required</span>
             </mdb-error>
@@ -29,7 +27,7 @@
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-title" class="form-control" formControlName="jobTitle">
-            <label for="job-title" class="">Job title</label>
+            <label for="job-title" class="">Job title *</label>
             <mdb-error *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)">
                 <span *ngIf="jobTitle.errors.required">Job title is required</span>
             </mdb-error>
@@ -37,7 +35,7 @@
 
         <div class="md-form margin-top-input">
             <select mdbValidate class="browser-default custom-select" formControlName="category">
-            <option value="-99">Category for this position</option>
+            <option value="-99">Category for this position *</option>
             <option *ngFor="let category of categories" [value]="category._id">
                 {{ category.name }}
             </option>
@@ -49,7 +47,7 @@
 
         <div class="md-form margin-top-input">
             <select mdbValidate class="browser-default custom-select" formControlName="type">
-            <option value="-99">Type of this position</option>
+            <option value="-99">Type of this position *</option>
             <option *ngFor="let type of types" [value]="type._id">{{ type.name }}</option>
         </select>
             <mdb-error *ngIf="type.invalid">
@@ -70,6 +68,12 @@
             </p>
         </div>
 
+        <!--Description-->
+        <div class="margin-top-input">
+            <ckeditor [editor]="editor" [config]="editorConfig" (change)="newText($event)" formControlName="description"></ckeditor>
+        </div>
+
+
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
             <label for="job-url" class="">Link to the job description</label>
@@ -77,13 +81,13 @@
                 <span *ngIf="url.errors.required">Link is required</span>
             </mdb-error>
             <p class="input-explanation">
-                Include the url where applicants can find your job description. Don't include the http or https protocol, example www.yourjoburl.com.
+                Include the url where applicants can apply to this job. Don't include the http or https protocol, example www.yourjoburl.com.
             </p>
         </div>
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="contact-email" class="form-control" formControlName="email">
-            <label for="contact-email" class="">Contact email</label>
+            <label for="contact-email" class="">Contact email *</label>
             <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">
                 <span *ngIf="email.errors.required">Contact email is required</span>
                 <span *ngIf="email.errors.email">The email format isn't valid</span>
