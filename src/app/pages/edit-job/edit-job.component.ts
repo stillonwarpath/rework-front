@@ -95,8 +95,6 @@ export class EditJobComponent implements OnInit {
       this.jobService.getJob( this.jobId)
           .then( job => {
 
-              console.log('Descripción:', job.description);
-
 
               this.setCompany = job.company;
               this.setJobTitle = job.position;
@@ -269,6 +267,7 @@ export class EditJobComponent implements OnInit {
   }
 
 
+  // Click al botón editar
   async edit() {
 
     if ( this.editJobForm.invalid ) {
@@ -291,10 +290,13 @@ export class EditJobComponent implements OnInit {
       position: this.jobTitle.value,
       category: this.category.value,
       type: this.type.value,
+      description: this.description.value,
       location: this.location.value,
       url: this.url.value,
       companyImage: this.fileName
     };
+
+    console.log('Job:', updatedJob);
 
     try {
 
