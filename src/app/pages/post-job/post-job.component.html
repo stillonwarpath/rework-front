@@ -9,6 +9,7 @@
     </div>
 </div>
 
+
 <div class="container container-padding">
 
     <h1 class="h1-responsive font-weight-bold">Create your job listing</h1>
@@ -63,11 +64,11 @@
             </p>
         </div>
 
+
         <!--Description-->
-        <div class="margin-top-input">
+        <div class="margin-top-input" style="width:100%">
             <ckeditor [editor]="editor" [config]="editorConfig" formControlName="description"></ckeditor>
         </div>
-
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">

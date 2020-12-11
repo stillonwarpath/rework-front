@@ -71,3 +71,10 @@ html {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     margin-bottom: 40px;
 }
+
+
+/*Remover tooltip ckeditor 5 por problema scroll horizontal*/
+
+.ck.ck-button .ck.ck-tooltip {
+    display: none;
+}
