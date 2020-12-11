@@ -104,9 +104,20 @@ export class BrowseJobsComponent implements OnInit {
   // Se filtran trabajos por categoría
   filterJobsByCategory( categoryId: string ) {
 
+    // Si se selecciona nuevamente categoría se desactiva el filtro
+    if ( categoryId === this.categorySelected ) {
+
+      this.categorySelected = undefined;
+
+    } else {
+
+      this.categorySelected = categoryId;
+
+    }
+
     this.page = 1;
     this.jobs = [];
-    this.categorySelected = categoryId;
+
 
     this.getJobs();
 
