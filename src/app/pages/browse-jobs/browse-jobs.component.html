@@ -18,6 +18,26 @@
             </form>
         </div>
         <div class="col">
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide" *ngFor="let category of categories">
+                            <div class="category-container">
+                                <p class="category-name">
+                                    {{ category.name }}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--
+                <div data-glide-el="controls">
+                    <button data-glide-dir="<<">Start</button>
+                    <button data-glide-dir=">>">End</button>
+                </div>
+                -->
+            </div>
             <!--Filtro de categorías-->
             <div class="text-center my-4">
                 <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">

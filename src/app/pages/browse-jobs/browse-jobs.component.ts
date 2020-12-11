@@ -4,9 +4,13 @@ import { CategoryService } from '../../services/category.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+
+import Glide from '@glidejs/glide';
+
+
 import { ICategory } from '../../interfaces/category.interface';
 import { IJob } from 'src/app/interfaces/job.interface';
-import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -54,9 +58,26 @@ export class BrowseJobsComponent implements OnInit {
     this.categoryService.getCategories()
       .then( categories => {
 
-        this.categories = categories;
+        console.log('Categorías', categories);
+        this.categories = categories; 
+
+        setTimeout( () => {
+          new Glide('.glide',{
+            perView:5,
+            peek: { before: 0, after: 50 },
+            breakpoints: {
+              992: {
+                perView: 4
+              },
+              576: {
+                perView: 2
+              }
+            }
+          }).mount();
+        }, 1);
 
       });
+    
 
   }
 
