@@ -27,14 +27,22 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 6rem;
+    height: 9rem;
+    padding: 1.2rem 1.7rem 2.1rem 1.7rem;
     border-radius: 4.5px;
     border: solid 1px #707070;
 }
 
 .category-name {
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
     font-weight: bold;
+    line-height: 1.2;
     color: #33383c;
+}
+
+.category-icon {
+    width: 2.5rem;
 }
 
 .category-selected {
@@ -145,6 +153,9 @@
         font-size: 1.3rem;
         padding: 0;
     }
+    .category-name {
+        font-size: 1rem;
+    }
     #remote-works-title {
         font-size: 1.3rem;
         padding: 0;
@@ -196,6 +207,9 @@
     #main-title {
         font-size: 2.7rem;
     }
+    .category-icon {
+        width: 2.8rem;
+    }
     #post-free-message {
         font-size: 1.5rem;
         padding: 0;
@@ -239,6 +253,9 @@
 }
 
 @include media-breakpoint-up(lg) {
+    .category-name {
+        font-size: 1.1rem;
+    }
     #remote-works-title {
         font-size: 1.8rem;
         padding: 0;

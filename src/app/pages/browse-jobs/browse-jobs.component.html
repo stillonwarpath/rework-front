@@ -24,7 +24,10 @@
                     <ul class="glide__slides">
                         <li class="glide__slide" *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
                             <div class="category-container" [ngClass]="{'category-selected': categorySelected === category._id}">
-                                <p class="category-name">
+                                <div>
+                                    <img class="category-icon" src="/assets/icons/{{category.icon}}">
+                                </div>
+                                <p class="category-name text-center">
                                     {{ category.name }}
                                 </p>
                             </div>

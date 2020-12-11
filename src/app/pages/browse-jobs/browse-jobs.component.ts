@@ -58,7 +58,6 @@ export class BrowseJobsComponent implements OnInit {
     this.categoryService.getCategories()
       .then( categories => {
 
-        console.log('Categorías', categories);
         this.categories = categories; 
 
         setTimeout( () => {
