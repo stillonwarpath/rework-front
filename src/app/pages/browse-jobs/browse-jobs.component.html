@@ -18,6 +18,7 @@
             </form>
         </div>
         <div class="col">
+            <!--Slider filtro categorías-->
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
@@ -31,21 +32,6 @@
                     </ul>
                 </div>
             </div>
-            <!--Filtro de categorías-->
-            <!--
-            <div class="text-center my-4">
-                <a *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
-
-                    <mdb-badge class="ml-1 mt-1" pill="true" default="true" style="padding: 10px;" *ngIf="categorySelected !== category._id">
-                        {{ category.name }}
-                    </mdb-badge>
-                    <mdb-badge class="ml-1 mt-1" pill="true" warning="true" style="padding: 10px;" *ngIf="categorySelected === category._id">
-                        {{ category.name }}
-                    </mdb-badge>
-                </a>
-            </div>
-            -->
-
         </div>
     </div>
 
