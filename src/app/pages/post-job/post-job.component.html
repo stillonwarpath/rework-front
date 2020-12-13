@@ -10,7 +10,7 @@
 </div>
 
 
-<div class="container container-padding">
+<div id="container-create-job" class="container container-padding">
 
     <h1 class="h1-responsive font-weight-bold">Create your job listing</h1>
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
@@ -126,7 +126,7 @@
         </div>
 
         <div class="row justify-content-center mt-5">
-            <div class="col-12 col-md-3 d-flex justify-content-center">
+            <div id="col-btn-post" class="col-12 col-md-3 d-flex justify-content-center">
                 <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid || loading || loadingFile" (click)="pay()">
                     <div class="spinner-border" role="status" *ngIf="loading">
                         <span class="sr-only">Redirecting to checkout...</span>

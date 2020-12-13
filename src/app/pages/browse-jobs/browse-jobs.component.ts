@@ -24,7 +24,8 @@ import { AnimationItem } from 'lottie-web';
 export class BrowseJobsComponent implements OnInit {
 
   lottieOpttions: AnimationOptions = {
-    path:'/assets/rework_home.json'
+    path:'/assets/rework_home.json',
+    loop: false
   };
   digitalOceanSpacesUrl: string = environment.digital_ocean_spaces;
   searchForm: FormGroup;
@@ -85,9 +86,6 @@ export class BrowseJobsComponent implements OnInit {
 
   }
 
-  animationCreated( animationItem: AnimationItem ) {
-    console.log(animationItem);
-  }
 
   private getJobs() {
 
