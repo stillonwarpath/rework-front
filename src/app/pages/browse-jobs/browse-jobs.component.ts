@@ -6,11 +6,13 @@ import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
+import { AnimationOptions } from 'ngx-lottie';
 import Glide from '@glidejs/glide';
 
 
 import { ICategory } from '../../interfaces/category.interface';
 import { IJob } from 'src/app/interfaces/job.interface';
+import { AnimationItem } from 'lottie-web';
 
 
 @Component({
@@ -21,6 +23,9 @@ import { IJob } from 'src/app/interfaces/job.interface';
 })
 export class BrowseJobsComponent implements OnInit {
 
+  lottieOpttions: AnimationOptions = {
+    path:'/assets/rework_home.json'
+  };
   digitalOceanSpacesUrl: string = environment.digital_ocean_spaces;
   searchForm: FormGroup;
   $searchTerm = new Subject<string>();
@@ -78,6 +83,10 @@ export class BrowseJobsComponent implements OnInit {
       });
     
 
+  }
+
+  animationCreated( animationItem: AnimationItem ) {
+    console.log(animationItem);
   }
 
   private getJobs() {

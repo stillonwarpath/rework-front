@@ -1,9 +1,15 @@
 <div id="header-container" class="container">
     <div class="row justify-content-center align-items-center" style="height: 100%;">
-        <div class="col-12">
+        <div class="col-12 col-md-6">
             <h1 id="main-title">
                 Rework is a place for listing and finding remote work.
             </h1>
+            <h2 id="second-title" class="d-none d-md-block">
+                You can find the freedom to work from anywhere, while companies are looking for talents like yours to join them.
+            </h2>
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+            <ng-lottie [options]="lottieOpttions" (animationCreated)="animationCreated($event)"></ng-lottie>
         </div>
     </div>
 </div>

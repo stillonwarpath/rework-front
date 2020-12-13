@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ToastrModule } from 'ngx-toastr';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { LottieModule } from 'ngx-lottie';
+/*import player from 'lottie-web';*/
 
 
 import { NabvarComponent } from './components/nabvar/nabvar.component';
@@ -21,6 +23,11 @@ import { SuccessfulPaymentComponent } from './pages/successful-payment/successfu
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
+
+// Carga lottie-web bajo demanda cuando se carga animación por primera vez
+export function playerFactory() {
+  return import(/* webPackChunkName: 'Lottie-web' */ 'lottie-web');
+}
 
 @NgModule({
   declarations: [
@@ -44,8 +51,8 @@ import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    CKEditorModule
-    
+    CKEditorModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
