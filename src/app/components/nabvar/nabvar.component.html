@@ -1,4 +1,4 @@
-<mdb-navbar SideClass="navbar navbar-dark z-depth-0">
+<mdb-navbar SideClass="navbar navbar-4 z-depth-0">
 
     <mdb-navbar-brand>
         <a class="navbar-brand" href="#">
@@ -6,10 +6,26 @@
         </a>
     </mdb-navbar-brand>
 
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+            </li>
+        </ul>
+    </links>
+
+    <!--
     <div class="mr-auto"></div>
     <form [formGroup]="" class="form-inline">
         <button id="btn-post" mdbBtn color="danger" class="align-middle waves-light" mdbWavesEffect type="button" routerLink="/post-job">Post job</button>
     </form>
+    -->
 
 </mdb-navbar>
 <!--/.Navbar-->
