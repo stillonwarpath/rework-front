@@ -1,4 +1,4 @@
-<mdb-navbar SideClass="navbar navbar-4 z-depth-0">
+<mdb-navbar SideClass="navbar navbar-expand-md navbar-4 z-depth-0">
 
     <mdb-navbar-brand>
         <a class="navbar-brand" href="#">
@@ -7,25 +7,27 @@
     </mdb-navbar-brand>
 
     <links>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>Servicios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+                <a class="nav-link waves-light" mdbWavesEffect>Blog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+                <a class="nav-link waves-light" mdbWavesEffect>FAQ</a>
+            </li>
+            <li class="nav-item d-block d-md-none">
+                <a class="nav-link waves-light" mdbWavesEffect>Términos y condiciones</a>
+            </li>
+            <li class="nav-item d-block d-md-none">
+                <a class="nav-link waves-light" mdbWavesEffect>Política de privacidad</a>
+            </li>
+            <li class="nav-item d-none d-md-block">
+                <button id="btn-post" mdbBtn color="danger" class="align-middle waves-light" mdbWavesEffect type="button" routerLink="/post-job">Postear Trabajo</button>
             </li>
         </ul>
     </links>
-
-    <!--
-    <div class="mr-auto"></div>
-    <form [formGroup]="" class="form-inline">
-        <button id="btn-post" mdbBtn color="danger" class="align-middle waves-light" mdbWavesEffect type="button" routerLink="/post-job">Post job</button>
-    </form>
-    -->
 
 </mdb-navbar>
 <!--/.Navbar-->

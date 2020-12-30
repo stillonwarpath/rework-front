@@ -1,3 +1,6 @@
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/functions";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/variables";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/mixins";
 #logo {
     width: 7rem;
 }
@@ -8,4 +11,17 @@
     background-color: #f63704 !important;
     border-radius: 5px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+ul li a {
+    font-weight: bold;
+}
+
+@include media-breakpoint-up(md) {
+    ul li a {
+        font-weight: bold;
+    }
+    ul li {
+        margin-right: 1.8rem;
+    }
 }
