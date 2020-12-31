@@ -17,6 +17,18 @@ ul li a {
     font-weight: bold;
 }
 
+@include media-breakpoint-down(md) {
+    ul.navbar-nav {
+        margin-top: 3rem;
+    }
+    #redes-sociales-nav {
+        margin-top: 5rem;
+    }
+    #icon-linkedin {
+        margin-left: 3rem;
+    }
+}
+
 @include media-breakpoint-up(md) {
     ul li a {
         font-weight: bold;
