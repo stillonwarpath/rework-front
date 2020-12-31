@@ -17,6 +17,10 @@ ul li a {
     font-weight: bold;
 }
 
+.link {
+    color: inherit;
+}
+
 @include media-breakpoint-down(md) {
     #logo {
         margin-left: 1rem;
