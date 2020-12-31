@@ -23,6 +23,7 @@ import { SuccessfulPaymentComponent } from './pages/successful-payment/successfu
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Carga lottie-web bajo demanda cuando se carga animación por primera vez
 export function playerFactory() {
@@ -41,7 +42,8 @@ export function playerFactory() {
     SuccessfulPaymentComponent,
     PaymentCanceledComponent,
     ImageUrlPipe,
-    CompanyAbbreviationPipe
+    CompanyAbbreviationPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
