@@ -25,6 +25,7 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { CompanyAbbreviationPipe } from './pipes/company-abbreviation.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
+import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
 
 // Carga lottie-web bajo demanda cuando se carga animación por primera vez
 export function playerFactory() {
@@ -45,7 +46,8 @@ export function playerFactory() {
     ImageUrlPipe,
     CompanyAbbreviationPipe,
     FooterComponent,
-    TerminosCondicionesComponent
+    TerminosCondicionesComponent,
+    PoliticaDePrivacidadComponent
   ],
   imports: [
     BrowserModule,

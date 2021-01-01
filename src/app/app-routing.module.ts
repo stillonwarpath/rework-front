@@ -6,6 +6,7 @@ import { EditJobComponent } from './pages/edit-job/edit-job.component';
 import { SuccessfulPaymentComponent } from './pages/successful-payment/successful-payment.component';
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
+import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'terminos-y-condiciones',
     component: TerminosCondicionesComponent
+  },
+   {
+    path: 'politica-de-privacidad',
+    component: PoliticaDePrivacidadComponent
   },
   {
     path: '**',
