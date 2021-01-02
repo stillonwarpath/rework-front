@@ -7,6 +7,7 @@ import { SuccessfulPaymentComponent } from './pages/successful-payment/successfu
 import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled.component';
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
 import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
    {
     path: 'politica-de-privacidad',
     component: PoliticaDePrivacidadComponent
+  },
+  {
+    path: 'preguntas-frecuentes',
+    component: FaqComponent
   },
   {
     path: '**',
