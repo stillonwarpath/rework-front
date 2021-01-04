@@ -2,13 +2,13 @@
     <div class="row justify-content-center align-items-center" style="height: 100%;">
         <div class="col-12 col-md-6">
             <h1 id="main-title">
-                Rework is a place for listing and finding remote work.
+                Rework es un lugar para publicar y encontrar oportunidades de teletrabajo.
             </h1>
             <div class="d-block d-md-none d-flex justify-content-center" style="padding-top: 1rem;">
                 <button mdbBtn color="danger" class="align-middle waves-light btn-post" mdbWavesEffect type="button" routerLink="/post-job">Postear Trabajo</button>
             </div>
             <h2 id="second-title" class="d-none d-md-block">
-                You can find the freedom to work from anywhere, while companies are looking for talents like yours to join them.
+                Puedes encontrar la oportunidad de trabajar desde cualquier lugar, mientras las compañias buscan talentos como el tuyo para unirseles.
             </h2>
         </div>
         <div class="col-md-6 d-none d-md-block">
@@ -50,7 +50,7 @@
     <div class="row mt-5">
         <div class="col">
             <p id="remote-works-title" class="font-weight-bold">
-                Today's telecommuting jobs, good luck!
+                Últimas oportunidades de teletrabajo, ¡buena suerte!
             </p>
         </div>
     </div>
@@ -97,7 +97,7 @@
                 <div class="job-description" [innerHTML]="job.description"></div>
                 <div class="text-center">
                     <button mdbBtn type="button" class="btn-apply" outline="true" *ngIf="job.url" (click)="apply( job.url )" mdbWavesEffect>
-                        Apply
+                        Postular
                     </button>
                 </div>
             </div>
