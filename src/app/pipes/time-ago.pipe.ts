@@ -8,6 +8,7 @@ export class TimeAgoPipe implements PipeTransform {
 
   transform(date: string): string {
 
+    moment.locale('es');
     const currentDate = moment();
     const createdDate = moment(date);
 
