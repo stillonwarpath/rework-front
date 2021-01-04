@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -44,7 +44,7 @@ export class EditJobComponent implements OnInit {
   };
   loadingFile = false;
   editorConfig: any = {
-    placeholder:'Specify more information about the job, responsibilities, qualifications and how to apply.',
+    placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
     plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']
   };
 
@@ -114,7 +114,7 @@ export class EditJobComponent implements OnInit {
               //TODO: desplegar mensaje
               this.showForm = false;
               this.result.ok = false;
-              this.result.message = 'The job cannot be updated at this moment.';
+              this.result.message = 'La postulación no puede ser actualizada en este momento.';
           });
 
     })
@@ -298,13 +298,11 @@ export class EditJobComponent implements OnInit {
       companyImage: this.fileName
     };
 
-    console.log('Job:', updatedJob);
-
     try {
 
       await this.jobService.updateJob( updatedJob );
       this.result.ok = true;
-      this.result.message = `The job was updated`;
+      this.result.message = `El trabajo ha sido actualizado`;
 
     } catch ( err ) {
 

@@ -4,52 +4,52 @@
     </div>
     <div *ngIf="showForm">
         <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
-            <h1 class="h1-responsive font-weight-bold">Edit your job listing</h1>
+            <h1 class="h1-responsive font-weight-bold">Editar tu postulación</h1>
             <form [formGroup]="editJobForm">
 
                 <div class="md-form md-outline">
                     <input mdbInput mdbValidate type="text" id="company" class="form-control" formControlName="company">
-                    <label for="company" class="">Company name</label>
+                    <label for="company" class="">Nombre de empresa *</label>
                     <mdb-error *ngIf="company.invalid && (company.dirty || company.touched)">
-                        <span *ngIf="company.errors.required">Company is required</span>
+                        <span *ngIf="company.errors.required">La empresa es requerida</span>
                     </mdb-error>
                 </div>
 
                 <div class="md-form md-outline margin-top-input">
                     <input mdbInput mdbValidate type="text" id="job-title" class="form-control" formControlName="jobTitle">
-                    <label for="job-title" class="">Job title</label>
+                    <label for="job-title" class="">Título del trabajo *</label>
                     <mdb-error *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)">
-                        <span *ngIf="jobTitle.errors.required">Job title is required</span>
+                        <span *ngIf="jobTitle.errors.required">Título del trabajo es requerido</span>
                     </mdb-error>
                 </div>
 
                 <div class="md-form margin-top-input">
                     <select mdbValidate class="browser-default custom-select" formControlName="category">
-                <option value="-99">Category for this position</option>
+                <option value="-99">Categoría de la postulación *</option>
                 <option *ngFor="let category of categories" [value]="category._id">
                     {{ category.name }}
                 </option>
             </select>
                     <mdb-error *ngIf="category.invalid">
-                        <span *ngIf="category.errors?.required">Category is required</span>
+                        <span *ngIf="category.errors?.required">Categoría es requerida</span>
                     </mdb-error>
                 </div>
 
                 <div class="md-form margin-top-input">
                     <select mdbValidate class="browser-default custom-select" formControlName="type">
-                <option value="-99">Type of this position</option>
+                <option value="-99">Tipo de postulación *</option>
                 <option *ngFor="let type of types" [value]="type._id">{{ type.name }}</option>
             </select>
                     <mdb-error *ngIf="type.invalid">
-                        <span *ngIf="type.errors.required">Type is required</span>
+                        <span *ngIf="type.errors.required">Tipo es requerido</span>
                     </mdb-error>
                 </div>
 
                 <div class="md-form md-outline margin-top-input">
                     <input mdbInput type="text" id="location" class="form-control" formControlName="location">
-                    <label for="location" class="">Location</label>
+                    <label for="location" class="">Ubicación</label>
                     <p class="input-explanation">
-                        Specify from which places you're looking for applicants. Separate locations with semicolon. If you're looking around the world leave it blank.
+                        Especifica los lugares desde los cuales buscas postulantes. Separa las ubicaciones por punto y coma. Si buscas postulantes desde cualquier lugar deja este campo en blanco.
                     </p>
                 </div>
 
@@ -60,26 +60,26 @@
 
                 <div class="md-form md-outline margin-top-input">
                     <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
-                    <label for="job-url" class="">Link to the job description</label>
+                    <label for="job-url" class="">Enlace a la postulación</label>
                     <mdb-error *ngIf="url.invalid && (url.dirty || url.touched)">
-                        <span *ngIf="url.errors.required">Link is required</span>
+                        <span *ngIf="url.errors.required">Enlace es requerido</span>
                     </mdb-error>
                     <p class="input-explanation">
-                        Include the url where applicants can apply to this job. Don't include the http or https protocol, example www.yourjoburl.com.
+                        Incluye el enlace donde los aplicantes podrán postular a este trabajo. No incluyas los protocolos http o https, ejemplo www.mipostulacion.com
                     </p>
                 </div>
 
                 <!--Boosters-->
                 <div style="margin-top:70px;" *ngIf="boosterService.find( boosters, 'booster_1' )">
 
-                    <h1 class="h1-responsive font-weight-bold">Highlight your post</h1>
+                    <h1 class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
                     <p>
-                        Remember to consider these indications:
+                        Recuerda considerar estas indicaciones:
                     </p>
                     <ul>
-                        <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.extension === true}">JPG or PNG file. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.extension === false" /></li>
-                        <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Maximum file size 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
-                        <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Minimum 150x150px square image. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
+                        <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.extension === true}">Formato JPG or PNG. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.extension === false" /></li>
+                        <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Tamaño máximo de archivo 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
+                        <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Mínimo imagen cuadrada de 150x150px. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
                     </ul>
                     <div class="d-flex flex-column align-items-center">
 
@@ -87,11 +87,11 @@
                         <img id="company-image" [src]="companyImg | imageUrl" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
                         <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
                         <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
-                    <span *ngIf="!loadingFile">Select image</span>
-                    <span *ngIf="loadingFile">Uploading...</span>
+                    <span *ngIf="!loadingFile">Seleccionar imagen</span>
+                    <span *ngIf="loadingFile">Cargando...</span>
                 </button>
                         <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile('booster_1')" mdbWavesEffect>
-                    Remove file
+                            Remover imagen
                 </button>
 
                     </div>
@@ -103,10 +103,10 @@
                     <div class="col-12 col-md-3 d-flex justify-content-center">
                         <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="editJobForm.invalid || loading" (click)="edit()">
                         <div class="spinner-border" role="status" *ngIf="loading">
-                            <span class="sr-only">Updating job...</span>
+                            <span class="sr-only">Actualizando postulación...</span>
                         </div>
                         <span *ngIf="!loading">
-                            Edit job
+                            Editar postulación
                         </span>
                     </button>
                     </div>
