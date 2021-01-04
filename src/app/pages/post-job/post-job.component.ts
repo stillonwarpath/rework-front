@@ -30,7 +30,7 @@ export class PostJobComponent implements OnInit {
 
   editor = classicEditor;
   editorConfig: any = {
-    placeholder:'Specify more information about the job, responsibilities, qualifications and how to apply.',
+    placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
     plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']
   };
   texto = '';
@@ -309,7 +309,7 @@ export class PostJobComponent implements OnInit {
     if( result.error ) {
 
       this.loading = false;
-      this.errorMessage = `There's a problem redirecting to checkout`;
+      this.errorMessage = `Hay un problema redirigiendo al checkout`;
 
     }
 
