@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CheckboxComponent } from 'angular-bootstrap-md';
+
 
 import { JobService } from '../../services/job.service';
 import { Job } from '../../classes/job.class';
@@ -28,6 +30,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class PostJobComponent implements OnInit {
 
+  @ViewChild('sticky') stickyCheck: CheckboxComponent;
   editor = classicEditor;
   editorConfig: any = {
     placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
@@ -73,6 +76,7 @@ export class PostJobComponent implements OnInit {
        description: new FormControl(null),
        url: new FormControl(null),
        email: new FormControl(null, [Validators.required, Validators.email ]),
+       sticky: new FormControl()
     });
 
     this.boosterService.getBoosters()
@@ -147,10 +151,9 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  newText( { editor } ) {
-  
-    const data = editor.getData();
-    console.log( data );
+  get sticky() {
+
+    return this.newJobForm.get('sticky');
 
   }
 
@@ -234,6 +237,11 @@ export class PostJobComponent implements OnInit {
   async pay() {
 
     let result: IPostedJob;
+
+
+    if ( this.stickyCheck.checked ) {
+      this.boostersSelected.push( this.sticky.value );
+    }
 
     if ( this.newJobForm.invalid ) {
       return;
