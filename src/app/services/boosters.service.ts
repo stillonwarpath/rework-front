@@ -40,4 +40,10 @@ export class BoostersService {
 
   }
 
+  getId( boosters: IBooster[], codeSearched: string  ): string | undefined {
+
+    return boosters.find( booster => booster.code === codeSearched )._id;
+
+  }
+
 }
