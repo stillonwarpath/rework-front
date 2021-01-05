@@ -27,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
 import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { FormatPricePipe } from './pipes/format-price.pipe';
 
 // Carga lottie-web bajo demanda cuando se carga animación por primera vez
 export function playerFactory() {
@@ -49,7 +50,8 @@ export function playerFactory() {
     FooterComponent,
     TerminosCondicionesComponent,
     PoliticaDePrivacidadComponent,
-    FaqComponent
+    FaqComponent,
+    FormatPricePipe
   ],
   imports: [
     BrowserModule,

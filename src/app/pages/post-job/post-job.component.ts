@@ -55,6 +55,21 @@ export class PostJobComponent implements OnInit {
     dimensions: undefined
   };
 
+  stickyOptions = [
+    {
+      code:'booster_2',
+      name:'Sticky por 24 horas',
+    },
+    {
+      code:'booster_3',
+      name:'Sticky por 7 días',
+    },
+    {
+      code:'booster_4',
+      name:'Sticky por 30 días',
+    }
+  ];
+
   constructor( private jobService: JobService,
                private stripeService: StripeService,
                private categoryService: CategoryService,

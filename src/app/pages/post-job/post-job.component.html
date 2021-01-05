@@ -127,15 +127,11 @@
             <div>
                 <mdb-checkbox [default]="true" #sticky>Sticky de post</mdb-checkbox>
                 <div *ngIf="sticky.checked">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="materialUnchecked2" [value]="false" formControlName="sticky">
-                        <label class="form-check-label" for="materialUnchecked2">Reactive unchecked</label>
+                    <div class="form-check" *ngFor="let stickyOption of stickyOptions">
+                        <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="stickyOption.code" formControlName="sticky">
+                        <label class="form-check-label" [for]="stickyOption.code">{{ stickyOption.name }} {{ boosterService.getPrice(boosters, stickyOption.code) | formatPrice }}</label>
                     </div>
 
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="materialChecked2" [value]="true" formControlName="sticky">
-                        <label class="form-check-label" for="materialChecked2">Reactive checked</label>
-                    </div>
                 </div>
             </div>
 
