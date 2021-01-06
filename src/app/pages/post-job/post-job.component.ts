@@ -273,6 +273,7 @@ export class PostJobComponent implements OnInit {
   // Pagar
   async pay() {
 
+    this.loading = true;
     let result: IPostedJob;
 
     if ( this.newJobForm.invalid ) {
@@ -287,8 +288,13 @@ export class PostJobComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
-    this.boostersSelected.push( this.sticky.value );
+
+    if ( this.sticky.value ) {
+
+      this.boostersSelected.push( this.sticky.value );
+
+    }
+
     const job = new Job( this.company.value,
                          this.jobTitle.value,
                          this.category.value,
