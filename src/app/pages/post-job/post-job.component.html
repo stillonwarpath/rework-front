@@ -124,10 +124,10 @@
                 </button>
 
             </div>
-            <div>
+            <div id="sticky-checkbox-container">
                 <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
                 <div id="sticky-options-container" *ngIf="sticky.checked">
-                    <div class="form-check" *ngFor="let stickyOption of stickyOptions">
+                    <div class="form-check sticky-radio-option" *ngFor="let stickyOption of stickyOptions">
                         <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" formControlName="sticky">
                         <label class="form-check-label" [for]="stickyOption.code">{{ stickyOption.name }} {{ boosterService.getPrice(boosters, stickyOption.code) | formatPrice }}.</label>
                     </div>
