@@ -16,6 +16,7 @@ import { IType } from '../../interfaces/type.interface';
 import { IPostedJob } from '../../interfaces/posted-job.interface';
 import { FileService } from '../../services/file.service';
 import { BoostersService } from '../../services/boosters.service';
+import { trigger } from '@angular/animations';
 
 declare const Stripe;
 
@@ -58,15 +59,15 @@ export class PostJobComponent implements OnInit {
   stickyOptions = [
     {
       code:'booster_2',
-      name:'Sticky por 24 horas',
+      name:'Fijado de 24 horas por',
     },
     {
       code:'booster_3',
-      name:'Sticky por 7 días',
+      name:'Fijado de 7 días por',
     },
     {
       code:'booster_4',
-      name:'Sticky por 30 días',
+      name:'Fijado de 30 días por',
     }
   ];
 
@@ -95,6 +96,7 @@ export class PostJobComponent implements OnInit {
     });
 
     this.boosterService.getBoosters()
+
         .then( boosters => {
 
           this.boosters = boosters;
@@ -241,6 +243,7 @@ export class PostJobComponent implements OnInit {
     this.fileName = '';
     this.fileService.displayImagePreview('company-image', null);
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
+    //TODO: Mover a método para quitar booster seleccionado en boosters service
     this.boostersSelected = this.boostersSelected.filter( boosterId => boosterId !== boosterImage._id );
     this.fileValidations.extension = undefined;
     this.fileValidations.fileSize = undefined;
@@ -248,15 +251,29 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  stickyOptionsClicked( event: any ) {
+
+    if ( event.checked ) {
+
+      // Esteblece el primer sticky por defecto
+      this.sticky.setValue(this.boosterService.getId( this.boosters, 'booster_2' ));
+
+    }
+    
+    if ( !event.checked && this.sticky.value ) {
+
+      this.boostersSelected = this.boosterService.removeBoosterSelected( this.boostersSelected, this.sticky.value  );
+      this.sticky.setValue( null );
+
+    }
+
+
+  }
+
   // Pagar
   async pay() {
 
     let result: IPostedJob;
-
-
-    if ( this.stickyCheck.checked ) {
-      this.boostersSelected.push( this.sticky.value );
-    }
 
     if ( this.newJobForm.invalid ) {
       return;
@@ -271,7 +288,7 @@ export class PostJobComponent implements OnInit {
     }
 
     this.loading = true;
-
+    this.boostersSelected.push( this.sticky.value );
     const job = new Job( this.company.value,
                          this.jobTitle.value,
                          this.category.value,

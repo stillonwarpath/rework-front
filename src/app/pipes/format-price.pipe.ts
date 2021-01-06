@@ -11,7 +11,7 @@ export class FormatPricePipe implements PipeTransform {
      let formattedPrice: number | string = price / 100;
      formattedPrice = formatCurrency( formattedPrice , 'en', '$', 'USD' );
     
-      return formattedPrice;
+      return `${formattedPrice} USD`;
 
   }
 

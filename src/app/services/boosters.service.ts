@@ -27,6 +27,8 @@ export class BoostersService {
 
   }
 
+
+
   // Buscar booster
   find( boosters: IBooster[], codeSearched: string ): IBooster | undefined {
 
@@ -43,6 +45,18 @@ export class BoostersService {
   getId( boosters: IBooster[], codeSearched: string  ): string | undefined {
 
     return boosters.find( booster => booster.code === codeSearched )._id;
+
+  }
+
+  boosterWasAdded( boostersSelected: string[], booster: string ): string | undefined {
+
+    return boostersSelected.find( boosterId => boosterId === booster ); 
+
+  }
+
+  removeBoosterSelected( boostersSelected: string[], booster: string ): string[] {
+
+    return boostersSelected.filter( boosterId => boosterId !== booster );
 
   }
 
