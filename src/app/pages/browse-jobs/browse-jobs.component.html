@@ -58,6 +58,7 @@
     <div class="row mt-3" *ngFor="let job of jobs; let i = index;">
         <div class="col-12" (click)="clickJob( i, job )" style="cursor: pointer;">
             <div class="row job-container">
+                <!--Columna imagen-->
                 <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
                     <div *ngIf="!job.companyImage" class="company-abbreviation d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">
@@ -85,7 +86,7 @@
                 <div class="col-3 col-md-2 d-flex align-items-center">
 
                     <span class="post-time">
-                        {{ job.created | timeAgo }}
+                        <span *ngIf="job.hasSticky" style="padding: 0 .3rem;">📌</span>{{ job.created | timeAgo }}
                     </span>
 
                 </div>

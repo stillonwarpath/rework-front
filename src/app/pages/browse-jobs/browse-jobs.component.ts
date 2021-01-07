@@ -87,10 +87,13 @@ export class BrowseJobsComponent implements OnInit {
   }
 
 
+
   private getJobs() {
 
     this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
     then( jobs => {
+
+      console.log(jobs);
 
 
       if ( jobs.length === 0 ) {

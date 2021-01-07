@@ -16,6 +16,7 @@ interface IJob {
     status?: string;
     boosters?: IBooster[];
     description?: string;
+    hasSticky?: boolean;
     created?: string;
     updated?: string;
     __v?: number;
