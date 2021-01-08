@@ -44,7 +44,13 @@ export class BoostersService {
 
   getId( boosters: IBooster[], codeSearched: string  ): string | undefined {
 
-    return boosters.find( booster => booster.code === codeSearched )._id;
+    const booster = boosters.find( booster => booster.code === codeSearched );
+
+    if ( booster ) {
+      return booster._id;
+    } else {
+      return undefined;
+    }
 
   }
 

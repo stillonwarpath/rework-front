@@ -124,6 +124,9 @@
                 </button>
 
             </div>
+            <div id="yellow-post-checkbox">
+                <mdb-checkbox [default]="true" (change)="yellowPostCheckboxChange( $event )">Añade un atractivo <span id="yellow-post-color">amarillo</span> y destaca tu post por $59 USD.</mdb-checkbox>
+            </div>
             <div id="sticky-checkbox-container">
                 <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
                 <div id="sticky-options-container" *ngIf="sticky.checked">

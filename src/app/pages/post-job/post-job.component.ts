@@ -251,6 +251,22 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  yellowPostCheckboxChange( event ) {
+
+    const boosterId = this.boosterService.getId( this.boosters, 'booster_5' );
+
+    if ( event.checked ) {
+
+      this.boostersSelected.push( boosterId );
+
+    } else {
+
+      this.boostersSelected = this.boosterService.removeBoosterSelected( this.boostersSelected, boosterId  );
+
+    }
+
+  }
+
   stickyOptionsClicked( event: any ) {
 
     if ( event.checked ) {
