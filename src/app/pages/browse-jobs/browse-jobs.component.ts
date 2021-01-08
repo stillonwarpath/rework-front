@@ -13,6 +13,8 @@ import Glide from '@glidejs/glide';
 import { ICategory } from '../../interfaces/category.interface';
 import { IJob } from 'src/app/interfaces/job.interface';
 import { AnimationItem } from 'lottie-web';
+import { BoostersService } from '../../services/boosters.service';
+import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
 
 @Component({
@@ -37,9 +39,11 @@ export class BrowseJobsComponent implements OnInit {
   searchTerm: string = undefined;
   moreJobs = true;
   indexJobClicked = undefined;
+  boosters: IBooster[] = [];
 
   constructor( private jobService: JobService,
-               private categoryService: CategoryService) { }
+               private categoryService: CategoryService,
+               public boostersService: BoostersService) { }
 
   ngOnInit() {
 
@@ -82,8 +86,11 @@ export class BrowseJobsComponent implements OnInit {
         }, 1);
 
       });
-    
 
+      this.boostersService.getBoosters().then( boosters => {
+        this.boosters = boosters;
+      });
+        
   }
 
 
@@ -93,8 +100,7 @@ export class BrowseJobsComponent implements OnInit {
     this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
     then( jobs => {
 
-      console.log(jobs);
-
+      console.log( jobs );
 
       if ( jobs.length === 0 ) {
 

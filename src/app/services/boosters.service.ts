@@ -32,6 +32,8 @@ export class BoostersService {
   // Buscar booster
   find( boosters: IBooster[], codeSearched: string ): IBooster | undefined {
 
+    if ( boosters.length === 0 ) return undefined;
+
     return boosters.find( booster => booster.code === codeSearched );
 
   }

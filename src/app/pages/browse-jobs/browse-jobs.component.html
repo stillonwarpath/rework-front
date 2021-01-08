@@ -57,7 +57,7 @@
 
     <div class="row mt-3" *ngFor="let job of jobs; let i = index;">
         <div class="col-12" (click)="clickJob( i, job )" style="cursor: pointer;">
-            <div class="row job-container">
+            <div class="row job-container" [ngClass]="{'job-container-yellow': boostersService.find( job.boosters, 'booster_5' ) }">
                 <!--Columna imagen-->
                 <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
