@@ -45,7 +45,6 @@ export class EditJobComponent implements OnInit {
     dimensions: undefined
   };
   
-  loadingFile = false;
   editorConfig: any = {
     placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
     plugins:['Bold','Italic','Heading','List','Paragraph','Essentials']

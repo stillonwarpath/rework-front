@@ -47,7 +47,6 @@ export class PostJobComponent implements OnInit {
   fileName = '';
   boostersSelected: string[] = [];
   selectedFile = undefined;
-  loadingFile = false;
   loading = false;
   errorMessage: string = undefined;
   fileValidations: IFileValidation = {
