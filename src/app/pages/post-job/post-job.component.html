@@ -1,3 +1,5 @@
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+
 <div id="main-banner">
     <div class="container d-flex flex-column justify-content-center" style="height: 100%;">
         <h1 class="h1-responsive font-weight-bold" style="color:#33383c;">
@@ -115,9 +117,9 @@
                 <div class="empty-image company-image" [ngClass]="{'d-none': fileName}"></div>
                 <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
                 <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
-                <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
-                    <span *ngIf="!loadingFile">Seleccionar imagen</span>
-                    <span *ngIf="loadingFile">Cargando...</span>
+                <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" *ngIf="!fileName">
+                    <span>Seleccionar imagen</span>
+                    <!--<span *ngIf="loadingFile">Cargando...</span>-->
                 </button>
                 <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile('booster_1')" mdbWavesEffect>
                    Remover imagen
@@ -142,13 +144,8 @@
 
         <div class="row justify-content-center mt-5">
             <div id="col-btn-post" class="col-12 col-md-3 d-flex justify-content-center">
-                <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid || loading || loadingFile" (click)="pay()">
-                    <div class="spinner-border" role="status" *ngIf="loading">
-                        <span class="sr-only">Redireccionando al checkout...</span>
-                    </div>
-                    <span *ngIf="!loading">
+                <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid" (click)="pay()">
                         Postear trabajo
-                    </span>
                 </button>
             </div>
         </div>

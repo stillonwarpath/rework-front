@@ -10,6 +10,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ToastrModule } from 'ngx-toastr';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { LottieModule } from 'ngx-lottie';
+import { NgxLoadingModule } from 'ngx-loading';
 /*import player from 'lottie-web';*/
 
 
@@ -62,7 +63,8 @@ export function playerFactory() {
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CKEditorModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    NgxLoadingModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

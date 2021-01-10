@@ -179,19 +179,19 @@ export class PostJobComponent implements OnInit {
   
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
     this.boostersSelected.push( boosterImage._id );
-    this.loadingFile = true;
+    this.loading = true;
     this.selectedFile = event.target.files[0];
 
     if ( !this.selectedFile ) {
 
-      this.loadingFile = false;
+      this.loading = false;
       return;
       
     }
 
     if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
 
-      this.loadingFile = false;
+      this.loading = false;
       this.fileValidations.extension = false;
       return;
 
@@ -201,7 +201,7 @@ export class PostJobComponent implements OnInit {
 
     if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
 
-      this.loadingFile = false;
+      this.loading = false;
       this.fileValidations.fileSize = false;
       return;
 
@@ -215,7 +215,7 @@ export class PostJobComponent implements OnInit {
 
     if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {
 
-      this.loadingFile = false;
+      this.loading = false;
       this.fileValidations.dimensions = false;
       return;
 
@@ -227,11 +227,11 @@ export class PostJobComponent implements OnInit {
 
       this.fileName = await this.fileService.uploadFile( this.selectedFile );
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
-      this.loadingFile = false;
+      this.loading = false;
 
     } catch ( err ) {
 
-      this.loadingFile = false;
+      this.loading = false;
 
     }
 
