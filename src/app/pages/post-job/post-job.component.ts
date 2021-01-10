@@ -80,7 +80,6 @@ export class PostJobComponent implements OnInit {
 
   async ngOnInit() {
 
-    //classicEditor.builtinPlugins.map( plugin => console.log( plugin.pluginName ));
 
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
@@ -217,7 +216,6 @@ export class PostJobComponent implements OnInit {
     this.fileName = '';
     this.fileService.displayImagePreview('company-image', null);
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
-    //TODO: Mover a método para quitar booster seleccionado en boosters service
     this.boostersSelected = this.boostersSelected.filter( boosterId => boosterId !== boosterImage._id );
     this.fileValidations.extension = undefined;
     this.fileValidations.fileSize = undefined;
