@@ -83,7 +83,7 @@ export class FileService {
 
   }
 
-  async validateFile( selectedFile: any ): IFileValidation {
+  async validateFile( selectedFile: any ): Promise<IFileValidation> {
 
     const fileValidations: IFileValidation = {};
 
