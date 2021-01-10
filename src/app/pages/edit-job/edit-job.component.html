@@ -1,3 +1,5 @@
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+
 <div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
     <div class="alert" [ngClass]="{'alert-success': result.ok, 'alert-danger': !result.ok}" role="alert" *ngIf="result.message">
         {{ result.message }}
@@ -86,13 +88,12 @@
                         <div class="empty-image company-image" [ngClass]="{'d-none': fileName}"></div>
                         <img id="company-image" [src]="companyImg | imageUrl" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
                         <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
-                        <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" [disabled]="loadingFile" *ngIf="!fileName">
-                    <span *ngIf="!loadingFile">Seleccionar imagen</span>
-                    <span *ngIf="loadingFile">Cargando...</span>
-                </button>
+                        <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" *ngIf="!fileName">
+                            Seleccionar imagen
+                         </button>
                         <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile('booster_1')" mdbWavesEffect>
                             Remover imagen
-                </button>
+                        </button>
 
                     </div>
 
@@ -101,14 +102,9 @@
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-12 col-md-3 d-flex justify-content-center">
-                        <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="editJobForm.invalid || loading" (click)="edit()">
-                        <div class="spinner-border" role="status" *ngIf="loading">
-                            <span class="sr-only">Actualizando postulación...</span>
-                        </div>
-                        <span *ngIf="!loading">
+                        <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="editJobForm.invalid" (click)="edit()">
                             Editar postulación
-                        </span>
-                    </button>
+                        </button>
                     </div>
                 </div>
 

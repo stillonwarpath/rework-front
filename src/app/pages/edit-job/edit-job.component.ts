@@ -14,6 +14,7 @@ import { IJob } from '../../interfaces/job.interface';
 import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 import { BoostersService } from '../../services/boosters.service';
 import { FileService } from 'src/app/services/file.service';
+import { IFileValidation } from '../../interfaces/fileValidation.interface';
 
 const MAX_FILE_SIZE = environment.max_file_size;
 
@@ -37,11 +38,13 @@ export class EditJobComponent implements OnInit {
   boosters: IBooster[] = [];
   boostersSelected: string[] = [];
   selectedFile = undefined;
-  fileValidations = {
+
+  fileValidations: IFileValidation = {
     extension: undefined,
     fileSize: undefined,
     dimensions: undefined
   };
+  
   loadingFile = false;
   editorConfig: any = {
     placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
@@ -70,7 +73,7 @@ export class EditJobComponent implements OnInit {
       type: new FormControl('-99', Validators.required),
       description: new FormControl(null),
       location: new FormControl(null),
-      url: new FormControl(null, Validators.required),
+      url: new FormControl(null),
    });
 
     this.categoryService.getCategories()
@@ -195,61 +198,37 @@ export class EditJobComponent implements OnInit {
   // Cargar archivo
   async onFileSelected( event, boosterCode: string ) {
 
-  
-    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
-    this.boostersSelected.push( boosterImage._id );
-    this.loadingFile = true;
+    this.loading = true;
     this.selectedFile = event.target.files[0];
 
     if ( !this.selectedFile ) {
 
-      this.loadingFile = false;
+      this.loading = false;
       return;
       
     }
 
-    if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
+    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
+    this.boostersSelected.push( boosterImage._id );
 
-      this.loadingFile = false;
-      this.fileValidations.extension = false;
+    this.fileValidations = await this.fileService.validateFile( this.selectedFile );
+
+    if ( this.fileService.fileHasError( this.fileValidations ) ) {
+
+      this.loading = false;
       return;
 
     }
-
-    this.fileValidations.extension = true;
-
-    if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
-
-      this.loadingFile = false;
-      this.fileValidations.fileSize = false;
-      return;
-
-    }
-
-    this.fileValidations.fileSize = true;
-
-
-    const image = await this.fileService.getImage( this.selectedFile );
-
-    if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {
-
-      this.loadingFile = false;
-      this.fileValidations.dimensions = false;
-      return;
-
-    }
-
-    this.fileValidations.dimensions = true;
 
     try {
 
       this.fileName = await this.fileService.uploadFile( this.selectedFile );
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
-      this.loadingFile = false;
+      this.loading = false;
 
     } catch ( err ) {
 
-      this.loadingFile = false;
+      this.loading = false;
 
     }
 
