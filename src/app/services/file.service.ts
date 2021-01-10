@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+import { IFileValidation } from '../interfaces/fileValidation.interface';
+
+
 const URL = environment.rework_backend_url;
+const MAX_FILE_SIZE = environment.max_file_size;
+
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +80,71 @@ export class FileService {
       this.fileReader.readAsDataURL( files ); // Convertir a base64
 
     });
+
+  }
+
+  async validateFile( selectedFile: any ): IFileValidation {
+
+    const fileValidations: IFileValidation = {};
+
+    if ( !this.validFileExtension( selectedFile.type, [ 'jpeg', 'png' ] )) {
+
+      fileValidations.extension = false;
+
+      return fileValidations;
+
+    } else {
+
+      fileValidations.extension = true;
+
+    }
+
+    if ( !this.validFileSize( selectedFile.size, MAX_FILE_SIZE ) ) {
+
+      fileValidations.fileSize = false;
+
+      return fileValidations;
+
+    } else {
+
+      fileValidations.fileSize = true;
+
+    }
+
+    const image = await this.getImage( selectedFile );
+
+    if ( !this.validFileDimensions( image.width, image.height, 150, 150, true) ) {
+
+      fileValidations.dimensions = false;
+
+      return fileValidations;
+
+    } else {
+
+      fileValidations.dimensions = true;
+
+    }
+
+
+    return fileValidations;
+
+  }
+
+  fileHasError( fileValidations: IFileValidation ) {
+
+    let fileHasAnError = false;
+
+    Object.keys(fileValidations).forEach( key => {
+
+      if ( fileValidations[key] === false ) {
+
+        fileHasAnError = true;
+
+      }
+
+    });
+
+    return fileHasAnError;
 
   }
 

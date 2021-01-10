@@ -16,7 +16,7 @@ import { IType } from '../../interfaces/type.interface';
 import { IPostedJob } from '../../interfaces/posted-job.interface';
 import { FileService } from '../../services/file.service';
 import { BoostersService } from '../../services/boosters.service';
-import { trigger } from '@angular/animations';
+import { IFileValidation } from '../../interfaces/fileValidation.interface';
 
 declare const Stripe;
 
@@ -50,7 +50,7 @@ export class PostJobComponent implements OnInit {
   loadingFile = false;
   loading = false;
   errorMessage: string = undefined;
-  fileValidations = {
+  fileValidations: IFileValidation = {
     extension: undefined,
     fileSize: undefined,
     dimensions: undefined
@@ -176,9 +176,6 @@ export class PostJobComponent implements OnInit {
 
   async onFileSelected( event, boosterCode: string ) {
 
-  
-    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
-    this.boostersSelected.push( boosterImage._id );
     this.loading = true;
     this.selectedFile = event.target.files[0];
 
@@ -189,39 +186,17 @@ export class PostJobComponent implements OnInit {
       
     }
 
-    if ( !this.fileService.validFileExtension( this.selectedFile.type, [ 'jpeg', 'png' ] )) {
+    const boosterImage = this.boosterService.find( this.boosters, boosterCode );
+    this.boostersSelected.push( boosterImage._id );
+
+    this.fileValidations = await this.fileService.validateFile( this.selectedFile );
+
+    if ( this.fileService.fileHasError( this.fileValidations ) ) {
 
       this.loading = false;
-      this.fileValidations.extension = false;
       return;
 
     }
-
-    this.fileValidations.extension = true;
-
-    if ( !this.fileService.validFileSize( this.selectedFile.size, MAX_FILE_SIZE ) ) {
-
-      this.loading = false;
-      this.fileValidations.fileSize = false;
-      return;
-
-    }
-
-    this.fileValidations.fileSize = true;
-
-
-    // Obtención de data imagen
-    const image = await this.fileService.getImage( this.selectedFile );
-
-    if ( !this.fileService.validFileDimensions( image.width, image.height, 150, 150, true) ) {
-
-      this.loading = false;
-      this.fileValidations.dimensions = false;
-      return;
-
-    }
-
-    this.fileValidations.dimensions = true;
 
     try {
 
