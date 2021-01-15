@@ -17,6 +17,7 @@ import { IPostedJob } from '../../interfaces/posted-job.interface';
 import { FileService } from '../../services/file.service';
 import { BoostersService } from '../../services/boosters.service';
 import { IFileValidation } from '../../interfaces/fileValidation.interface';
+import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
 declare const Stripe;
 
@@ -32,6 +33,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 export class PostJobComponent implements OnInit {
 
   @ViewChild('sticky') stickyCheck: CheckboxComponent;
+  postFinalPrice: number = 0;
   editor = classicEditor;
   editorConfig: any = {
     placeholder:'Especifica mas información sobre el trabajo, responsabilidades, cualidades y como postular.',
@@ -174,6 +176,26 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  calculatePostFinalPrice() {
+
+    console.log('Boosters:', this.boostersSelected);
+
+    let boosterFound: IBooster = null;
+    this.postFinalPrice = 4700;
+
+    this.boostersSelected.forEach( boosterSelected => {
+
+       boosterFound = this.boosterService.findById( this.boosters, boosterSelected );
+       console.log('Booster found', boosterFound);
+       this.postFinalPrice += boosterFound.price;
+
+    });
+
+
+    return this.postFinalPrice;
+
+  }
+
   async onFileSelected( event, boosterCode: string ) {
 
     this.loading = true;
@@ -258,6 +280,7 @@ export class PostJobComponent implements OnInit {
 
       // Esteblece el primer sticky por defecto
       this.sticky.setValue(this.boosterService.getId( this.boosters, 'booster_2' ));
+      this.boostersSelected.push( this.sticky.value );
 
     }
     
@@ -268,6 +291,13 @@ export class PostJobComponent implements OnInit {
 
     }
 
+
+  }
+
+  stickyRadioSelected( event: any ) {
+
+      //TODO: Eliminar booster sticky previamente seleccionado
+      this.boostersSelected.push( this.sticky.value );
 
   }
 
@@ -290,11 +320,13 @@ export class PostJobComponent implements OnInit {
     }
 
 
+    /*
     if ( this.sticky.value ) {
 
       this.boostersSelected.push( this.sticky.value );
 
     }
+    */
 
     const job = new Job( this.company.value,
                          this.jobTitle.value,

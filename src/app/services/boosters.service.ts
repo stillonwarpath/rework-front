@@ -38,6 +38,13 @@ export class BoostersService {
 
   }
 
+
+  findById( boosters: IBooster[], id: string ) {
+
+     return boosters.find( booster => booster._id === id );
+
+  }
+
   getPrice( boosters: IBooster[], codeSearched: string  ): number | undefined {
 
     return boosters.find( booster => booster.code === codeSearched ).price;

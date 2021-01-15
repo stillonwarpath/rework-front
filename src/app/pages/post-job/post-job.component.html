@@ -132,16 +132,16 @@
             <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
             <div id="sticky-options-container" *ngIf="sticky.checked">
                 <div class="form-check sticky-radio-option" *ngFor="let stickyOption of stickyOptions">
-                    <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" formControlName="sticky">
+                    <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" (change)="stickyRadioSelected( $event )" formControlName="sticky">
                     <label class="form-check-label" [for]="stickyOption.code">{{ stickyOption.name }} {{ boosterService.getPrice(boosters, stickyOption.code) | formatPrice }}.</label>
                 </div>
 
             </div>
         </div>
         <div class="row justify-content-center mt-5">
-            <div id="col-btn-post" class="col-12 col-md-3 d-flex justify-content-center">
-                <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid" (click)="pay()">
-                        Postear trabajo
+            <div id="col-btn-post" class="col-12 d-flex justify-content-center">
+                <button mdbBtn type="button" class="btn-post" rounded="true" block="true" [disabled]="newJobForm.invalid" (click)="pay()" mdbWavesEffect>
+                        Postear trabajo - <span>{{ calculatePostFinalPrice() }}</span>
                 </button>
             </div>
         </div>
