@@ -97,50 +97,47 @@
             </p>
         </div>
 
+        <h1 class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
         <!--Boosters-->
-        <div style="margin-top:70px;" *ngIf="boosterService.find( boosters, 'booster_1' )">
+        <div style="margin-top: 1.5rem;" *ngIf="boosterService.find( boosters, 'booster_1' )">
+            <mdb-checkbox [default]="true" #checkImage (change)="checkAddImage( $event )">Añade el logo de tu empresa por $37 USD.</mdb-checkbox>
+            <div style="margin-top: .7rem;" *ngIf="displayUploadImageContainer">
+                <p>
+                    Recuerda considerar estas indicaciones:
+                </p>
+                <ul>
+                    <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.extension === true}">Formato JPG or PNG. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.extension === false" /></li>
+                    <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Tamaño máximo de archivo 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
+                    <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Mínimo imagen cuadrada de 150x150px. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
+                </ul>
+                <div class="d-flex flex-column align-items-center">
 
-            <h1 class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
-            <h4 class="h3-responsive">
-                Añade tu logo de empresa <span class="price-image-booster">$37 USD</span> gratis.
-            </h4>
-            <p>
-                Recuerda considerar estas indicaciones:
-            </p>
-            <ul>
-                <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.extension === true}">Formato JPG or PNG. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.extension === false" /></li>
-                <li class="file-restriction-normal" [ngClass]="{ 'file-restriction-valid': fileValidations.fileSize === true }">Tamaño máximo de archivo 2 MB. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.fileSize === false" /></li>
-                <li class="file-restriction-normal" [ngClass]="{'file-restriction-valid': fileValidations.dimensions === true }">Mínimo imagen cuadrada de 150x150px. <img src="/assets/icons/Icon_error.svg" *ngIf="fileValidations.dimensions === false" /></li>
-            </ul>
-            <div class="d-flex flex-column align-items-center">
-
-                <div class="empty-image company-image" [ngClass]="{'d-none': fileName}"></div>
-                <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
-                <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
-                <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" *ngIf="!fileName">
-                    Seleccionar imagen
-                </button>
-                <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile('booster_1')" mdbWavesEffect>
-                   Remover imagen
-                </button>
-
-            </div>
-            <div id="yellow-post-checkbox">
-                <mdb-checkbox [default]="true" (change)="yellowPostCheckboxChange( $event )">Añade un atractivo <span id="yellow-post-color">amarillo</span> y destaca tu post por $59 USD.</mdb-checkbox>
-            </div>
-            <div id="sticky-checkbox-container">
-                <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
-                <div id="sticky-options-container" *ngIf="sticky.checked">
-                    <div class="form-check sticky-radio-option" *ngFor="let stickyOption of stickyOptions">
-                        <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" formControlName="sticky">
-                        <label class="form-check-label" [for]="stickyOption.code">{{ stickyOption.name }} {{ boosterService.getPrice(boosters, stickyOption.code) | formatPrice }}.</label>
-                    </div>
+                    <div class="empty-image company-image" [ngClass]="{'d-none': fileName}"></div>
+                    <img id="company-image" class="company-image" [ngClass]="{'d-none': !fileName}" /><br>
+                    <input type="file" class="d-none" #fileUpload (change)="onFileSelected($event, 'booster_1')">
+                    <button mdbBtn type="button" id="button-select-image" outline="true" mdbWavesEffect (click)="fileUpload.click()" *ngIf="!fileName">
+                        Seleccionar imagen
+                    </button>
+                    <button mdbBtn type="button" id="button-remove-image" outline="true" *ngIf="fileName" (click)="removeFile('booster_1')" mdbWavesEffect>
+                       Remover imagen
+                    </button>
 
                 </div>
             </div>
-
         </div>
+        <div id="yellow-post-checkbox">
+            <mdb-checkbox [default]="true" (change)="yellowPostCheckboxChange( $event )">Añade un atractivo <span id="yellow-post-color">amarillo</span> y destaca tu post por $59 USD.</mdb-checkbox>
+        </div>
+        <div id="sticky-checkbox-container">
+            <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
+            <div id="sticky-options-container" *ngIf="sticky.checked">
+                <div class="form-check sticky-radio-option" *ngFor="let stickyOption of stickyOptions">
+                    <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" formControlName="sticky">
+                    <label class="form-check-label" [for]="stickyOption.code">{{ stickyOption.name }} {{ boosterService.getPrice(boosters, stickyOption.code) | formatPrice }}.</label>
+                </div>
 
+            </div>
+        </div>
         <div class="row justify-content-center mt-5">
             <div id="col-btn-post" class="col-12 col-md-3 d-flex justify-content-center">
                 <button mdbBtn type="button" class="btn-post" rounded="true" block="true" mdbWavesEffect [disabled]="newJobForm.invalid" (click)="pay()">

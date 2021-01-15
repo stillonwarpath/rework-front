@@ -55,6 +55,8 @@ export class PostJobComponent implements OnInit {
     dimensions: undefined
   };
 
+  displayUploadImageContainer = false;
+
   stickyOptions = [
     {
       code:'booster_2',
@@ -210,7 +212,6 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  // Remover imagen seleccionada
   removeFile( boosterCode: string ) {
 
     this.fileName = '';
@@ -220,6 +221,18 @@ export class PostJobComponent implements OnInit {
     this.fileValidations.extension = undefined;
     this.fileValidations.fileSize = undefined;
     this.fileValidations.dimensions = undefined;
+
+  }
+
+  checkAddImage( event ) {
+
+    if ( !event.checked ) {
+
+      this.removeFile('booster_1');
+      this.displayUploadImageContainer = false;
+    } else {
+      this.displayUploadImageContainer = true;
+    }
 
   }
 
