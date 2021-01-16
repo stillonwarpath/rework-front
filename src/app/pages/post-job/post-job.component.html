@@ -97,7 +97,7 @@
             </p>
         </div>
 
-        <h1 class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
+        <h1 style="margin-top: 4rem;" class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
         <!--Boosters-->
         <div style="margin-top: 1.5rem;" *ngIf="boosterService.find( boosters, 'booster_1' )">
             <mdb-checkbox [default]="true" #checkImage (change)="checkAddImage( $event )">Añade el logo de tu empresa por $37 USD.</mdb-checkbox>
@@ -138,10 +138,10 @@
 
             </div>
         </div>
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center" style="margin-top: 8rem;">
             <div id="col-btn-post" class="col-12 d-flex justify-content-center">
                 <button mdbBtn type="button" class="btn-post" rounded="true" block="true" [disabled]="newJobForm.invalid" (click)="pay()" mdbWavesEffect>
-                        Postear trabajo - <span>{{ calculatePostFinalPrice() }}</span>
+                        Postear trabajo - <span>{{ calculatePostFinalPrice() | formatPrice }}</span>
                 </button>
             </div>
         </div>

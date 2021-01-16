@@ -1,3 +1,6 @@
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/functions";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/variables";
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/mixins";
 #main-banner {
     height: 19rem;
     background-color: #d1efed;
@@ -36,4 +39,31 @@
 
 #col-btn-post {
     margin-bottom: 11rem;
+}
+
+@include media-breakpoint-up(xs) {
+    .btn-post {
+        font-size: 0.75rem;
+        width: 80%;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .btn-post {
+        font-size: 0.8rem;
+        width: 40%;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .btn-post {
+        font-size: .9rem;
+        width: 45%;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .btn-post {
+        width: 30%;
+    }
 }
