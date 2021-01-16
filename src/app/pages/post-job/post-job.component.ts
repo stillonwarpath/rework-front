@@ -58,6 +58,7 @@ export class PostJobComponent implements OnInit {
   };
 
   displayUploadImageContainer = false;
+  lastStickyOptionSelectedId: string = null;
 
   stickyOptions = [
     {
@@ -178,15 +179,12 @@ export class PostJobComponent implements OnInit {
 
   calculatePostFinalPrice() {
 
-    console.log('Boosters:', this.boostersSelected);
-
     let boosterFound: IBooster = null;
     this.postFinalPrice = 4700;
 
     this.boostersSelected.forEach( boosterSelected => {
 
        boosterFound = this.boosterService.findById( this.boosters, boosterSelected );
-       console.log('Booster found', boosterFound);
        this.postFinalPrice += boosterFound.price;
 
     });
@@ -278,8 +276,8 @@ export class PostJobComponent implements OnInit {
 
     if ( event.checked ) {
 
-      // Esteblece el primer sticky por defecto
       this.sticky.setValue(this.boosterService.getId( this.boosters, 'booster_2' ));
+      this.lastStickyOptionSelectedId = this.sticky.value;
       this.boostersSelected.push( this.sticky.value );
 
     }
@@ -296,7 +294,8 @@ export class PostJobComponent implements OnInit {
 
   stickyRadioSelected( event: any ) {
 
-      //TODO: Eliminar booster sticky previamente seleccionado
+      this.boostersSelected = this.boosterService.removeBoosterSelected( this.boostersSelected, this.lastStickyOptionSelectedId );
+      this.lastStickyOptionSelectedId = this.sticky.value;
       this.boostersSelected.push( this.sticky.value );
 
   }
@@ -319,14 +318,6 @@ export class PostJobComponent implements OnInit {
       return;
     }
 
-
-    /*
-    if ( this.sticky.value ) {
-
-      this.boostersSelected.push( this.sticky.value );
-
-    }
-    */
 
     const job = new Job( this.company.value,
                          this.jobTitle.value,

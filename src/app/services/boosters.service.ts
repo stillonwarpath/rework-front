@@ -69,9 +69,9 @@ export class BoostersService {
 
   }
 
-  removeBoosterSelected( boostersSelected: string[], booster: string ): string[] {
+  removeBoosterSelected( boostersSelected: string[], boosterId: string ): string[] {
 
-    return boostersSelected.filter( boosterId => boosterId !== booster );
+    return boostersSelected.filter( boosterSelectedId => boosterSelectedId !== boosterId );
 
   }
 
