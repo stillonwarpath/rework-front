@@ -183,6 +183,18 @@
 }
 
 @include media-breakpoint-up(sm) {
+    /*Modal de generación de leads*/
+    #modal-lead-generation-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    #modal-lead-generation-paragraph {
+        font-size: 1.2rem;
+    }
+    #modal-body-container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
     #post-free-message {
         font-size: 1.3rem;
         padding: 0;
