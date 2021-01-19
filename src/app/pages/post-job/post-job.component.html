@@ -15,7 +15,7 @@
 <div id="container-create-job" class="container container-padding">
 
     <h1 class="h1-responsive font-weight-bold">
-        Crea tu postulación de trabajo
+        Crea tu post de trabajo
     </h1>
     <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
         {{ errorMessage }}
@@ -40,7 +40,7 @@
 
         <div class="md-form margin-top-input">
             <select mdbValidate class="browser-default custom-select" formControlName="category">
-            <option value="-99">Categoría de la postulación *</option>
+            <option value="-99">Categoría del post *</option>
             <option *ngFor="let category of categories" [value]="category._id">
                 {{ category.name }}
             </option>
@@ -52,7 +52,7 @@
 
         <div class="md-form margin-top-input">
             <select mdbValidate class="browser-default custom-select" formControlName="type">
-            <option value="-99">Tipo de postulación *</option>
+            <option value="-99">Tipo de post *</option>
             <option *ngFor="let type of types" [value]="type._id">{{ type.name }}</option>
         </select>
             <mdb-error *ngIf="type.invalid">
@@ -76,12 +76,14 @@
 
         <div class="md-form md-outline margin-top-input">
             <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
-            <label for="job-url" class="">Enlace a la postulación</label>
+            <label for="job-url" class="">URL sitio de postulación</label>
+            <!--
             <mdb-error *ngIf="url.invalid && (url.dirty || url.touched)">
                 <span *ngIf="url.errors.required">Enlace es requerido</span>
             </mdb-error>
+            -->
             <p class="input-explanation">
-                Incluye el enlace donde los aplicantes podrán postular a este trabajo. No incluyas los protocolos http o https, ejemplo www.mipostulacion.com
+                Incluye el enlace donde los aplicantes podrán enviar su información de postulación. No incluyas los protocolos http o https, ejemplo www.mipaginadepostulacion.com
             </p>
         </div>
 
@@ -93,11 +95,11 @@
                 <span *ngIf="email.errors.email">El formato no es válido</span>
             </mdb-error>
             <p class="input-explanation">
-                Email donde recibirás tu enlace para editar esta postulación. No será desplegado en la postulación.
+                Email donde recibirás tu enlace para editar este post. No será desplegado en el post.
             </p>
         </div>
 
-        <h1 style="margin-top: 4rem;" class="h1-responsive font-weight-bold">Resalta tu postulación</h1>
+        <h1 style="margin-top: 4rem;" class="h1-responsive font-weight-bold">Resalta tu post</h1>
         <!--Boosters-->
         <div style="margin-top: 1.5rem;" *ngIf="boosterService.find( boosters, 'booster_1' )">
             <mdb-checkbox [default]="true" #checkImage (change)="checkAddImage( $event )">Añade el logo de tu empresa por $37 USD.</mdb-checkbox>
