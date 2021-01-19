@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -42,12 +42,18 @@ export class BrowseJobsComponent implements OnInit, AfterViewInit {
   moreJobs = true;
   indexJobClicked = undefined;
   boosters: IBooster[] = [];
+  businessLeadGenerationForm: FormGroup;
 
   constructor( private jobService: JobService,
                private categoryService: CategoryService,
                public boostersService: BoostersService) { }
 
   ngOnInit() {
+
+    this.businessLeadGenerationForm = new FormGroup({
+      companyEmail: new FormControl(null, [Validators.required, Validators.email]),
+      companyName: new FormControl(null, Validators.required)
+    });
 
     this.searchForm = new FormGroup({
       search: new FormControl(null)
@@ -95,13 +101,27 @@ export class BrowseJobsComponent implements OnInit, AfterViewInit {
         
   }
 
+  
   ngAfterViewInit(): void {
    
     this.downloadPDFModal.show();
 
   }
 
+  get companyEmail() {
+    return this.businessLeadGenerationForm.get('companyEmail');
+  }
 
+  get companyName( ) {
+    return this.businessLeadGenerationForm.get('companyName');
+  }
+
+
+  getBusinessLeadGenerationPDF() {
+
+    console.log( this.businessLeadGenerationForm );
+
+  }
 
   private getJobs() {
 

@@ -153,6 +153,35 @@
     width: 45px;
 }
 
+
+/*Modal de generación de leads*/
+
+#modal-lead-generation-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+#modal-lead-generation-paragraph {
+    color: #33383c;
+}
+
+#btn-get-pdf {
+    font-size: .9rem;
+    width: 100%;
+    color: #ffffff !important;
+    background-color: #f63704 !important;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.margin-top-input-modal {
+    margin-top: 2rem !important;
+}
+
+.margin-bottom-input-modal {
+    margin-bottom: 2rem !important;
+}
+
 @include media-breakpoint-up(sm) {
     #post-free-message {
         font-size: 1.3rem;

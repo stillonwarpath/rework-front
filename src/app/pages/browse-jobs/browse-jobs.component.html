@@ -1,18 +1,35 @@
 <div mdbModal #downloadPDFModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close pull-right" aria-label="Close" (click)="downloadPDFModal.hide()">
-          <span aria-hidden="true">×</span>
-        </button>
-                <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
-            </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="downloadPDFModal.hide()" mdbWavesEffect>Close</button>
-                <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+                <h2 id="modal-lead-generation-title">Obten esta guía gratis!</h2>
+                <p id="modal-lead-generation-paragraph">
+                    9 tips para realizar entrevistas remotas de forma efectiva y obtener los mejores candidatos
+                </p>
+                <form [formGroup]="businessLeadGenerationForm">
+                    <div class="md-form md-outline">
+                        <input mdbInput mdbValidate type="text" id="business-email" class="form-control" formControlName="companyEmail">
+                        <label for="business-email" class="">Email*</label>
+                        <mdb-error *ngIf="companyEmail.invalid && (companyEmail.dirty || companyEmail.touched)">
+                            <span *ngIf="companyEmail.errors.required">Email es requerido</span>
+                            <span *ngIf="companyEmail.errors.email">El formato no es válido</span>
+                        </mdb-error>
+                    </div>
+                    <div class="md-form md-outline margin-top-input-modal margin-bottom-input-modal">
+                        <input mdbInput mdbValidate type="text" id="company-name" class="form-control" formControlName="companyName">
+                        <label for="company-name" class="">Nombre de la empresa*</label>
+                        <mdb-error *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+                            <span *ngIf="companyName.errors.required">La empresa es requerida</span>
+                        </mdb-error>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button mdbBtn type="button" id="btn-get-pdf" rounded="false" block="true" [disabled]="businessLeadGenerationForm.invalid" (click)="getBusinessLeadGenerationPDF()" mdbWavesEffect>
+                                Obtener guía gratis
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -42,7 +59,7 @@
     <div class="row">
         <div class="col-12">
             <form [formGroup]="searchForm" class="form-inline md-form md-outline">
-                <!--<mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>-->
+                <!--<mdb-icon fas icon="search" aria-hidden="true></mdb-icon>-->
                 <input id="search" formControlName="search" class="form-control form-control-sm w-100" type="text" placeholder="Buscar teletrabajo" aria-label="Search" (keyup)="$searchTerm.next($event.target.value)" mdbInput>
             </form>
         </div>
@@ -52,7 +69,7 @@
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
                         <li class="glide__slide" *ngFor="let category of categories" (click)="filterJobsByCategory(category._id)">
-                            <div class="category-container" [ngClass]="{'category-selected': categorySelected === category._id}">
+                            <div class="category-container" [ngClass]="{ 'category-selected': categorySelected === category._id }">
                                 <div>
                                     <img class="category-icon" src="/assets/icons/{{category.icon}}">
                                 </div>
@@ -75,9 +92,9 @@
         </div>
     </div>
 
-    <div class="row mt-3" *ngFor="let job of jobs; let i = index;">
+    <div class="row mt-3" *ngFor="let job of jobs; let i=index;">
         <div class="col-12" (click)="clickJob( i, job )" style="cursor: pointer;">
-            <div class="row job-container" [ngClass]="{'job-container-yellow': boostersService.find( job.boosters, 'booster_5' ) }">
+            <div class="row job-container" [ngClass]="{ 'job-container-yellow': boostersService.find( job.boosters, 'booster_5' ) }">
                 <!--Columna imagen-->
                 <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                     <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
@@ -112,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12" *ngIf="indexJobClicked === i">
+        <div class="col-12" *ngIf="indexJobClicked===i">
             <div class="job-details-container">
                 <!--Description-->
                 <div class="job-description" [innerHTML]="job.description"></div>
