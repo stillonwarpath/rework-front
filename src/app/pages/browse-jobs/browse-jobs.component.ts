@@ -1,18 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { JobService } from '../../services/job.service';
-import { CategoryService } from '../../services/category.service';
+import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, EMPTY } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-
 import { AnimationOptions } from 'ngx-lottie';
 import Glide from '@glidejs/glide';
+import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
 
 
+import { JobService } from '../../services/job.service';
+import { CategoryService } from '../../services/category.service';
 import { ICategory } from '../../interfaces/category.interface';
 import { IJob } from 'src/app/interfaces/job.interface';
-import { AnimationItem } from 'lottie-web';
 import { BoostersService } from '../../services/boosters.service';
 import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
@@ -23,12 +22,15 @@ import { IBooster } from 'src/app/interfaces/boosters-request.interface';
   styleUrls: ['./browse-jobs.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BrowseJobsComponent implements OnInit {
+export class BrowseJobsComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('downloadPDFModal', { static: true }) downloadPDFModal: ModalDirective;
 
   lottieOpttions: AnimationOptions = {
     path:'/assets/rework_home.json',
     loop: false
   };
+
   digitalOceanSpacesUrl: string = environment.digital_ocean_spaces;
   searchForm: FormGroup;
   $searchTerm = new Subject<string>();
@@ -91,6 +93,12 @@ export class BrowseJobsComponent implements OnInit {
         this.boosters = boosters;
       });
         
+  }
+
+  ngAfterViewInit(): void {
+   
+    this.downloadPDFModal.show();
+
   }
 
 
