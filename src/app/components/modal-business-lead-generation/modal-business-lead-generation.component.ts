@@ -59,7 +59,10 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
 
     } catch ( err ) {
 
-      //TODO: Mostrar toast con error
+      this.toastService.error('Sucedió un error obteniendo la guía gratis.','',{
+        timeOut: 7000,
+        positionClass: 'toast-top-center' 
+      });
 
     }
 
