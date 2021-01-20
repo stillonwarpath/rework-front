@@ -19,10 +19,22 @@ export class BusinessService {
       email: businessName
     };
 
-    this.http.post(`${URL}/company/lead`, business)
-    .subscribe( res => {
-      console.log( res );
+    return new Promise( (resolve, reject) => {
+
+      this.http.post(`${URL}/company/lead`, business)
+      .subscribe( (res: any) => {
+        
+        if ( res.ok ) {
+            resolve(null);
+        } else {
+            reject(null);
+        }
+
+      });
+  
+
     });
+
 
   }
 

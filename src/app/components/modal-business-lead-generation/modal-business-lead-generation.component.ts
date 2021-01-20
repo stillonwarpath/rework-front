@@ -40,10 +40,24 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
     return this.businessLeadGenerationForm.get('companyName');
   }
 
-  getBusinessLeadGenerationPDF() {
+  async getBusinessLeadGenerationPDF() {
 
-    console.log( this.businessLeadGenerationForm );
-    this.businessService.createLead( this.companyEmail.value, this.companyName.value  );
+    if ( this.businessLeadGenerationForm.invalid ) {
+       return;
+    }
+
+    try {
+
+      await this.businessService.createLead( this.companyEmail.value, this.companyName.value  );
+      this.downloadPDFModal.hide();
+      //TODO: Mostrar toast de exito
+
+    } catch ( err ) {
+
+      //TODO: Mostrar toast con error
+
+    }
+
 
 
 
