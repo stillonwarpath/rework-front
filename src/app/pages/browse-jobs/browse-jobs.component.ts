@@ -39,12 +39,20 @@ export class BrowseJobsComponent implements OnInit {
   moreJobs = true;
   indexJobClicked = undefined;
   boosters: IBooster[] = [];
+  showModalGetBusinessPDF = true;
 
   constructor( private jobService: JobService,
                private categoryService: CategoryService,
                public boostersService: BoostersService) { }
 
   ngOnInit() {
+
+    if ( localStorage.getItem('see-modal-get-pdf') === 'false' ) {
+
+      this.showModalGetBusinessPDF = false;
+      
+    }
+
 
     this.searchForm = new FormGroup({
       search: new FormControl(null)
