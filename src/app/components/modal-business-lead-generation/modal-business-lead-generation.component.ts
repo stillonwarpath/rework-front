@@ -8,7 +8,7 @@ import { BusinessService } from '../../services/business.service';
 @Component({
   selector: 'app-modal-business-lead-generation',
   templateUrl: './modal-business-lead-generation.component.html',
-  styleUrls: ['./modal-business-lead-generation.component.css']
+  styleUrls: ['./modal-business-lead-generation.component.scss']
 })
 export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewInit {
 
@@ -73,6 +73,7 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
     if ( event.checked ) {
 
       localStorage.setItem('see-modal-get-pdf', 'false');
+      this.downloadPDFModal.hide();
 
     } else {
 
