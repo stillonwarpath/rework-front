@@ -1,0 +1,39 @@
+<div mdbModal #downloadPDFModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="modal-body-container" class="modal-body">
+                <h2 id="modal-lead-generation-title">Obten esta guía gratis!</h2>
+                <p id="modal-lead-generation-paragraph">
+                    9 tips para realizar entrevistas remotas de forma efectiva y obtener los mejores candidatos
+                </p>
+                <form [formGroup]="businessLeadGenerationForm">
+                    <div class="md-form md-outline">
+                        <input mdbInput mdbValidate type="text" id="business-email" class="form-control" formControlName="companyEmail">
+                        <label for="business-email" class="">Email*</label>
+                        <mdb-error *ngIf="companyEmail.invalid && (companyEmail.dirty || companyEmail.touched)">
+                            <span *ngIf="companyEmail.errors.required">Email es requerido</span>
+                            <span *ngIf="companyEmail.errors.email">El formato no es válido</span>
+                        </mdb-error>
+                    </div>
+                    <div class="md-form md-outline margin-top-input-modal margin-bottom-input-modal">
+                        <input mdbInput mdbValidate type="text" id="company-name" class="form-control" formControlName="companyName">
+                        <label for="company-name" class="">Nombre de la empresa*</label>
+                        <mdb-error *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+                            <span *ngIf="companyName.errors.required">La empresa es requerida</span>
+                        </mdb-error>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button mdbBtn type="button" id="btn-get-pdf" rounded="false" block="true" [disabled]="businessLeadGenerationForm.invalid" (click)="getBusinessLeadGenerationPDF()" mdbWavesEffect>
+                                Obtener guía gratis
+                            </button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <mdb-checkbox [default]="true">No volver a mostrar</mdb-checkbox>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
