@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <mdb-checkbox [default]="true">No volver a mostrar</mdb-checkbox>
+                        <mdb-checkbox [default]="true" (change)="notShowModalAgain($event)">No volver a mostrar</mdb-checkbox>
                     </div>
                 </form>
             </div>

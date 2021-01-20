@@ -66,7 +66,19 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
 
     }
 
+  }
 
+  notShowModalAgain( event: any ){
+
+    if ( event.checked ) {
+
+      localStorage.setItem('see-modal-get-pdf', 'false');
+
+    } else {
+
+      localStorage.removeItem('see-modal-get-pdf');
+
+    }
 
 
   }
