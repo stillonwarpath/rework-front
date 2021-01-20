@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
+import { ToastrService } from 'ngx-toastr';
 
 import { BusinessService } from '../../services/business.service';
 
@@ -15,7 +16,8 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
   businessLeadGenerationForm: FormGroup;
 
 
-  constructor( private businessService: BusinessService ) { }
+  constructor( private businessService: BusinessService,
+               private toastService: ToastrService ) { }
 
   ngOnInit(): void {
 
@@ -50,7 +52,10 @@ export class ModalBusinessLeadGenerationComponent implements OnInit, AfterViewIn
 
       await this.businessService.createLead( this.companyEmail.value, this.companyName.value  );
       this.downloadPDFModal.hide();
-      //TODO: Mostrar toast de exito
+      this.toastService.success('Un enlace para que descargues la guía gratis ha sido enviada a tu email.','',{
+        timeOut: 7000,
+        positionClass: 'toast-top-center' 
+      });
 
     } catch ( err ) {
 
