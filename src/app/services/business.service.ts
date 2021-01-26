@@ -15,8 +15,8 @@ export class BusinessService {
   createLead( businessEmail: string, businessName: string ) {
     
     const business = {
-      company: businessEmail,
-      email: businessName
+      company: businessName,
+      email: businessEmail
     };
 
     return new Promise( (resolve, reject) => {
