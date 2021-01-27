@@ -9,7 +9,21 @@
 
 
 /*
-label.active {
-    background-color: #d1efed !important;
+.form-control.validate-success.ng-valid.ng-touched label,
+.form-control.validate-success.ng-valid.ng-touched+label {
+    box-shadow: 0 1px 0 0 #d1efed !important;
+    border: 1px solid #d1efed !important;
+}
+*/
+
+
+/*
+input[type=text]:focus:not([readonly]) {
+    box-shadow: 0 1px 0 0 #d1efed !important;
+    border: 1px solid #d1efed !important;
+}
+
+input[type=text]:focus:not([readonly])+label {
+    color: #d1efed;
 }
 */
