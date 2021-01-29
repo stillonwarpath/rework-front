@@ -207,7 +207,6 @@ export class PostJobComponent implements OnInit {
     }
 
     const boosterImage = this.boosterService.find( this.boosters, boosterCode );
-    this.boostersSelected.push( boosterImage._id );
 
     this.fileValidations = await this.fileService.validateFile( this.selectedFile );
 
@@ -222,6 +221,7 @@ export class PostJobComponent implements OnInit {
 
       this.fileName = await this.fileService.uploadFile( this.selectedFile );
       this.fileService.displayImagePreview('company-image', this.fileService.imgData );
+      this.boostersSelected.push( boosterImage._id );
       this.loading = false;
 
     } catch ( err ) {
@@ -302,6 +302,8 @@ export class PostJobComponent implements OnInit {
 
   // Pagar
   async pay() {
+
+    console.log(this.boostersSelected);
 
     this.loading = true;
     let result: IPostedJob;
