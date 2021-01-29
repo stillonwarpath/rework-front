@@ -303,8 +303,6 @@ export class PostJobComponent implements OnInit {
   // Pagar
   async pay() {
 
-    console.log(this.boostersSelected);
-
     this.loading = true;
     let result: IPostedJob;
 
