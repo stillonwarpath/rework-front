@@ -168,7 +168,7 @@ export class BrowseJobsComponent implements OnInit {
   // Click en aplicar para abrir url de trabajo
   apply( url: string ) {
 
-    //url = `http://${url}`;
+    url = `http://${url}`;
     window.open( url, '_blank');
 
 
