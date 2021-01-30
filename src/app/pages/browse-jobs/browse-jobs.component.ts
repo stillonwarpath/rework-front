@@ -79,14 +79,14 @@ export class BrowseJobsComponent implements OnInit {
 
         setTimeout( () => {
           new Glide('.glide',{
-            perView:5,
-            peek: { before: 0, after: 50 },
+            perView:4,
+            //peek: { before: 0, after: 50 },
             breakpoints: {
               992: {
-                perView: 4
+                perView: 3
               },
               576: {
-                perView: 2
+                perView: 1
               }
             }
           }).mount();
