@@ -1,7 +1,17 @@
 <div mdbModal #downloadPDFModal="mdbModal" class="modal fade" style="overflow-y: scroll;" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <!--
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            -->
             <div id="modal-body-container" class="modal-body">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="downloadPDFModal.hide()">
+                    <span aria-hidden="true" style="font-size: 2rem;color:#33383c">×</span>
+                </button>
                 <div class="text-center">
                     <img src="/assets/portada_cm.png" style="width:60%;height: auto;">
                 </div>
