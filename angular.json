@@ -23,6 +23,7 @@
                             "src/favicon.ico",
                             "src/assets",
                             "src/404.html",
+                            "src/sitemap.xml",
                             "src/post-job.html"
                         ],
                         "styles": [
