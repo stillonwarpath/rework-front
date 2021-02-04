@@ -75,6 +75,10 @@ export class PostJobComponent implements OnInit {
     }
   ];
 
+  /*
+  src: string = 'https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif';
+  */
+
   constructor( private jobService: JobService,
                private stripeService: StripeService,
                private categoryService: CategoryService,
@@ -84,7 +88,6 @@ export class PostJobComponent implements OnInit {
                public boosterService: BoostersService ) { }
 
   async ngOnInit() {
-
 
     this.newJobForm = new FormGroup({
        company: new FormControl(null, Validators.required),
@@ -121,6 +124,16 @@ export class PostJobComponent implements OnInit {
        });
 
  
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    /*
+    const img = new Image();
+    img.src = 'https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif';
+    */
+    
   }
 
   get company() {
@@ -302,6 +315,10 @@ export class PostJobComponent implements OnInit {
 
   // Pagar
   async pay() {
+
+    //Conversión click postear trabajo
+    const image = new Image();
+    image.src = 'https://px.ads.linkedin.com/collect/?pid=2781866&conversionId=3604002&fmt=gif';
 
     this.loading = true;
     let result: IPostedJob;

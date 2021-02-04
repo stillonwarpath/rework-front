@@ -14,6 +14,8 @@ import { IJob } from 'src/app/interfaces/job.interface';
 import { BoostersService } from '../../services/boosters.service';
 import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
+const ISPRODUCTION = environment.production;
+
 
 @Component({
   selector: 'app-browse-jobs',
@@ -41,11 +43,19 @@ export class BrowseJobsComponent implements OnInit {
   boosters: IBooster[] = [];
   showModalGetBusinessPDF = true;
 
+  //Pixel Linkedin
+  linkedinPixelSrcVisitas:string = '';
+  linkedinPixelSrcFiltroCategorias: string = '';
+
   constructor( private jobService: JobService,
                private categoryService: CategoryService,
                public boostersService: BoostersService) { }
 
   ngOnInit() {
+
+
+    //this.linkedinPixelSrcVisitas = "https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif"; 
+
 
     if ( localStorage.getItem('see-modal-get-pdf') === 'false' ) {
 
@@ -124,7 +134,7 @@ export class BrowseJobsComponent implements OnInit {
 
   // Se filtran trabajos por categoría
   filterJobsByCategory( categoryId: string ) {
-
+    
     // Si se selecciona nuevamente categoría se desactiva el filtro
     if ( categoryId === this.categorySelected ) {
 
@@ -136,6 +146,7 @@ export class BrowseJobsComponent implements OnInit {
 
     }
 
+    this.linkedinPixelSrcFiltroCategorias = 'https://px.ads.linkedin.com/collect/?pid=2781866&conversionId=3603962&fmt=gif';
     this.page = 1;
     this.jobs = [];
 
