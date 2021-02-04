@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 declare let gtag: Function;
+const isProduction = environment.production
 
 @Component({
   selector: 'app-root',
@@ -14,19 +16,23 @@ export class AppComponent {
 
   constructor( public router: Router ){
 
-    this.router.events.subscribe( event => {
+    if ( isProduction ) {
 
-      if ( event instanceof NavigationEnd ) {
+      this.router.events.subscribe( event => {
 
-        gtag('config', 'G-5BTF4RYB0S', {
+        if ( event instanceof NavigationEnd ) {
+  
+          gtag('config', 'G-5BTF4RYB0S', {
+  
+            page_path: event.urlAfterRedirects
+  
+          });
+  
+        }
+  
+      });
 
-          page_path: event.urlAfterRedirects
-
-        });
-
-      }
-
-    });
+    }
 
   }
 
