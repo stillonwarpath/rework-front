@@ -20,6 +20,7 @@ import { IFileValidation } from '../../interfaces/fileValidation.interface';
 import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
 declare const Stripe;
+declare const fbq: any;
 
 const URL = environment.rework_backend_url;
 const STRIPE_PK = environment.stripe_pk;
@@ -75,9 +76,6 @@ export class PostJobComponent implements OnInit {
     }
   ];
 
-  /*
-  src: string = 'https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif';
-  */
 
   constructor( private jobService: JobService,
                private stripeService: StripeService,
@@ -126,15 +124,6 @@ export class PostJobComponent implements OnInit {
  
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    /*
-    const img = new Image();
-    img.src = 'https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif';
-    */
-    
-  }
 
   get company() {
 
@@ -315,6 +304,8 @@ export class PostJobComponent implements OnInit {
 
   // Pagar
   async pay() {
+
+    fbq('track','postJobButtonClicked');
 
     //Conversión click postear trabajo
     const image = new Image();

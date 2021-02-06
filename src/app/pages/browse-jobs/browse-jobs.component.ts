@@ -14,6 +14,7 @@ import { IJob } from 'src/app/interfaces/job.interface';
 import { BoostersService } from '../../services/boosters.service';
 import { IBooster } from 'src/app/interfaces/boosters-request.interface';
 
+declare const fbq: any;
 const ISPRODUCTION = environment.production;
 
 
@@ -52,9 +53,6 @@ export class BrowseJobsComponent implements OnInit {
                public boostersService: BoostersService) { }
 
   ngOnInit() {
-
-
-    //this.linkedinPixelSrcVisitas = "https://px.ads.linkedin.com/collect/?pid=2781866&fmt=gif"; 
 
 
     if ( localStorage.getItem('see-modal-get-pdf') === 'false' ) {
@@ -146,6 +144,7 @@ export class BrowseJobsComponent implements OnInit {
 
     }
 
+    fbq('track', 'jobCategorySelected');
     this.linkedinPixelSrcFiltroCategorias = 'https://px.ads.linkedin.com/collect/?pid=2781866&conversionId=3603962&fmt=gif';
     this.page = 1;
     this.jobs = [];
