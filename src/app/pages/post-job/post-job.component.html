@@ -143,7 +143,7 @@
         <div class="row justify-content-center" style="margin-top: 8rem;">
             <div id="col-btn-post" class="col-12 d-flex justify-content-center">
                 <button mdbBtn type="button" class="btn-post" rounded="true" block="true" [disabled]="newJobForm.invalid" (click)="pay()" mdbWavesEffect>
-                        Postear trabajo - <span>{{ calculatePostFinalPrice() | formatPrice }}</span>
+                        Postear trabajo - <span style="text-decoration: line-through;">{{ calculatePostFinalPrice() | formatPrice }}</span>
                 </button>
             </div>
         </div>
