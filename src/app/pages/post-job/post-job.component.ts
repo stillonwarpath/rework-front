@@ -327,13 +327,11 @@ export class PostJobComponent implements OnInit {
   // Pagar
   async pay() {
 
+    this.loading = true;
     fbq('track','postJobButtonClicked');
-
-    //Conversión click postear trabajo
     const image = new Image();
     image.src = 'https://px.ads.linkedin.com/collect/?pid=2781866&conversionId=3604002&fmt=gif';
 
-    this.loading = true;
     let result: IPostedJob;
 
     if ( this.newJobForm.invalid ) {
@@ -351,6 +349,7 @@ export class PostJobComponent implements OnInit {
 
     const job = new Job( this.company.value,
                          this.jobTitle.value,
+                         this.tagsAdded,
                          this.category.value,
                          this.type.value,
                          this.location.value,
