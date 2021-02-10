@@ -212,6 +212,12 @@ export class PostJobComponent implements OnInit {
 
   }
 
+  public removeTag( index ) {
+
+    this.tagsAdded.splice(index,1);
+
+  }
+
   async onFileSelected( event, boosterCode: string ) {
 
     this.loading = true;

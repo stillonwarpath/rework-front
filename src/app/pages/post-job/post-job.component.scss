@@ -13,10 +13,17 @@
 
 .addedTag {
     display: inline-block;
-    background-color: gray;
-    padding: .2rem;
+    font-size: .8rem;
+    //background-color: gray;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: .2rem .3rem;
     margin-right: .4rem;
     margin-top: .4rem;
+}
+
+.addedTag:hover {
+    cursor: pointer;
 }
 
 

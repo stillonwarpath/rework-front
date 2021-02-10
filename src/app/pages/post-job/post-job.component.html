@@ -44,9 +44,9 @@
             <p class="input-explanation">
                 Añade tags para resaltar herramientas o conocimiento importante que esperas posean los postulantes. Escribelo y presiona Enter para añadirlo.
             </p>
-        </div>
-        <div id="tags-container">
-            <span *ngFor="let tag of tagsAdded" class="addedTag">{{tag}}</span>
+            <div id="tags-container">
+                <span *ngFor="let tag of tagsAdded;let i = index;" class="addedTag" (click)="removeTag(i)">{{tag}} <mdb-icon fas icon="times"></mdb-icon></span>
+            </div>
         </div>
 
         <div class="md-form margin-top-input">
