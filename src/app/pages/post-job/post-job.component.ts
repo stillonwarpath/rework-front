@@ -34,6 +34,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 export class PostJobComponent implements OnInit {
 
   @ViewChild('sticky') stickyCheck: CheckboxComponent;
+  @ViewChild('tag') tag: any;
   postFinalPrice: number = 0;
   editor = classicEditor;
   editorConfig: any = {
@@ -60,6 +61,8 @@ export class PostJobComponent implements OnInit {
 
   displayUploadImageContainer = false;
   lastStickyOptionSelectedId: string = null;
+
+  tagsAdded: string[] = [];
 
   stickyOptions = [
     {
@@ -179,7 +182,7 @@ export class PostJobComponent implements OnInit {
 
   }
 
-  calculatePostFinalPrice() {
+  public calculatePostFinalPrice() {
 
     let boosterFound: IBooster = null;
     this.postFinalPrice = 4700;
@@ -193,6 +196,19 @@ export class PostJobComponent implements OnInit {
 
 
     return this.postFinalPrice;
+
+  }
+
+  public addTag( event: any, tag: string) {
+
+    //Número 13 es el enter en el teclado
+    if ( event.keyCode === 13 && tag.length > 0) {
+
+      tag = tag.toUpperCase();
+      this.tagsAdded.push( tag );
+      this.tag.nativeElement.value = '';
+
+    }
 
   }
 

@@ -38,6 +38,17 @@
             </mdb-error>
         </div>
 
+        <div class="md-form md-outline margin-top-input">
+            <input #tag mdbInput type="text" id="job-tags" class="form-control" (keyup)="addTag( $event, tag.value )">
+            <label for="job-tags" class="">Tags</label>
+            <p class="input-explanation">
+                Añade tags para resaltar herramientas o conocimiento importante que esperas posean los postulantes. Escribelo y presiona Enter para añadirlo.
+            </p>
+        </div>
+        <div id="tags-container">
+            <span *ngFor="let tag of tagsAdded" class="addedTag">{{tag}}</span>
+        </div>
+
         <div class="md-form margin-top-input">
             <select mdbValidate class="browser-default custom-select" formControlName="category">
             <option value="-99">Categoría del post *</option>
