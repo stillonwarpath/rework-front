@@ -11,6 +11,21 @@
     padding-top: 2.9rem;
 }
 
+.addedTag {
+    display: inline-block;
+    background-color: gray;
+    padding: .2rem;
+    margin-right: .4rem;
+    margin-top: .4rem;
+}
+
+
+/*
+#tags-container .addedTag:not(:first-child) {
+    //margin-left: 1rem;
+}
+*/
+
 #yellow-post-checkbox {
     margin-top: 1.3rem;
 }
