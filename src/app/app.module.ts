@@ -31,6 +31,7 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { FormatPricePipe } from './pipes/format-price.pipe';
 import { ModalBusinessLeadGenerationComponent } from './components/modal-business-lead-generation/modal-business-lead-generation.component';
 import { TopFrameMessagesComponent } from './components/top-frame-messages/top-frame-messages.component';
+import { SpliceArrayPipe } from './pipes/splice-array.pipe';
 
 // Carga lottie-web bajo demanda cuando se carga animación por primera vez
 export function playerFactory() {
@@ -56,7 +57,8 @@ export function playerFactory() {
     FaqComponent,
     FormatPricePipe,
     ModalBusinessLeadGenerationComponent,
-    TopFrameMessagesComponent
+    TopFrameMessagesComponent,
+    SpliceArrayPipe
   ],
   imports: [
     BrowserModule,

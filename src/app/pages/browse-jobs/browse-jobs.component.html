@@ -88,14 +88,14 @@
                             {{ location  }}
                         </span>
                         <div id="tags-container" class="d-block d-md-none" *ngIf="job.tags.length > 0">
-                            <span *ngFor="let tag of job.tags" class="addedTag">{{tag}}</span>
+                            <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
                         </div>
                     </div>
                 </div>
                 <!--Columna tags-->
                 <div class="col-md-3 d-none d-md-block">
                     <div class="d-flex align-content-center flex-wrap" style="height: 100%;">
-                        <span *ngFor="let tag of job.tags" class="addedTag">{{tag}}</span>
+                        <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
                     </div>
                 </div>
                 <!--Columna fecha publicación-->
