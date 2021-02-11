@@ -204,7 +204,6 @@ export class PostJobComponent implements OnInit {
     //Número 13 es el enter en el teclado
     if ( event.keyCode === 13 && tag.length > 0) {
 
-      tag = tag.toUpperCase();
       this.tagsAdded.push( tag );
       this.tag.nativeElement.value = '';
 

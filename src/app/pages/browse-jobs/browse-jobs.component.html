@@ -108,8 +108,18 @@
         </div>
         <div class="col-12" *ngIf="indexJobClicked===i">
             <div class="job-details-container">
+                <!--Ubicación-->
+                <div>
+                    <span class="job-location ml-1" *ngFor="let location of job.location | locationsSplit">
+                        {{ location  }}
+                    </span>
+                </div>
+                <!--Tags-->
+                <div style="margin-top:.8rem">
+                    <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
+                </div>
                 <!--Description-->
-                <div class="job-description" [innerHTML]="job.description"></div>
+                <div class="job-description" style="margin-top: .8rem" [innerHTML]="job.description"></div>
                 <div class="text-center">
                     <button mdbBtn type="button" class="btn-apply" outline="true" *ngIf="job.url" (click)="apply( job.url )" mdbWavesEffect>
                         Postular
