@@ -204,6 +204,10 @@
     margin-bottom: 2rem !important;
 }
 
+#tags-container {
+    margin-top: .3rem;
+}
+
 @include media-breakpoint-up(sm) {
     /*Modal de generación de leads*/
     #modal-lead-generation-title {

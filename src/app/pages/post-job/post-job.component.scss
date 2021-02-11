@@ -11,27 +11,9 @@
     padding-top: 2.9rem;
 }
 
-.addedTag {
-    display: inline-block;
-    font-size: .8rem;
-    //background-color: gray;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: .2rem .3rem;
-    margin-right: .4rem;
-    margin-top: .4rem;
-}
-
 .addedTag:hover {
     cursor: pointer;
 }
-
-
-/*
-#tags-container .addedTag:not(:first-child) {
-    //margin-left: 1rem;
-}
-*/
 
 #yellow-post-checkbox {
     margin-top: 1.3rem;
