@@ -1,0 +1,68 @@
+<div class="row mt-3">
+    <div class="col-12" (click)="clickJob()" style="cursor: pointer;">
+        <div class="row job-container" [ngClass]="{ 'job-container-yellow': boostersService.find( job.boosters, 'booster_5' ) }">
+            <!--Columna imagen-->
+            <div class="col-2 col-md-1 d-flex justify-content-center align-items-center">
+                <img *ngIf="job.companyImage" [src]="job.companyImage | imageUrl" class="rounded-circle img-company" />
+                <div *ngIf="!job.companyImage" class="company-abbreviation d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;">
+                    <span class="company-abbreviation">
+                            {{ job.company | companyAbbreviation }}
+                        </span>
+                </div>
+            </div>
+            <!--Columna datos trabajo-->
+            <div class="col-7 col-md-6">
+                <p id="job-company" style="margin-bottom: 0;">
+                    {{ job.company }}
+                </p>
+                <p id="job-position" style="margin-bottom: 0;">
+                    {{ job.position }}
+                </p>
+                <div class="mt-1 mt-md-2">
+                    <span class="work-type">
+                            {{ job.type.name }}
+                        </span>
+                    <span class="job-location ml-1" *ngFor="let location of job.location | locationsSplit">
+                            {{ location  }}
+                        </span>
+                    <div id="tags-container" class="d-block d-md-none" *ngIf="job.tags.length > 0">
+                        <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
+                    </div>
+                </div>
+            </div>
+            <!--Columna tags-->
+            <div class="col-md-3 d-none d-md-block">
+                <div class="d-flex align-content-center flex-wrap" style="height: 100%;">
+                    <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
+                </div>
+            </div>
+            <!--Columna fecha publicación-->
+            <div class="col-3 col-md-2 d-flex align-items-center">
+                <div class="post-time">
+                    <span *ngIf="job.hasSticky" style="padding: 0 .3rem;">📌</span>{{ job.created | timeAgo }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12" *ngIf="jobIndexClicked === jobIndex">
+        <div class="job-details-container">
+            <!--Ubicación-->
+            <div>
+                <span class="job-location ml-1" *ngFor="let location of job.location | locationsSplit">
+                        {{ location  }}
+                    </span>
+            </div>
+            <!--Tags-->
+            <div style="margin-top:.8rem">
+                <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
+            </div>
+            <!--Description-->
+            <div class="job-description" style="margin-top: .8rem" [innerHTML]="job.description"></div>
+            <div class="text-center">
+                <button mdbBtn type="button" class="btn-apply" outline="true" *ngIf="job.url" (click)="apply( job.url )" mdbWavesEffect>
+                        Postular
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>

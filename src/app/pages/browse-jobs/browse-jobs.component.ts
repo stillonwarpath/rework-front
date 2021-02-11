@@ -43,6 +43,7 @@ export class BrowseJobsComponent implements OnInit {
   indexJobClicked = undefined;
   boosters: IBooster[] = [];
   showModalGetBusinessPDF = true;
+  jobIndexClicked: number = null;
 
   //Pixel Linkedin
   linkedinPixelSrcVisitas:string = '';
@@ -108,6 +109,7 @@ export class BrowseJobsComponent implements OnInit {
         
   }
 
+  
    private getJobs() {
 
     this.jobService.getJobs( this.page, this.categorySelected, this.searchTerm ).
@@ -174,16 +176,6 @@ export class BrowseJobsComponent implements OnInit {
   
   }
 
-
-  // Click en aplicar para abrir url de trabajo
-  apply( url: string ) {
-
-    url = `http://${url}`;
-    window.open( url, '_blank');
-
-
-  }
-
   // Cargar más trabajos
   loadMoreJobs() {
 
@@ -191,21 +183,5 @@ export class BrowseJobsComponent implements OnInit {
     this.getJobs();
   }
 
-  // Click para mostrar o cerrar trabajo
-  clickJob( index: number, job: IJob) {
-
-    if (!job.description) {
-      this.apply( job.url );
-      return;
-    }
-
-    if ( this.indexJobClicked === index ) {
-      this.indexJobClicked = undefined;
-      return;
-    }
-
-    this.indexJobClicked = index;
-
-  }
 
 }
