@@ -201,19 +201,13 @@ export class PostJobComponent implements OnInit {
 
   public addTag( event: any, tag: string) {
 
-    //Número 13 es el enter en el teclado
-    if ( event.keyCode === 13 && tag.length > 0) {
-
-      this.tagsAdded.push( tag );
-      this.tag.nativeElement.value = '';
-
-    }
-
-  }
+    this.jobService.addTagToJob( event.keyCode, tag, this.tag, this.tagsAdded );
+ 
+   }
 
   public removeTag( index ) {
 
-    this.tagsAdded.splice(index,1);
+    this.jobService.removeAddedTagToJob( index, this.tagsAdded );
 
   }
 

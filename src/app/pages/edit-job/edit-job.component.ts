@@ -202,7 +202,7 @@ export class EditJobComponent implements OnInit {
 
   public addTag( event: any, tag: string) {
 
-   this.jobService.addTagToJob( event.keyCode, tag, this.tagsAdded );
+   this.jobService.addTagToJob( event.keyCode, tag, this.tag, this.tagsAdded );
 
   }
 

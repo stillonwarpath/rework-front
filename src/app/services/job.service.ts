@@ -136,13 +136,13 @@ export class JobService {
 
   }
 
-  addTagToJob( keyCode: number, tag: any, addedTags: string[] ) {
+  addTagToJob( keyCode: number, tag: string, tagElement: any, addedTags: string[] ) {
 
         //Número 13 es el enter en el teclado
         if ( keyCode === 13 && tag.length > 0) {
 
           addedTags.push( tag );
-          tag.nativeElement.value = '';
+          tagElement.nativeElement.value = '';
     
         }
 
