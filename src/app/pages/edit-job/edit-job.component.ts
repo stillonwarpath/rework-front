@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ToastrService } from 'ngx-toastr';
 
 
 import { ICategory } from '../../interfaces/category.interface';
@@ -65,7 +66,8 @@ export class EditJobComponent implements OnInit {
                private typeService: TypeService,
                private jobService: JobService,
                public boosterService: BoostersService,
-               private fileService: FileService ) { }
+               private fileService: FileService,
+               private toastService: ToastrService ) { }
 
   ngOnInit(): void {
 
@@ -298,13 +300,19 @@ export class EditJobComponent implements OnInit {
     try {
 
       await this.jobService.updateJob( updatedJob );
-      this.result.ok = true;
-      this.result.message = `El trabajo ha sido actualizado`;
+
+      this.toastService.success('El trabajo ha sido editado.','',{
+        timeOut: 7000,
+        positionClass: 'toast-top-center' 
+      });
 
     } catch ( err ) {
 
-      this.result.ok = false;
-      this.result.message = err;
+       this.toastService.error('Sucedió un error editando el trabajo.','',{
+        timeOut: 7000,
+        positionClass: 'toast-top-center' 
+      });
+
     }
 
     this.loading = false;

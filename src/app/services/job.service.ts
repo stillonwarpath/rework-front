@@ -27,11 +27,12 @@ export class JobService {
       "tags": job.tags,
       "category": job.category,
       "type": job.type,
-     "url": job.url,
-     "description": job.description,
-     "email": job.email,
-     "companyImage": job.companyImage,
-     "boosters": job.boosters
+      "location": job.location,
+      "url": job.url,
+      "description": job.description,
+      "email": job.email,
+      "companyImage": job.companyImage,
+      "boosters": job.boosters
     };
 
     return new Promise( ( resolve, reject ) => {

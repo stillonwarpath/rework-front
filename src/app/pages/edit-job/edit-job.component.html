@@ -1,9 +1,7 @@
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
 
 <div class="container-fluid" style="padding-top: 10px; padding-bottom: 10px;">
-    <div class="alert" [ngClass]="{'alert-success': result.ok, 'alert-danger': !result.ok}" role="alert" *ngIf="result.message">
-        {{ result.message }}
-    </div>
+
     <div *ngIf="showForm">
         <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
             <h1 class="h1-responsive font-weight-bold">Editar tu postulación</h1>
