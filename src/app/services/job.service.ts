@@ -113,7 +113,6 @@ export class JobService {
   }
 
   // Actualizar trabajo
-  // tslint:disable-next-line: typedef
   updateJob( updatedJob: IJob ) {
 
     return new Promise( (resolve, reject) => {
@@ -134,6 +133,25 @@ export class JobService {
       });
 
     });
+
+  }
+
+  addTagToJob( keyCode: number, tag: any, addedTags: string[] ) {
+
+        //Número 13 es el enter en el teclado
+        if ( keyCode === 13 && tag.length > 0) {
+
+          addedTags.push( tag );
+          tag.nativeElement.value = '';
+    
+        }
+
+  }
+
+  removeAddedTagToJob( index: number, addedTags: string[] ) {
+
+    addedTags.splice( index, 1);
+
 
   }
 

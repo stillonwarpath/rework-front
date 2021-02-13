@@ -6,20 +6,16 @@ interface IJob {
     _id: string;
     company: string;
     position: string;
+    tags: string[];
     category: ICategory;
     type: IType;
     location: string;
     url: string;
     companyImage?: string;
-    email?: string;
-    paid?: boolean;
-    status?: string;
     boosters?: IBooster[];
     description?: string;
     hasSticky?: boolean;
     created?: string;
-    updated?: string;
-    __v?: number;
 }
 
 export { IJob };

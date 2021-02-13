@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -26,6 +26,7 @@ const MAX_FILE_SIZE = environment.max_file_size;
 })
 export class EditJobComponent implements OnInit {
 
+  @ViewChild('tag') tag: any;
   editor = classicEditor;
   showForm = true;
   jobId: string = undefined;
@@ -55,6 +56,9 @@ export class EditJobComponent implements OnInit {
     ok: undefined,
     message: undefined
   };
+
+  tagsAdded: string[] = [];
+
 
   constructor( private route: ActivatedRoute,
                private categoryService: CategoryService,
@@ -97,7 +101,6 @@ export class EditJobComponent implements OnInit {
       this.jobService.getJob( this.jobId)
           .then( job => {
 
-
               this.setCompany = job.company;
               this.setJobTitle = job.position;
               this.setCategory = job.category._id;
@@ -108,6 +111,9 @@ export class EditJobComponent implements OnInit {
               this.companyImg = job.companyImage;
               this.boosters = job.boosters;
               this.setDescription = job.description || '';
+              this.tagsAdded = job.tags;
+
+              console.log(this.tagsAdded);
           
 
           }).catch( err => {
@@ -194,6 +200,18 @@ export class EditJobComponent implements OnInit {
     this.editJobForm.get('description').setValue( description );
   }
 
+  public addTag( event: any, tag: string) {
+
+   this.jobService.addTagToJob( event.keyCode, tag, this.tagsAdded );
+
+  }
+
+  public removeTag( index ) {
+
+    this.jobService.removeAddedTagToJob( index, this.tagsAdded );
+
+  }
+
   // Cargar archivo
   async onFileSelected( event, boosterCode: string ) {
 
@@ -268,6 +286,7 @@ export class EditJobComponent implements OnInit {
       _id: this.jobId,
       company: this.company.value,
       position: this.jobTitle.value,
+      tags: this.tagsAdded,
       category: this.category.value,
       type: this.type.value,
       description: this.description.value,
