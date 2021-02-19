@@ -185,7 +185,7 @@ export class PostJobComponent implements OnInit {
   public calculatePostFinalPrice() {
 
     let boosterFound: IBooster = null;
-    this.postFinalPrice = 4700;
+    this.postFinalPrice = 3700;
 
     this.boostersSelected.forEach( boosterSelected => {
 
