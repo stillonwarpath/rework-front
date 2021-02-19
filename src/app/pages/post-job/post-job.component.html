@@ -6,7 +6,7 @@
             Permite a profesionales alrededor del mundo formar parte de tu equipo.
         </h1>
         <span class="font-weight-bold" style="color:#33383c;">
-            Gratis por tiempo limitado, luego comenzando a $47 USD por 30 días
+            Gratis por tiempo limitado, luego comenzando a $37 USD por 30 días
         </span>
     </div>
 </div>
@@ -110,10 +110,10 @@
             </p>
         </div>
 
-        <h1 style="margin-top: 4rem;" class="h1-responsive font-weight-bold">Resalta tu post</h1>
+        <h1 style="margin-top: 4rem;" class="h1-responsive font-weight-bold">Resalta tu post totalmente gratis</h1>
         <!--Boosters-->
         <div style="margin-top: 1.5rem;" *ngIf="boosterService.find( boosters, 'booster_1' )">
-            <mdb-checkbox [default]="true" #checkImage (change)="checkAddImage( $event )">Añade el logo de tu empresa por $37 USD.</mdb-checkbox>
+            <mdb-checkbox [default]="true" #checkImage (change)="checkAddImage( $event )">Añade el logo de tu empresa por $15 USD.</mdb-checkbox>
             <div style="margin-top: .7rem;" *ngIf="displayUploadImageContainer">
                 <p>
                     Recuerda considerar estas indicaciones:
@@ -139,10 +139,10 @@
             </div>
         </div>
         <div id="yellow-post-checkbox">
-            <mdb-checkbox [default]="true" (change)="yellowPostCheckboxChange( $event )">Añade un atractivo <span id="yellow-post-color">amarillo</span> y destaca tu post por $59 USD.</mdb-checkbox>
+            <mdb-checkbox [default]="true" (change)="yellowPostCheckboxChange( $event )">Añade un atractivo <span id="yellow-post-color">amarillo</span> y destaca tu post por $27 USD.</mdb-checkbox>
         </div>
         <div id="sticky-checkbox-container">
-            <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $67 USD.</mdb-checkbox>
+            <mdb-checkbox [default]="true" #sticky (change)="stickyOptionsClicked( $event )">Fija tu publicación al comienzo de la lista a partir de $37 USD.</mdb-checkbox>
             <div id="sticky-options-container" *ngIf="sticky.checked">
                 <div class="form-check sticky-radio-option" *ngFor="let stickyOption of stickyOptions">
                     <input type="radio" class="form-check-input" [id]="stickyOption.code" [value]="boosterService.getId( boosters, stickyOption.code )" (change)="stickyRadioSelected( $event )" formControlName="sticky">
