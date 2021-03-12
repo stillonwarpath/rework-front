@@ -54,7 +54,7 @@
             </div>
             <!--Tags-->
             <div style="margin-top:.8rem">
-                <span *ngFor="let tag of job.tags | spliceArray:0:3" class="addedTag">{{tag}}</span>
+                <span *ngFor="let tag of job.tags" class="addedTag">{{tag}}</span>
             </div>
             <!--Description-->
             <div class="job-description" style="margin-top: .8rem" [innerHTML]="job.description"></div>
