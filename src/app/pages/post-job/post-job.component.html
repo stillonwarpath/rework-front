@@ -86,7 +86,7 @@
         </div>
 
         <div class="md-form md-outline margin-top-input">
-            <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url">
+            <input mdbInput mdbValidate type="text" id="job-url" class="form-control" formControlName="url" (input)="emailOrUrlWritten($event)">
             <label for="job-url" class="">URL sitio de postulación</label>
             <!--
             <mdb-error *ngIf="url.invalid && (url.dirty || url.touched)">

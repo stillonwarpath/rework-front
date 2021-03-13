@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import * as classicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CheckboxComponent } from 'angular-bootstrap-md';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 import { JobService } from '../../services/job.service';
@@ -79,6 +81,10 @@ export class PostJobComponent implements OnInit {
     }
   ];
 
+  private modelChanged: Subject<string> = new Subject<string>();
+  private subscription: Subscription;
+  debounceTime = 500;
+
 
   constructor( private jobService: JobService,
                private stripeService: StripeService,
@@ -123,6 +129,16 @@ export class PostJobComponent implements OnInit {
          this.types = types;
 
        });
+
+    this.subscription = this.modelChanged
+                            .pipe(debounceTime(this.debounceTime))
+                            .subscribe(() => {
+                              if ( !this.jobService.isEmailOrUrl( this.url.value )) {
+                                console.log('Marcar error en input');
+                              } else {
+                                console.log('Todo ok');
+                              }
+                            })
 
  
   }
@@ -210,6 +226,14 @@ export class PostJobComponent implements OnInit {
     this.jobService.removeAddedTagToJob( index, this.tagsAdded );
 
   }
+
+  public emailOrUrlWritten( event ) {
+
+    console.log( event );
+    this.modelChanged.next('cambio');
+
+  }
+
 
   async onFileSelected( event, boosterCode: string ) {
 
@@ -440,6 +464,10 @@ export class PostJobComponent implements OnInit {
 
     return false;
 
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import validator from 'validator';
+
+
 import { IJob } from '../interfaces/job.interface';
 import { IPostedJob } from '../interfaces/posted-job.interface';
 import { IJobsRequest } from '../interfaces/jobs-request.interface';
@@ -153,6 +156,16 @@ export class JobService {
 
     addedTags.splice( index, 1);
 
+
+  }
+
+  isEmailOrUrl( value: string ) : boolean {
+
+    if ( validator.isEmail(value) || validator.isURL(value) ) {
+      return true;
+    } else {
+      return false;
+    }
 
   }
 
