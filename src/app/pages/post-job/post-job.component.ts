@@ -103,7 +103,7 @@ export class PostJobComponent implements OnInit {
        type: new FormControl('-99', Validators.required),
        location: new FormControl(null),
        description: new FormControl(null),
-       url: new FormControl(null),
+       url: new FormControl(null, Validators.required),
        email: new FormControl(null, [Validators.required, Validators.email ]),
        sticky: new FormControl()
     });
@@ -133,11 +133,11 @@ export class PostJobComponent implements OnInit {
     this.subscription = this.modelChanged
                             .pipe(debounceTime(this.debounceTime))
                             .subscribe(() => {
+
                               if ( !this.jobService.isEmailOrUrl( this.url.value )) {
-                                console.log('Marcar error en input');
-                              } else {
-                                console.log('Todo ok');
-                              }
+                                this.url.setErrors({formato_incorrecto: true});
+                              } 
+                              
                             })
 
  
