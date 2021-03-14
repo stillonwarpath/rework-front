@@ -83,7 +83,7 @@ export class PostJobComponent implements OnInit {
 
   private modelChanged: Subject<string> = new Subject<string>();
   private subscription: Subscription;
-  debounceTime = 500;
+  debounceTime = 700;
 
 
   constructor( private jobService: JobService,
@@ -137,7 +137,7 @@ export class PostJobComponent implements OnInit {
                               if ( !this.jobService.isEmailOrUrl( this.url.value )) {
                                 this.url.setErrors({formato_incorrecto: true});
                               } 
-                              
+
                             })
 
  
